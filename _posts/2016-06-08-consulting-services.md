@@ -9,7 +9,7 @@ permalink: /2016/06/consulting-services/
 categories:
   - Uncategorized
 ---
-[<img class="wp-image-353 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2016/06/imac-605421_640.jpg" alt="imac-605421_640" width="381" height="253" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/06/imac-605421_640.jpg 640w, http://fredrikholmberg.com/wp-content/uploads/2016/06/imac-605421_640-300x199.jpg 300w" sizes="(max-width: 381px) 100vw, 381px" />](http://fredrikholmberg.com/consulting/)
+[<img class="wp-image-353 aligncenter" src="/wp-content/uploads/2016/06/imac-605421_640.jpg" alt="imac-605421_640" width="381" height="253" srcset="/wp-content/uploads/2016/06/imac-605421_640.jpg 640w,/wp-content/uploads/2016/06/imac-605421_640-300x199.jpg 300w" sizes="(max-width: 381px) 100vw, 381px" />](http://fredrikholmberg.com/consulting/)
 
 <p style="text-align: left;">
   As requested you can now find information about my <a href="http://fredrikholmberg.com/consulting/">Consulting Services</a>.

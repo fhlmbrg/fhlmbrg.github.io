@@ -72,7 +72,7 @@ The most common Multicast Addresses used by NDP is:
 
 So to better understand how this all works together we&#8217;ll use the following topology:
 
-<img class="size-full wp-image-69 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_1-1.png" alt="slaac_1" width="186" height="280" />
+<img class="size-full wp-image-69 aligncenter" src="/wp-content/uploads/2012/05/slaac_1-1.png" alt="slaac_1" width="186" height="280" />
 
 The router has been configured as follows:
 
@@ -116,7 +116,7 @@ By running &#8220;**debug ipv6 nd**&#8221; on the router interface we can see ND
 
 And the same events as seen in [Wireshark](http://www.wireshark.org/):
 
-<img class="alignnone size-full wp-image-70" src="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1.png" alt="slaac_r1" width="1121" height="196" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1.png 1121w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1-300x52.png 300w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1-768x134.png 768w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1-1024x179.png 1024w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_r1-1-676x118.png 676w" sizes="(max-width: 1121px) 100vw, 1121px" />
+<img class="alignnone size-full wp-image-70" src="/wp-content/uploads/2012/05/slaac_r1-1.png" alt="slaac_r1" width="1121" height="196" srcset="/wp-content/uploads/2012/05/slaac_r1-1.png 1121w,/wp-content/uploads/2012/05/slaac_r1-1-300x52.png 300w,/wp-content/uploads/2012/05/slaac_r1-1-768x134.png 768w,/wp-content/uploads/2012/05/slaac_r1-1-1024x179.png 1024w,/wp-content/uploads/2012/05/slaac_r1-1-676x118.png 676w" sizes="(max-width: 1121px) 100vw, 1121px" />
 
 So the following Neighbor Discovery events takes place:
 
@@ -144,7 +144,7 @@ So the following Neighbor Discovery events takes place:
 </div>
 
 <div>
-  <img class="size-full wp-image-71 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_2.png" alt="slaac_2" width="690" height="612" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_2.png 690w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_2-300x266.png 300w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_2-676x600.png 676w" sizes="(max-width: 690px) 100vw, 690px" />
+  <img class="size-full wp-image-71 aligncenter" src="/wp-content/uploads/2012/05/slaac_2.png" alt="slaac_2" width="690" height="612" srcset="/wp-content/uploads/2012/05/slaac_2.png 690w,/wp-content/uploads/2012/05/slaac_2-300x266.png 300w,/wp-content/uploads/2012/05/slaac_2-676x600.png 676w" sizes="(max-width: 690px) 100vw, 690px" />
 </div>
 
 The whole process took around 5 seconds to complete. IPv6 is now running on the router, RAs is being sent at 200 second intervals and we have configured a global unicast address on the LAN interface.
@@ -180,7 +180,7 @@ So here is what happens on CLIENT_A:
 
 And the same events as seen in Wireshark:
 
-<img class="alignnone size-full wp-image-72" src="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1.png" alt="slaac_c1_1" width="1301" height="117" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1.png 1301w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1-300x27.png 300w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1-768x69.png 768w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1-1024x92.png 1024w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_c1_1-1-676x61.png 676w" sizes="(max-width: 1301px) 100vw, 1301px" />
+<img class="alignnone size-full wp-image-72" src="/wp-content/uploads/2012/05/slaac_c1_1-1.png" alt="slaac_c1_1" width="1301" height="117" srcset="/wp-content/uploads/2012/05/slaac_c1_1-1.png 1301w,/wp-content/uploads/2012/05/slaac_c1_1-1-300x27.png 300w,/wp-content/uploads/2012/05/slaac_c1_1-1-768x69.png 768w,/wp-content/uploads/2012/05/slaac_c1_1-1-1024x92.png 1024w,/wp-content/uploads/2012/05/slaac_c1_1-1-676x61.png 676w" sizes="(max-width: 1301px) 100vw, 1301px" />
 
 The main NDP events can be summarized like this:
 
@@ -200,7 +200,7 @@ The main NDP events can be summarized like this:
 <div style="clear: both; text-align: center;">
 </div>
 
-<img class="size-full wp-image-73 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_3.png" alt="slaac_3" width="693" height="639" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_3.png 693w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_3-300x277.png 300w, http://fredrikholmberg.com/wp-content/uploads/2012/05/slaac_3-676x623.png 676w" sizes="(max-width: 693px) 100vw, 693px" />
+<img class="size-full wp-image-73 aligncenter" src="/wp-content/uploads/2012/05/slaac_3.png" alt="slaac_3" width="693" height="639" srcset="/wp-content/uploads/2012/05/slaac_3.png 693w,/wp-content/uploads/2012/05/slaac_3-300x277.png 300w,/wp-content/uploads/2012/05/slaac_3-676x623.png 676w" sizes="(max-width: 693px) 100vw, 693px" />
 
 And just as we saw earlier, the whole process takes 5 seconds to complete. All is good, the router and client can reach each other and an IPv6 default route is installed on the client.
 

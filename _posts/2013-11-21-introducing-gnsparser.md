@@ -38,7 +38,7 @@ What if I could outsource these initial router configuration steps? Just create 
 
 Unable to find a proper *aaS provider or Facebook app for this particular need, I built <a href="http://bitbucket.org/holmahenkel/gnsparser" target="_blank">something</a> that solves just that:
 
-<img class="size-full wp-image-40 aligncenter" src="http://104.196.36.32/wp-content/uploads/2013/11/gnsparser.png" alt="gnsparser" width="640" height="485" srcset="http://fredrikholmberg.com/wp-content/uploads/2013/11/gnsparser.png 640w, http://fredrikholmberg.com/wp-content/uploads/2013/11/gnsparser-300x227.png 300w" sizes="(max-width: 640px) 100vw, 640px" />
+<img class="size-full wp-image-40 aligncenter" src="http://104.196.36.32/wp-content/uploads/2013/11/gnsparser.png" alt="gnsparser" width="640" height="485" srcset="/wp-content/uploads/2013/11/gnsparser.png 640w,/wp-content/uploads/2013/11/gnsparser-300x227.png 300w" sizes="(max-width: 640px) 100vw, 640px" />
 
 <div style="clear: both; text-align: center;">
 </div>

@@ -61,7 +61,7 @@ Install the Vagrant plugins needed:
 
 OK, let&#8217;s say we want to build a four node topology similar to this:
 
-<img class="size-full wp-image-217 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2016/04/juniper_vagrant_topo.png" alt="juniper_vagrant_topo" width="403" height="288" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/04/juniper_vagrant_topo.png 403w, http://fredrikholmberg.com/wp-content/uploads/2016/04/juniper_vagrant_topo-300x214.png 300w" sizes="(max-width: 403px) 100vw, 403px" />
+<img class="size-full wp-image-217 aligncenter" src="/wp-content/uploads/2016/04/juniper_vagrant_topo.png" alt="juniper_vagrant_topo" width="403" height="288" srcset="/wp-content/uploads/2016/04/juniper_vagrant_topo.png 403w,/wp-content/uploads/2016/04/juniper_vagrant_topo-300x214.png 300w" sizes="(max-width: 403px) 100vw, 403px" />
 
 First we need to describe this topology to Vagrant using a **Vagrantfile**. This is the file that Vagrant will use to give instructions to VirtualBox on how to connect interfaces, how much memory to allocate to each node etc.
 

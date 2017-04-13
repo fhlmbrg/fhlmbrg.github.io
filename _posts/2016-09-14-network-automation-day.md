@@ -17,7 +17,7 @@ tags:
   - juniper
 ---
 <h1 style="text-align: center;">
-  <img class="alignnone wp-image-511 " src="http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png" alt="ansible_logo_black" width="580" height="78" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png 1024w, http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black-300x41.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black-768x104.png 768w, http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black-676x91.png 676w, http://fredrikholmberg.com/wp-content/uploads/2016/09/ansible_logo_black.png 1125w" sizes="(max-width: 580px) 100vw, 580px" />
+  <img class="alignnone wp-image-511 " src="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png" alt="ansible_logo_black" width="580" height="78" srcset="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png 1024w,/wp-content/uploads/2016/09/ansible_logo_black-300x41.png 300w,/wp-content/uploads/2016/09/ansible_logo_black-768x104.png 768w,/wp-content/uploads/2016/09/ansible_logo_black-676x91.png 676w,/wp-content/uploads/2016/09/ansible_logo_black.png 1125w" sizes="(max-width: 580px) 100vw, 580px" />
 </h1>
 
 On September 1st the Norwegian Juniper Elite partner [nLogic AS](http://www.nlogic.no) hosted an event called &#8220;[Ansible i praksis](http://nlogic.no/kursogseminarer/367-nlogic-workshop-ansible-i-praksis)&#8220;, entirely focused on network automation using Ansible. Lots of interesting presentations and discussions from the Norwegian automation scene. A whole day of Juniper, automation and Ansible! Does it get any better?
@@ -40,7 +40,7 @@ Then [Uninett](http://www.uninett.no) showed how they are planning to roll out t
 
 The last part of the event was the two-hour workshop. The attendees got access to a nine-node Juniper QFX topology which they were challenged to interact with using only Ansible:
 
-<img class="wp-image-492 size-full aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2016/09/junosansibleworkshop.png" alt="junosansibleworkshop" width="519" height="215" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/09/junosansibleworkshop.png 519w, http://fredrikholmberg.com/wp-content/uploads/2016/09/junosansibleworkshop-300x124.png 300w" sizes="(max-width: 519px) 100vw, 519px" />
+<img class="wp-image-492 size-full aligncenter" src="/wp-content/uploads/2016/09/junosansibleworkshop.png" alt="junosansibleworkshop" width="519" height="215" srcset="/wp-content/uploads/2016/09/junosansibleworkshop.png 519w,/wp-content/uploads/2016/09/junosansibleworkshop-300x124.png 300w" sizes="(max-width: 519px) 100vw, 519px" />
 
 With the limited amount of time our main focus was:
 

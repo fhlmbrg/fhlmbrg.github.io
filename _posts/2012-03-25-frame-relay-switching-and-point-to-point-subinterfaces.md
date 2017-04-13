@@ -30,7 +30,7 @@ I&#8217;m doing a lab for Cisco CCNP ROUTE where you&#8217;re supposed to set up
 
 **Topology:**
 
-<img class="alignnone size-full wp-image-44" src="http://fredrikholmberg.com/wp-content/uploads/2012/03/ajhefbj23lrkjn.png" alt="fr_cloud" width="560" height="304" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/03/ajhefbj23lrkjn.png 560w, http://fredrikholmberg.com/wp-content/uploads/2012/03/ajhefbj23lrkjn-300x163.png 300w" sizes="(max-width: 560px) 100vw, 560px" />
+<img class="alignnone size-full wp-image-44" src="/wp-content/uploads/2012/03/ajhefbj23lrkjn.png" alt="fr_cloud" width="560" height="304" srcset="/wp-content/uploads/2012/03/ajhefbj23lrkjn.png 560w,/wp-content/uploads/2012/03/ajhefbj23lrkjn-300x163.png 300w" sizes="(max-width: 560px) 100vw, 560px" />
 
 <li style="text-align: left;">
   DLCI 102 and 201 connecting R1_HQ and R2_EAST.

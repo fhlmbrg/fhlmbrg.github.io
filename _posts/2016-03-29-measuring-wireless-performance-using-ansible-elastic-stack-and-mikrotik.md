@@ -53,7 +53,7 @@ tags:
 
 <div style="text-align: left;">
   <div id="attachment_30" style="width: 412px" class="wp-caption aligncenter">
-    <img class="wp-image-30 size-full" src="http://104.196.36.32/wp-content/uploads/2016/03/Ansible_MikroTik-2.png" alt="Flow" width="402" height="435" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/03/Ansible_MikroTik-2.png 402w, http://fredrikholmberg.com/wp-content/uploads/2016/03/Ansible_MikroTik-2-277x300.png 277w" sizes="(max-width: 402px) 100vw, 402px" />
+    <img class="wp-image-30 size-full" src="http://104.196.36.32/wp-content/uploads/2016/03/Ansible_MikroTik-2.png" alt="Flow" width="402" height="435" srcset="/wp-content/uploads/2016/03/Ansible_MikroTik-2.png 402w,/wp-content/uploads/2016/03/Ansible_MikroTik-2-277x300.png 277w" sizes="(max-width: 402px) 100vw, 402px" />
     
     <p class="wp-caption-text">
       Splunk was already being used for data storage, so why not have Ansible spread the love and send JSON to both services simultaneously. The more the merrier!
@@ -258,7 +258,7 @@ As shown in **Benchmark.yml** we also include a file called **bwtest.yml** that
 </p>
 
 <p style="clear: both; text-align: left;">
-  <img class="alignnone wp-image-31 size-full" src="http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1.png" alt="tx_tot_avg_per_host_split_proto_2" width="1188" height="463" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1.png 1188w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-300x117.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-768x299.png 768w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-1024x399.png 1024w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-676x263.png 676w" sizes="(max-width: 1188px) 100vw, 1188px" />
+  <img class="alignnone wp-image-31 size-full" src="/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1.png" alt="tx_tot_avg_per_host_split_proto_2" width="1188" height="463" srcset="/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1.png 1188w,/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-300x117.png 300w,/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-768x299.png 768w,/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-1024x399.png 1024w,/wp-content/uploads/2016/03/tx_tot_avg_per_host_split_proto_2-1-676x263.png 676w" sizes="(max-width: 1188px) 100vw, 1188px" />
 </p>
 
 <p style="clear: both; text-align: left;">
@@ -266,7 +266,7 @@ As shown in **Benchmark.yml** we also include a file called **bwtest.yml** that
 </p>
 
 <p style="clear: both; text-align: left;">
-  <img class="alignnone wp-image-32 size-full" src="http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_distrib_2-1.png" alt="tx_tot_distrib_2" width="741" height="451" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_distrib_2-1.png 741w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_distrib_2-1-300x183.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/03/tx_tot_distrib_2-1-676x411.png 676w" sizes="(max-width: 741px) 100vw, 741px" />
+  <img class="alignnone wp-image-32 size-full" src="/wp-content/uploads/2016/03/tx_tot_distrib_2-1.png" alt="tx_tot_distrib_2" width="741" height="451" srcset="/wp-content/uploads/2016/03/tx_tot_distrib_2-1.png 741w,/wp-content/uploads/2016/03/tx_tot_distrib_2-1-300x183.png 300w,/wp-content/uploads/2016/03/tx_tot_distrib_2-1-676x411.png 676w" sizes="(max-width: 741px) 100vw, 741px" />
 </p>
 
 <p style="clear: both; text-align: left;">
@@ -274,7 +274,7 @@ As shown in **Benchmark.yml** we also include a file called **bwtest.yml** that
 </p>
 
 <p style="clear: both; text-align: left;">
-  <img class="alignnone wp-image-33 size-full" src="http://fredrikholmberg.com/wp-content/uploads/2016/03/rx_tx_tot_avg-1.png" alt="rx_tx_tot_avg" width="654" height="251" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/03/rx_tx_tot_avg-1.png 654w, http://fredrikholmberg.com/wp-content/uploads/2016/03/rx_tx_tot_avg-1-300x115.png 300w" sizes="(max-width: 654px) 100vw, 654px" />
+  <img class="alignnone wp-image-33 size-full" src="/wp-content/uploads/2016/03/rx_tx_tot_avg-1.png" alt="rx_tx_tot_avg" width="654" height="251" srcset="/wp-content/uploads/2016/03/rx_tx_tot_avg-1.png 654w,/wp-content/uploads/2016/03/rx_tx_tot_avg-1-300x115.png 300w" sizes="(max-width: 654px) 100vw, 654px" />
 </p>
 
 <p style="clear: both; text-align: left;">

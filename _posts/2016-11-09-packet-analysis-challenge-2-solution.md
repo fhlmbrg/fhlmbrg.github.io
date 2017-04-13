@@ -15,7 +15,7 @@ tags:
   - wireshark
   - wiresharklympics
 ---
-<img class="aligncenter wp-image-469 " src="http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="455" height="310" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 455px) 100vw, 455px" />
+<img class="aligncenter wp-image-469 " src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="455" height="310" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w,/wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w,/wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w,/wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 455px) 100vw, 455px" />
 
 While we wait for Magnus Karlsen to make [his first move](https://worldchess.com/nyc2016/) (E4?), here&#8217;s a solution walk-through of the [second](http://fredrikholmberg.com/2016/10/packet-analysis-challenge-2/) Packet Capture Analysis challenge.
 
@@ -33,19 +33,19 @@ _hops = def.ttl &#8211; rcv.ttl_
 
 How to find the IP TTL value:
 
-<img class="alignnone wp-image-542 size-full" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q1.png" alt="ws_chal2_q1" width="633" height="436" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q1.png 633w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q1-300x207.png 300w" sizes="(max-width: 633px) 100vw, 633px" />
+<img class="alignnone wp-image-542 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q1.png" alt="ws_chal2_q1" width="633" height="436" srcset="/wp-content/uploads/2016/11/ws_chal2_q1.png 633w,/wp-content/uploads/2016/11/ws_chal2_q1-300x207.png 300w" sizes="(max-width: 633px) 100vw, 633px" />
 
 #### #2 &#8211; Using fingerprinting techniques, what OS is the server likely running? (1 point per technique)
 
 One way is to look at the HTTP 200 OK response from the server. Usually the application give away some hints on OS and software used:
 
-<img class="alignnone size-full wp-image-543" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_1.png" alt="ws_chal2_q2_1" width="612" height="455" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_1.png 612w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_1-300x223.png 300w" sizes="(max-width: 612px) 100vw, 612px" />
+<img class="alignnone size-full wp-image-543" src="/wp-content/uploads/2016/11/ws_chal2_q2_1.png" alt="ws_chal2_q2_1" width="612" height="455" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_1.png 612w,/wp-content/uploads/2016/11/ws_chal2_q2_1-300x223.png 300w" sizes="(max-width: 612px) 100vw, 612px" />
 
 It claims to be a **FreeBSD** host.
 
 Another indicator of OS type/version can be found by looking at the advertised IP TTL and TCP Window Size values:
 
-<img class="alignnone size-full wp-image-544" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_2.png" alt="ws_chal2_q2_2" width="663" height="512" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_2.png 663w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q2_2-300x232.png 300w" sizes="(max-width: 663px) 100vw, 663px" />
+<img class="alignnone size-full wp-image-544" src="/wp-content/uploads/2016/11/ws_chal2_q2_2.png" alt="ws_chal2_q2_2" width="663" height="512" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_2.png 663w,/wp-content/uploads/2016/11/ws_chal2_q2_2-300x232.png 300w" sizes="(max-width: 663px) 100vw, 663px" />
 
 A combination of IP TTL 64 and Window Size 65535 is often found in *nix/FreeBSD systems. More information [here](http://www.netresec.com/?page=Blog&month=2011-11&post=Passive-OS-Fingerprinting) and [here](http://subinsb.com/default-device-ttl-values).
 
@@ -57,7 +57,7 @@ Start off by changing **View > Time Display Format** to **Time Since Previous Di
 
 Then we can look at the SYN/ACK response during a TCP handshake to determine the RTT, **around 20 ms** in this case.
 
-<img class="alignnone size-full wp-image-545" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q3.png" alt="ws_chal2_q3" width="610" height="207" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q3.png 610w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q3-300x102.png 300w" sizes="(max-width: 610px) 100vw, 610px" />
+<img class="alignnone size-full wp-image-545" src="/wp-content/uploads/2016/11/ws_chal2_q3.png" alt="ws_chal2_q3" width="610" height="207" srcset="/wp-content/uploads/2016/11/ws_chal2_q3.png 610w,/wp-content/uploads/2016/11/ws_chal2_q3-300x102.png 300w" sizes="(max-width: 610px) 100vw, 610px" />
 
 Why the SYN/ACK handshake step? Because that segment is generated by the remote end TCP/IP stack, without any added application delay.
 
@@ -67,13 +67,13 @@ Looking at frame #14886 we see a TCP sequence number of 4641056. That segment ha
 
 As we see in frame #14889 the client does not receive the expected segment and TCP SACK kicks in.
 
-<img class="alignnone size-full wp-image-546" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4.png" alt="ws_chal2_q4" width="737" height="339" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4.png 737w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4-300x138.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4-676x311.png 676w" sizes="(max-width: 737px) 100vw, 737px" />
+<img class="alignnone size-full wp-image-546" src="/wp-content/uploads/2016/11/ws_chal2_q4.png" alt="ws_chal2_q4" width="737" height="339" srcset="/wp-content/uploads/2016/11/ws_chal2_q4.png 737w,/wp-content/uploads/2016/11/ws_chal2_q4-300x138.png 300w,/wp-content/uploads/2016/11/ws_chal2_q4-676x311.png 676w" sizes="(max-width: 737px) 100vw, 737px" />
 
 #### Bonus – In what frame does it receive the expected TCP segment?
 
 Since we know that the sequence number is 4642516, we can apply a specific Display Filter using **tcp.seq**:
 
-<img class="alignnone size-full wp-image-547" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4_b.png" alt="ws_chal2_q4_b" width="873" height="97" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4_b.png 873w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4_b-300x33.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4_b-768x85.png 768w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q4_b-676x75.png 676w" sizes="(max-width: 873px) 100vw, 873px" />
+<img class="alignnone size-full wp-image-547" src="/wp-content/uploads/2016/11/ws_chal2_q4_b.png" alt="ws_chal2_q4_b" width="873" height="97" srcset="/wp-content/uploads/2016/11/ws_chal2_q4_b.png 873w,/wp-content/uploads/2016/11/ws_chal2_q4_b-300x33.png 300w,/wp-content/uploads/2016/11/ws_chal2_q4_b-768x85.png 768w,/wp-content/uploads/2016/11/ws_chal2_q4_b-676x75.png 676w" sizes="(max-width: 873px) 100vw, 873px" />
 
 **Frame #14981!**
 
@@ -84,7 +84,7 @@ A graphical representation of the transfer halting
 **Statistics > TCP Stream Graphs > Time Sequence (Stevens):**
 
 <div id="attachment_548" style="width: 789px" class="wp-caption alignnone">
-  <img class="wp-image-548 size-full" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_1.png" alt="ws_chal2_q5_1" width="779" height="566" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_1.png 779w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_1-300x218.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_1-768x558.png 768w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_1-676x491.png 676w" sizes="(max-width: 779px) 100vw, 779px" />
+  <img class="wp-image-548 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q5_1.png" alt="ws_chal2_q5_1" width="779" height="566" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_1.png 779w,/wp-content/uploads/2016/11/ws_chal2_q5_1-300x218.png 300w,/wp-content/uploads/2016/11/ws_chal2_q5_1-768x558.png 768w,/wp-content/uploads/2016/11/ws_chal2_q5_1-676x491.png 676w" sizes="(max-width: 779px) 100vw, 779px" />
   
   <p class="wp-caption-text">
     Awkward silence.
@@ -93,7 +93,7 @@ A graphical representation of the transfer halting
 
 <span style="font-weight: 400;">The client TCP receive buffer is considered full in frame #8662. The client is reporting a window size of 536 Bytes which does not allow for a full TCP segment of 1460 Bytes. For some reason the client application (browser) is not pulling data fast enough from its buffer.</span>
 
-<img class="alignnone size-full wp-image-549" src="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_2.png" alt="ws_chal2_q5_2" width="703" height="338" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_2.png 703w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_2-300x144.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/11/ws_chal2_q5_2-676x325.png 676w" sizes="(max-width: 703px) 100vw, 703px" />
+<img class="alignnone size-full wp-image-549" src="/wp-content/uploads/2016/11/ws_chal2_q5_2.png" alt="ws_chal2_q5_2" width="703" height="338" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_2.png 703w,/wp-content/uploads/2016/11/ws_chal2_q5_2-300x144.png 300w,/wp-content/uploads/2016/11/ws_chal2_q5_2-676x325.png 676w" sizes="(max-width: 703px) 100vw, 703px" />
 
 <span style="font-weight: 400;">The transfer halts for around 3 seconds until the client has finished processing the data and reports a window of 64 KB (256KB as seen in Wireshark is due to Window Scaling). The server continues transferring at frame #8665.</span>
 

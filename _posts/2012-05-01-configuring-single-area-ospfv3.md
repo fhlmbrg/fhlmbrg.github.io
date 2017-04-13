@@ -28,7 +28,7 @@ Configuring OSPFv3 is not very different from configuring OSPF for IPv4. It&#821
 
 Either prepare a topology using [GNSparser](http://bitbucket.org/holmahenkel/gnsparser) or use this one:
 
-<img class="alignnone size-full wp-image-62" src="http://104.196.36.32/wp-content/uploads/2012/05/single_area_ospfv3.png" alt="single_area_ospfv3" width="541" height="319" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/05/single_area_ospfv3.png 541w, http://fredrikholmberg.com/wp-content/uploads/2012/05/single_area_ospfv3-300x177.png 300w" sizes="(max-width: 541px) 100vw, 541px" />
+<img class="alignnone size-full wp-image-62" src="http://104.196.36.32/wp-content/uploads/2012/05/single_area_ospfv3.png" alt="single_area_ospfv3" width="541" height="319" srcset="/wp-content/uploads/2012/05/single_area_ospfv3.png 541w,/wp-content/uploads/2012/05/single_area_ospfv3-300x177.png 300w" sizes="(max-width: 541px) 100vw, 541px" />
 
 <!--more-->
 

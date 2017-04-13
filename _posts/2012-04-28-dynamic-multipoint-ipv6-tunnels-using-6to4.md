@@ -45,7 +45,7 @@ tags:
 </p>
 
 <p style="clear: both; text-align: left;">
-  <img class="wp-image-57 size-full aligncenter" src="http://104.196.36.32/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png" alt="dynamic_multipoint_ipv6_tunnels_6to4" width="688" height="411" srcset="http://fredrikholmberg.com/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png 688w, http://fredrikholmberg.com/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-300x179.png 300w, http://fredrikholmberg.com/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-676x404.png 676w" sizes="(max-width: 688px) 100vw, 688px" />
+  <img class="wp-image-57 size-full aligncenter" src="http://104.196.36.32/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png" alt="dynamic_multipoint_ipv6_tunnels_6to4" width="688" height="411" srcset="/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png 688w,/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-300x179.png 300w,/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-676x404.png 676w" sizes="(max-width: 688px) 100vw, 688px" />
 </p>
 
 <p style="clear: both; text-align: left;">

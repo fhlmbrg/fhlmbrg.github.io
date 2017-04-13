@@ -15,7 +15,7 @@ tags:
   - lab
 ---
 <div id="attachment_86" style="width: 411px" class="wp-caption aligncenter">
-  <img class="wp-image-86" src="http://fredrikholmberg.com/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="http://fredrikholmberg.com/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, http://fredrikholmberg.com/wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" />
+  <img class="wp-image-86" src="/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w,/wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" />
   
   <p class="wp-caption-text">
     A young Michael Caine enjoying Juniper labs.

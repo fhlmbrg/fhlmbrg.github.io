@@ -24,7 +24,7 @@ Once I had an issue with a banking app on my iPhone. After upgrading to iOS 9
 
 This is what greeted me when I tried logging in:
 
-<img class="aligncenter wp-image-266" src="http://fredrikholmberg.com/wp-content/uploads/2016/05/err2-169x300.png" alt="err2" width="282" height="500" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/05/err2-169x300.png 169w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err2-577x1024.png 577w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err2.png 640w" sizes="(max-width: 282px) 100vw, 282px" />
+<img class="aligncenter wp-image-266" src="/wp-content/uploads/2016/05/err2-169x300.png" alt="err2" width="282" height="500" srcset="/wp-content/uploads/2016/05/err2-169x300.png 169w,/wp-content/uploads/2016/05/err2-577x1024.png 577w,/wp-content/uploads/2016/05/err2.png 640w" sizes="(max-width: 282px) 100vw, 282px" />
 
 You could sit and look at that white square for as long as you wanted. Nothing would happen. No error message or [spinning beach ball](https://en.wikipedia.org/wiki/Spinning_pinwheel).
 
@@ -43,7 +43,7 @@ Using a [Mikrotik RB750GL](http://routerboard.com/RB750GL) I mirrored all traffi
 
 Filtering the output down to the exact moment when I tapped &#8220;Login&#8221; and the two-factor module was supposed to load:
 
-<img class="alignnone size-full wp-image-271" src="http://fredrikholmberg.com/wp-content/uploads/2016/05/err3.png" alt="err3" width="1098" height="251" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/05/err3.png 1098w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err3-300x69.png 300w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err3-768x176.png 768w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err3-1024x234.png 1024w, http://fredrikholmberg.com/wp-content/uploads/2016/05/err3-676x155.png 676w" sizes="(max-width: 1098px) 100vw, 1098px" />
+<img class="alignnone size-full wp-image-271" src="/wp-content/uploads/2016/05/err3.png" alt="err3" width="1098" height="251" srcset="/wp-content/uploads/2016/05/err3.png 1098w,/wp-content/uploads/2016/05/err3-300x69.png 300w,/wp-content/uploads/2016/05/err3-768x176.png 768w,/wp-content/uploads/2016/05/err3-1024x234.png 1024w,/wp-content/uploads/2016/05/err3-676x155.png 676w" sizes="(max-width: 1098px) 100vw, 1098px" />
 
 Lots of weird text. Don&#8217;t give up just yet.
 

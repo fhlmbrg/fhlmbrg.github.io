@@ -12,7 +12,7 @@ tags:
   - challenge
   - wireshark
 ---
-<img class="wp-image-469 aligncenter" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="439" height="300" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, http://fredrikholmberg.com/wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 439px) 100vw, 439px" />
+<img class="wp-image-469 aligncenter" src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="439" height="300" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w,/wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w,/wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w,/wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 439px) 100vw, 439px" />
 
 It&#8217;s time for a walk-through of how to solve the [first Packet Analysis Challenge](http://fredrikholmberg.com/2016/08/packet-analysis-challenge-1/).
 
@@ -28,7 +28,7 @@ The fastest one to answer all the questions including the bonus round was a lo
 
 Go to **Statistics > Endpoints** to list all the endpoints that Wireshark is seeing across all TCP/IP layers. Select **IPv4**:
 
-<img class="alignnone size-full wp-image-420" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q1.png" alt="ws_chal1_q1" width="635" height="363" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q1.png 635w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q1-300x171.png 300w" sizes="(max-width: 635px) 100vw, 635px" />
+<img class="alignnone size-full wp-image-420" src="/wp-content/uploads/2016/08/ws_chal1_q1.png" alt="ws_chal1_q1" width="635" height="363" srcset="/wp-content/uploads/2016/08/ws_chal1_q1.png 635w,/wp-content/uploads/2016/08/ws_chal1_q1-300x171.png 300w" sizes="(max-width: 635px) 100vw, 635px" />
 
 With 255.255.255.255 being a Limited Broadcast address ([rfc5735#section-4](https://tools.ietf.org/html/rfc5735#section-4)), this leaves us with a **total of 11 IPv4 nodes.**
 
@@ -38,7 +38,7 @@ With 255.255.255.255 being a Limited Broadcast address ([rfc5735#section-4](http
 
 Apply a display filter to only focus on HTTP requests containing the word &#8220;exe&#8221;:
 
-<img class="alignnone size-full wp-image-422" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q2.png" alt="ws_chal1_q2" width="640" height="229" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q2.png 640w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q2-300x107.png 300w" sizes="(max-width: 640px) 100vw, 640px" />
+<img class="alignnone size-full wp-image-422" src="/wp-content/uploads/2016/08/ws_chal1_q2.png" alt="ws_chal1_q2" width="640" height="229" srcset="/wp-content/uploads/2016/08/ws_chal1_q2.png 640w,/wp-content/uploads/2016/08/ws_chal1_q2-300x107.png 300w" sizes="(max-width: 640px) 100vw, 640px" />
 
 Frame number 842 and 8292 initiates the downloads and list two different destination IPv4 addresses. Run a whois query against them to find out where they originate:
 
@@ -56,7 +56,7 @@ There you have it, **Australia** and the **United States**.
 
 We can find this information by looking at the HTTP 200 OK response from the server (frames 844 and 8294):
 
-<img class="alignnone size-full wp-image-423" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q3.png" alt="ws_chal1_q3" width="575" height="589" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q3.png 575w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q3-293x300.png 293w" sizes="(max-width: 575px) 100vw, 575px" />
+<img class="alignnone size-full wp-image-423" src="/wp-content/uploads/2016/08/ws_chal1_q3.png" alt="ws_chal1_q3" width="575" height="589" srcset="/wp-content/uploads/2016/08/ws_chal1_q3.png 575w,/wp-content/uploads/2016/08/ws_chal1_q3-293x300.png 293w" sizes="(max-width: 575px) 100vw, 575px" />
 
 The HTTP header **Content-Length** indicates the size of the entity-body in Bytes ([rfc2616#section-14.13](https://tools.ietf.org/html/rfc2616#section-14.13)).
 
@@ -68,13 +68,13 @@ The client therefore expect to download 78597807 Bytes (78.5 MB).
 
 Go to **Statistics > Conversations **and select TCP (since the two transfers used HTTP, which is transported over TCP).
 
-<img class="alignnone size-full wp-image-431" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_1.png" alt="ws_chal1_q4_1" width="637" height="244" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_1.png 637w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_1-300x115.png 300w" sizes="(max-width: 637px) 100vw, 637px" />
+<img class="alignnone size-full wp-image-431" src="/wp-content/uploads/2016/08/ws_chal1_q4_1.png" alt="ws_chal1_q4_1" width="637" height="244" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_1.png 637w,/wp-content/uploads/2016/08/ws_chal1_q4_1-300x115.png 300w" sizes="(max-width: 637px) 100vw, 637px" />
 
 Click on the column **Bytes** to sort the table. The top two conversations list the file transfers.
 
 Next, find the column **Bits/s B -> A** (meaning the download direction from the client perspective).
 
-<img class="alignnone size-full wp-image-430" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_2.png" alt="ws_chal1_q4_2" width="584" height="460" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_2.png 584w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q4_2-300x236.png 300w" sizes="(max-width: 584px) 100vw, 584px" />
+<img class="alignnone size-full wp-image-430" src="/wp-content/uploads/2016/08/ws_chal1_q4_2.png" alt="ws_chal1_q4_2" width="584" height="460" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_2.png 584w,/wp-content/uploads/2016/08/ws_chal1_q4_2-300x236.png 300w" sizes="(max-width: 584px) 100vw, 584px" />
 
 The server providing the fastest file transfer is the US host 204.152.184.134. It delivers the EXE file at an average speed of **2344 Kbps or 2.34 Mbps**.
 
@@ -98,19 +98,19 @@ So which one is it?
 
 First, apply a display filter to single out all TCP handshakes. All handshakes must have the SYN flag set.
 
-<img class="alignnone size-full wp-image-432" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_1.png" alt="ws_chal1_q5_1" width="401" height="396" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_1.png 401w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_1-300x296.png 300w" sizes="(max-width: 401px) 100vw, 401px" />
+<img class="alignnone size-full wp-image-432" src="/wp-content/uploads/2016/08/ws_chal1_q5_1.png" alt="ws_chal1_q5_1" width="401" height="396" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_1.png 401w,/wp-content/uploads/2016/08/ws_chal1_q5_1-300x296.png 300w" sizes="(max-width: 401px) 100vw, 401px" />
 
 Next select a frame, then in the Packet Details pane, expand the subtree of **Transmission Control Protocol**. Scroll down to **Options** and look for **Maximum segment size**.
 
 Expand it and right-click on **MSS Value** and select **Apply as Column:**
 
-<img class="alignnone size-full wp-image-439" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_02.png" alt="ws_chal1_q5_02" width="489" height="506" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_02.png 489w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_02-290x300.png 290w" sizes="(max-width: 489px) 100vw, 489px" />
+<img class="alignnone size-full wp-image-439" src="/wp-content/uploads/2016/08/ws_chal1_q5_02.png" alt="ws_chal1_q5_02" width="489" height="506" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_02.png 489w,/wp-content/uploads/2016/08/ws_chal1_q5_02-290x300.png 290w" sizes="(max-width: 489px) 100vw, 489px" />
 
 This allow us easily see all the TCP MSS values set during TCP handshakes.
 
 By sorting using this new shiny **MSS Value** column, we find one outlier:
 
-<img class="alignnone size-full wp-image-437" src="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_3.png" alt="ws_chal1_q5_3" width="606" height="224" srcset="http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_3.png 606w, http://fredrikholmberg.com/wp-content/uploads/2016/08/ws_chal1_q5_3-300x111.png 300w" sizes="(max-width: 606px) 100vw, 606px" />
+<img class="alignnone size-full wp-image-437" src="/wp-content/uploads/2016/08/ws_chal1_q5_3.png" alt="ws_chal1_q5_3" width="606" height="224" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_3.png 606w,/wp-content/uploads/2016/08/ws_chal1_q5_3-300x111.png 300w" sizes="(max-width: 606px) 100vw, 606px" />
 
 The host **216.251.114.10** in frames 6 and 30 limit any TCP segments sent its way to 1380 Bytes.
 

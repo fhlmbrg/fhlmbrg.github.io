@@ -53,14 +53,14 @@ Run as many instances of Dynamips as you want. Two or more allows for load balan
 
 Then configure GNS3 to use your VM as an &#8220;External Hypervisor&#8221;:
 
-<img class="alignnone size-full wp-image-84" src="http://104.196.36.32/wp-content/uploads/2013/08/ext_hypervisors-1.png" alt="ext_hypervisors" width="763" height="587" srcset="http://fredrikholmberg.com/wp-content/uploads/2013/08/ext_hypervisors-1.png 763w, http://fredrikholmberg.com/wp-content/uploads/2013/08/ext_hypervisors-1-300x231.png 300w, http://fredrikholmberg.com/wp-content/uploads/2013/08/ext_hypervisors-1-676x520.png 676w" sizes="(max-width: 763px) 100vw, 763px" />
+<img class="alignnone size-full wp-image-84" src="http://104.196.36.32/wp-content/uploads/2013/08/ext_hypervisors-1.png" alt="ext_hypervisors" width="763" height="587" srcset="/wp-content/uploads/2013/08/ext_hypervisors-1.png 763w,/wp-content/uploads/2013/08/ext_hypervisors-1-300x231.png 300w,/wp-content/uploads/2013/08/ext_hypervisors-1-676x520.png 676w" sizes="(max-width: 763px) 100vw, 763px" />
 
-<img class="alignnone size-full wp-image-85" src="http://104.196.36.32/wp-content/uploads/2013/08/ios_images-1.png" alt="ios_images" width="909" height="589" srcset="http://fredrikholmberg.com/wp-content/uploads/2013/08/ios_images-1.png 909w, http://fredrikholmberg.com/wp-content/uploads/2013/08/ios_images-1-300x194.png 300w, http://fredrikholmberg.com/wp-content/uploads/2013/08/ios_images-1-768x498.png 768w, http://fredrikholmberg.com/wp-content/uploads/2013/08/ios_images-1-676x438.png 676w" sizes="(max-width: 909px) 100vw, 909px" />
+<img class="alignnone size-full wp-image-85" src="http://104.196.36.32/wp-content/uploads/2013/08/ios_images-1.png" alt="ios_images" width="909" height="589" srcset="/wp-content/uploads/2013/08/ios_images-1.png 909w,/wp-content/uploads/2013/08/ios_images-1-300x194.png 300w,/wp-content/uploads/2013/08/ios_images-1-768x498.png 768w,/wp-content/uploads/2013/08/ios_images-1-676x438.png 676w" sizes="(max-width: 909px) 100vw, 909px" />
 
 Create a topology, [run it through GNSparser](http://bitbucket.org/holmahenkel/gnsparser) and off you go.
 
 <div id="attachment_86" style="width: 410px" class="wp-caption alignnone">
-  <img class="size-full wp-image-86" src="http://104.196.36.32/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="Even Michael Caine enjoy Cisco labs." width="400" height="274" srcset="http://fredrikholmberg.com/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, http://fredrikholmberg.com/wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" />
+  <img class="size-full wp-image-86" src="http://104.196.36.32/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="Even Michael Caine enjoy Cisco labs." width="400" height="274" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w,/wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" />
   
   <p class="wp-caption-text">
     Even Michael Caine enjoy Cisco labs.
