@@ -3,9 +3,9 @@ title:               Lagrange
 tagline:             a minimalist Jekyll theme
 description:
 baseurl:            "/"
-url:                "http://10.0.1.154:4001"
+url:                "http://holmahenkel.github.io"
 github:
-  url:               "http://10.0.1.154:4001"
+  url:               "https://holmahenkel.github.io"
 author:
   name:              "Paul Le"
   email:             "l.nguyen.paul@gmail.com"
