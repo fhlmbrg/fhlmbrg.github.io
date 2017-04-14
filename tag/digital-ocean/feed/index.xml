@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>digital ocean &#8211; Fredrik Holmberg</title>
+	<atom:link href="/tag/digital-ocean/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>digital ocean &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>GNS3/Dynamips labs with a twist using DigitalOcean</title>
+		<link>/2013/08/gns3dynamips-labs-with-a-twist-using-digitalocean/</link>
+		<comments>/2013/08/gns3dynamips-labs-with-a-twist-using-digitalocean/#respond</comments>
+		<pubDate>Wed, 07 Aug 2013 22:03:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[automation]]></category>
+		<category><![CDATA[digital ocean]]></category>
+		<category><![CDATA[dynagen]]></category>
+		<category><![CDATA[gns3]]></category>
+		<category><![CDATA[network lab]]></category>
+		<category><![CDATA[lab]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Inspired by +Mikhail Schedrin and his cloud-only GNS3/Dynamips labs, I decided to configure one myself. Thanks to the awesome hosting provider DigitalOcean (http://www.digitalocean.com) you/ can have a proper Cisco CCNA/CCNP/CCIE lab running for 0.060 USD per hour (4GB Memory, 2 CPU Cores). Lab configuration Copy Dynamips (http://www.gns3.net/dynamips/) and a Cisco IOS image to your VM. Then configure the [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Inspired by <a href="http://plus.google.com/109548533862883698112" target="_blank">+Mikhail Schedrin</a> and his cloud-only GNS3/Dynamips labs, I decided to configure one myself. Thanks to the awesome hosting provider DigitalOcean (<a href="http://www.digitalocean.com/">http://www.digitalocean.com/</a>) you can have a proper Cisco CCNA/CCNP/CCIE lab running for 0.060 USD per hour (4GB Memory, 2 CPU Cores).</p>
+<p><span id="more-9"></span></p>
+<p><b>Lab configuration</b><br />
+Copy Dynamips (<a href="http://www.gns3.net/dynamips/">http://www.gns3.net/dynamips/</a>) and a Cisco IOS image to your VM. Then configure the Dynamips processes to launch at startup and prepare a timestamp log file for later:</p>
+<table>
+<tbody>
+<tr>
+<td bgcolor="lightgrey">
+<pre>/etc/rc.local:
+==============
+/root/net/dynamips/dynamips-0.2.8-RC3-community-x86.bin -H 7200 &amp;
+/root/net/dynamips/dynamips-0.2.8-RC3-community-x86.bin -H 7201 &amp;
+/root/net/dynamips/dynamips-0.2.8-RC3-community-x86.bin -H 7202 &amp;
+
+touch /tmp/do_timestamp.log
+date +%s &gt; /tmp/do_timestamp.log</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Run as many instances of Dynamips as you want. Two or more allows for load balancing from GNS3 by distributing the virtual routers across multiple processes.</p>
+<p>Then configure GNS3 to use your VM as an &#8220;External Hypervisor&#8221;:</p>
+<p><img class="alignnone size-full wp-image-84" src="http://104.196.36.32/wp-content/uploads/2013/08/ext_hypervisors-1.png" alt="ext_hypervisors" width="763" height="587" srcset="/wp-content/uploads/2013/08/ext_hypervisors-1.png 763w, /wp-content/uploads/2013/08/ext_hypervisors-1-300x231.png 300w, /wp-content/uploads/2013/08/ext_hypervisors-1-676x520.png 676w" sizes="(max-width: 763px) 100vw, 763px" /></p>
+<p><img class="alignnone size-full wp-image-85" src="http://104.196.36.32/wp-content/uploads/2013/08/ios_images-1.png" alt="ios_images" width="909" height="589" srcset="/wp-content/uploads/2013/08/ios_images-1.png 909w, /wp-content/uploads/2013/08/ios_images-1-300x194.png 300w, /wp-content/uploads/2013/08/ios_images-1-768x498.png 768w, /wp-content/uploads/2013/08/ios_images-1-676x438.png 676w" sizes="(max-width: 909px) 100vw, 909px" /></p>
+<p>Create a topology, <a href="http://bitbucket.org/holmahenkel/gnsparser">run it through GNSparser</a> and off you go.</p>
+<div id="attachment_86" style="width: 410px" class="wp-caption alignnone"><img class="size-full wp-image-86" src="http://104.196.36.32/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="Even Michael Caine enjoy Cisco labs." width="400" height="274" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, /wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 400px) 100vw, 400px" /><p class="wp-caption-text">Even Michael Caine enjoy Cisco labs.</p></div>
+<div style="clear: both; text-align: left;"></div>
+<p style="clear: both; text-align: left;"><b>That awkward feeling</b></p>
+<p style="clear: both; text-align: left;">Two hours later and you&#8217;re done for the day. You shutdown your laptop but <b>forget to destroy the VM!!</b> The meter keeps on running. Leave it running idle for another two weeks and you&#8217;ve used 20 USD on cloud air. There&#8217;s no market for cloud air, so that money is lost. There are lots of better things to invest in <a href="http://www.thinkgeek.com/interests/giftsunder20/">http://www.thinkgeek.com/interests/giftsunder20/</a>.</p>
+<p style="clear: both; text-align: left;">Here&#8217;s one way to avoid those situations.</p>
+<p style="clear: both; text-align: left;">We will create a script that checks if there are any active TCP sessions towards the Dynamips processes. Here&#8217;s an example of ten processes ready and listening:</p>
+<table>
+<tbody>
+<tr>
+<td bgcolor="lightgrey">
+<pre>root@gns:~# netstat -na4
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 0.0.0.0:7200            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7201            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7202            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7203            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7204            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7205            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7206            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7207            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7208            0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:7209            0.0.0.0:*               LISTEN</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Should the script find TCP sessions against ports 7200-7209 in an ESTABLISHED state, it will set an initial counter with the current UNIX timestamp.</p>
+<p>After you&#8217;ve logged out and your TCP sessions are torn down, the script will figure out that there are no ESTABLISHED sessions left. It will then start to count down for one hour.</p>
+<p>If you haven&#8217;t reconnected to the VM (resetting the counter) within that time frame, the VM will go kamikaze on itself and issue a destroy request using the DigitalOcean API (<a href="https://www.digitalocean.com/api">https://www.digitalocean.com/api</a>).</p>
+<p><b>Meet the self-destructing VM</b><br />
+First, install the PHP5 CLI interpreter package to run PHP scripts on your server. Here&#8217;s how on Ubuntu etc.:</p>
+<table>
+<tbody>
+<tr>
+<td bgcolor="lightgrey">
+<pre>$ apt-get install php5-cli</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Copy the following script to a suitable location:</p>
+<blockquote>
+<pre>do_destroy.php
+==============
+&lt;?php
+
+$api_key = "secret_API_key";
+$api_cid = "secret_API_cid";
+
+$file = '/tmp/do_timestamp.log';
+$ts_log = file_get_contents($file);
+$ts_diff = time() - $ts_log;
+
+$vm = "gns"; // NAME OF VIRTUAL MACHINE AT DO
+
+function destroy($vm) {
+        global $api_key, $api_cid;
+
+        $do_status = file_get_contents('https://api.digitalocean.com/droplets/?client_id=' . $api_cid . '&amp;api_key=' . $api_key);
+
+        $ar_status = json_decode("$do_status", true);
+
+        foreach($ar_status['droplets'] as $droplet) {
+                if($droplet['name'] == $vm) {
+#                       file_get_contents('https://api.digitalocean.com/droplets/' . $droplet['id'] . '/destroy/?client_id=' . $api_cid . '&amp;api_key=' . $api_key);
+                } else {
+                        continue;
+                }
+        }
+}
+
+function acon() {
+        $netstat = exec("netstat -na4 | grep -E ':720' | grep -E 'ESTABLISHED' | wc -l");
+        if($netstat &gt; 0) {
+                return 1;
+        } else {
+                return 0;
+        }
+}
+
+if(acon() == 1) {
+        $curtime = time() . "n";
+        file_put_contents($file, $curtime);
+} elseif(acon() == 0 &amp;&amp; $ts_diff &gt; 3600) {
+        destroy($vm);
+} else {
+        return 0;
+}
+
+?&gt;</pre>
+</blockquote>
+<p>Configure a cron job to run every 15 minutes:</p>
+<table>
+<tbody>
+<tr>
+<td bgcolor="lightgrey">
+<pre>crontab -e:
+===========
+*/15 * * * * php /root/sh/do_destroy.php &gt; /dev/null 2&gt;&amp;1</pre>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>With all this configured and working, create a snapshot of your VM. This way you can setup a network lab whenever you feel like it. One way is by using the Android application Basin (<a href="http://basinapp.com/">http://basinapp.com/</a>) on your phone. Best of all, no need to worry about leaving the VM running. Automation will take care of the cleaning &lt;3</p>
+<p>Good luck!</p>
+]]></content:encoded>
+			<wfw:commentRss>/2013/08/gns3dynamips-labs-with-a-twist-using-digitalocean/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

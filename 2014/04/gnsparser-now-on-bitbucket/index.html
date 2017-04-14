@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+				
+				 
+		<title>GNSparser, now on Bitbucket &#8211; Fredrik Holmberg</title>
+<link rel='dns-prefetch' href='//w.sharethis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Fredrik Holmberg &raquo; Feed" href="/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fredrik Holmberg &raquo; Comments Feed" href="/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Fredrik Holmberg &raquo; GNSparser, now on Bitbucket Comments Feed" href="/2014/04/gnsparser-now-on-bitbucket/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='hemingway_googleFonts-css'  href='//fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic%7CRaleway%3A700%2C400&#038;ver=4.7.3' type='text/css' media='all' />
+<link rel='stylesheet' id='hemingway_style-css'  href='/wp-content/themes/hemingway/style.css?ver=4.7.3' type='text/css' media='all' />
+<script id='st_insights_js' type='text/javascript' src='http://w.sharethis.com/button/st_insights.js?publisher=4d48b7c5-0ae3-43d4-bfbe-3ff8c17a8ae6&#038;product=simpleshare'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Introducing GNSparser' href='/2013/11/introducing-gnsparser/' />
+<link rel='next' title='Measuring wireless performance using Ansible, Elastic Stack and MikroTik' href='/2016/03/measuring-wireless-performance-using-ansible-elastic-stack-and-mikrotik/' />
+<meta name="generator" content="WordPress 4.7.3" />
+<link rel="canonical" href="/2014/04/gnsparser-now-on-bitbucket/" />
+<link rel='shortlink' href='/?p=7' />
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2F2014%2F04%2Fgnsparser-now-on-bitbucket%2F" />
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2F2014%2F04%2Fgnsparser-now-on-bitbucket%2F&#038;format=xml" />
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-76156585-1', 'auto');
+  ga('send', 'pageview');
+
+</script><script>(function(d, s, id){
+                 var js, fjs = d.getElementsByTagName(s)[0];
+                 if (d.getElementById(id)) {return;}
+                 js = d.createElement(s); js.id = id;
+                 js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+                 fjs.parentNode.insertBefore(js, fjs);
+               }(document, 'script', 'facebook-jssdk'));</script><style type="text/css">	.ssba {
+									padding: 50px;
+									
+									
+									
+								}
+								.ssba img
+								{
+									width: 40px !important;
+									padding: 5px;
+									border:  0;
+									box-shadow: none !important;
+									display: inline !important;
+									vertical-align: middle;
+								}
+								.ssba, .ssba a
+								{
+									text-decoration:none;
+									border:0;
+									background: none;
+									
+									font-size: 	20px;
+									
+									font-weight: normal;
+								}
+								</style>      
+	      <!--Customizer CSS--> 
+	      
+	      <style type="text/css">
+	           body::selection { background:#0087a3; }	           body a { color:#0087a3; }	           body a:hover { color:#0087a3; }	           .blog-title a:hover { color:#0087a3; }	           .blog-menu a:hover { color:#0087a3; }	           .blog-search #searchsubmit { background-color:#0087a3; }	           .blog-search #searchsubmit { border-color:#0087a3; }	           .blog-search #searchsubmit:hover { background-color:#0087a3; }	           .blog-search #searchsubmit:hover { border-color:#0087a3; }	           .featured-media .sticky-post { background-color:#0087a3; }	           .post-title a:hover { color:#0087a3; }	           .post-meta a:hover { color:#0087a3; }	           .post-content a { color:#0087a3; }	           .post-content a:hover { color:#0087a3; }	           .blog .format-quote blockquote cite a:hover { color:#0087a3; }	           .post-content a.more-link:hover { background-color:#0087a3; }	           .post-content input[type="submit"]:hover { background-color:#0087a3; }	           .post-content input[type="reset"]:hover { background-color:#0087a3; }	           .post-content input[type="button"]:hover { background-color:#0087a3; }	           .post-content fieldset legend { background-color:#0087a3; }	           .post-content .searchform #searchsubmit { background:#0087a3; }	           .post-content .searchform #searchsubmit { border-color:#0087a3; }	           .post-content .searchform #searchsubmit:hover { background:#0087a3; }	           .post-content .searchform #searchsubmit:hover { border-color:#0087a3; }	           .post-categories a { color:#0087a3; }	           .post-categories a:hover { color:#0087a3; }	           .post-tags a:hover { background:#0087a3; }	           .post-tags a:hover:after { border-right-color:#0087a3; }	           .post-nav a:hover { color:#0087a3; }	           .archive-nav a:hover { color:#0087a3; }	           .logged-in-as a { color:#0087a3; }	           .logged-in-as a:hover { color:#0087a3; }	           .content #respond input[type="submit"]:hover { background-color:#0087a3; }	           .comment-meta-content cite a:hover { color:#0087a3; }	           .comment-meta-content p a:hover { color:#0087a3; }	           .comment-actions a:hover { color:#0087a3; }	           #cancel-comment-reply-link { color:#0087a3; }	           #cancel-comment-reply-link:hover { color:#0087a3; }	           .comment-nav-below a:hover { color:#0087a3; }	           .widget-title a { color:#0087a3; }	           .widget-title a:hover { color:#0087a3; }	           .widget_text a { color:#0087a3; }	           .widget_text a:hover { color:#0087a3; }	           .widget_rss a { color:#0087a3; }	           .widget_rss a:hover { color:#0087a3; }	           .widget_archive a { color:#0087a3; }	           .widget_archive a:hover { color:#0087a3; }	           .widget_meta a { color:#0087a3; }	           .widget_meta a:hover { color:#0087a3; }	           .widget_recent_comments a { color:#0087a3; }	           .widget_recent_comments a:hover { color:#0087a3; }	           .widget_pages a { color:#0087a3; }	           .widget_pages a:hover { color:#0087a3; }	           .widget_links a { color:#0087a3; }	           .widget_links a:hover { color:#0087a3; }	           .widget_recent_entries a { color:#0087a3; }	           .widget_recent_entries a:hover { color:#0087a3; }	           .widget_categories a { color:#0087a3; }	           .widget_categories a:hover { color:#0087a3; }	           .widget_search #searchsubmit { background:#0087a3; }	           .widget_search #searchsubmit { border-color:#0087a3; }	           .widget_search #searchsubmit:hover { background:#0087a3; }	           .widget_search #searchsubmit:hover { border-color:#0087a3; }	           #wp-calendar a { color:#0087a3; }	           #wp-calendar a:hover { color:#0087a3; }	           #wp-calendar tfoot a:hover { color:#0087a3; }	           .dribbble-shot:hover { background:#0087a3; }	           .widgetmore a { color:#0087a3; }	           .widgetmore a:hover { color:#0087a3; }	           .flickr_badge_image a:hover img { background:#0087a3; }	           .footer .flickr_badge_image a:hover img { background:#0087a3; }	           .footer .dribbble-shot:hover img { background:#0087a3; }	           .sidebar .tagcloud a:hover { background:#0087a3; }	           .footer .tagcloud a:hover { background:#0087a3; }	           .credits a:hover { color:#0087a3; }	           
+	           body#tinymce.wp-editor a { color:#0087a3; }	           body#tinymce.wp-editor a:hover { color:#0087a3; }	      </style> 
+	      
+	      <!--/Customizer CSS-->
+	      
+      <style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<link rel="icon" href="/wp-content/uploads/2016/04/cropped-2601-32x32.png" sizes="32x32" />
+<link rel="icon" href="/wp-content/uploads/2016/04/cropped-2601-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="/wp-content/uploads/2016/04/cropped-2601-180x180.png" />
+<meta name="msapplication-TileImage" content="/wp-content/uploads/2016/04/cropped-2601-270x270.png" />
+	
+	</head>
+	
+	<body class="post-template-default single single-post postid-7 single-format-standard custom-background">
+	
+		<div class="big-wrapper">
+	
+			<div class="header-cover section bg-dark-light no-padding">
+		
+				<div class="header section" style="background-image: url(/wp-content/uploads/2016/04/cropped-new-york-690868_1280-1.jpg);">
+							
+					<div class="header-inner section-inner">
+					
+											
+							<div class="blog-info">
+	
+								<h2 class="blog-title">
+									<a href="/" title="Fredrik Holmberg &mdash; Network Consultant" rel="home">Fredrik Holmberg</a>
+								</h2>
+								
+																
+									<h3 class="blog-description">Network Consultant&nbsp;&nbsp;<img src="http://abs.twimg.com/emoji/v1/72x72/2601.png" height="20" width="20">  <img src="http://abs.twimg.com/emoji/v1/72x72/26a1.png" height="20" width="20">
+</h3>
+									
+															
+							</div> <!-- /blog-info -->
+							
+															
+					</div> <!-- /header-inner -->
+								
+				</div> <!-- /header -->
+			
+			</div> <!-- /bg-dark -->
+			
+			<div class="navigation section no-padding bg-dark">
+			
+				<div class="navigation-inner section-inner">
+				
+					<div class="toggle-container hidden">
+			
+						<div class="nav-toggle toggle">
+								
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+							
+							<div class="clear"></div>
+						
+						</div>
+						
+						<div class="search-toggle toggle">
+								
+							<div class="metal"></div>
+							<div class="glass"></div>
+							<div class="handle"></div>
+						
+						</div>
+						
+						<div class="clear"></div>
+					
+					</div> <!-- /toggle-container -->
+					
+					<div class="blog-search hidden">
+					
+						<form method="get" class="searchform" action="/">
+	<input type="search" value="" placeholder="Search form" name="s" id="s" /> 
+	<input type="submit" id="searchsubmit" value="Search">
+</form>					
+					</div>
+				
+					<ul class="blog-menu">
+					
+						<li id="menu-item-105" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-105"><a href="/">Blog</a></li>
+<li id="menu-item-350" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-350"><a href="/consulting/">Consulting Services</a></li>
+						
+						<div class="clear"></div>
+												
+					 </ul>
+					 
+					 <ul class="mobile-menu">
+					
+						<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-105"><a href="/">Blog</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-350"><a href="/consulting/">Consulting Services</a></li>
+						
+					 </ul>
+				 
+				</div> <!-- /navigation-inner -->
+				
+			</div> <!-- /navigation -->
+<div class="wrapper section-inner">
+
+	<div class="content left">
+												        
+				
+			<div class="posts">
+		
+				<div id="post-7" class="post-7 post type-post status-publish format-standard hentry category-automation category-gns3 category-gnsparser tag-automation tag-gns3 tag-gnsparser">
+	
+					<div class="post-header">
+
+												
+												
+					    <h1 class="post-title"><a href="/2014/04/gnsparser-now-on-bitbucket/" rel="bookmark" title="GNSparser, now on Bitbucket">GNSparser, now on Bitbucket</a></h1>
+					    
+					    <div class="post-meta">
+						
+							<span class="post-date"><a href="/2014/04/gnsparser-now-on-bitbucket/" title="GNSparser, now on Bitbucket">April 12, 2014</a></span>
+							
+							<span class="date-sep"> / </span>
+								
+							<span class="post-author"><a href="/author/holmahenkel/" title="Posts by Fredrik Holmberg" rel="author">Fredrik Holmberg</a></span>
+							
+							<span class="date-sep"> / </span>
+							
+							<a href="/2014/04/gnsparser-now-on-bitbucket/#respond"><span class="comment">0 Comments</span></a>							
+																				
+						</div>
+					    
+					</div> <!-- /post-header -->
+														                                    	    
+					<div class="post-content">
+						    		            			            	                                                                                            
+						<div style="clear: both; text-align: left;"></div>
+<div>
+<div style="width: 197px" class="wp-caption alignleft"><img class="" src="https://cdn1.iconfinder.com/data/icons/simple-icons/1024/bitbucket-1024-black.png" alt="" width="187" height="187" /><p class="wp-caption-text">Bitbucket</p></div>
+<p>I&#8217;ve decided to make GNSparser available on Bitbucket. With the source code open to the public you can now run it on your own web server or laptop. Got ideas for new features? Issue a pull request!</p>
+<p>Fetch it here:<br />
+<a href="http://bitbucket.org/holmahenkel/gnsparser/">http://bitbucket.org/holmahenkel/gnsparser/</a></p>
+<p>Enjoy!</p>
+</div>
+<!-- Simple Share Buttons Adder (6.3.4) simplesharebuttons.com --><div class="ssba ssba-wrap"><div style="text-align:left"><br/><br/>Sharing is caring:<br/><a data-site="" class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=/2014/04/gnsparser-now-on-bitbucket/"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba ssba-img" alt="Share on Facebook" /></a><a data-site="" class="ssba_twitter_share" href="http://twitter.com/share?url=/2014/04/gnsparser-now-on-bitbucket/&amp;text=GNSparser%2C+now+on+Bitbucket+"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba ssba-img" alt="Tweet about this on Twitter" /></a><a data-site="linkedin" class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=/2014/04/gnsparser-now-on-bitbucket/"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/linkedin.png" title="LinkedIn" class="ssba ssba-img" alt="Share on LinkedIn" /></a><a data-site="" class="ssba_google_share" href="https://plus.google.com/share?url=/2014/04/gnsparser-now-on-bitbucket/"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba ssba-img" alt="Share on Google+" /></a><a data-site="reddit" class="ssba_reddit_share" href="http://reddit.com/submit?url=/2014/04/gnsparser-now-on-bitbucket/&amp;title=GNSparser, now on Bitbucket"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/reddit.png" title="Reddit" class="ssba ssba-img" alt="Share on Reddit" /></a><a data-site="tumblr" class="ssba_tumblr_share" href="http://www.tumblr.com/share/link?url=/2014/04/gnsparser-now-on-bitbucket/"  target="_blank" ><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/tumblr.png" title="tumblr" class="ssba ssba-img" alt="Share on Tumblr" /></a><a data-site="print" class="ssba_print ssba_share_link" href="#" onclick="window.print()"><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/print.png" title="Print" class="ssba ssba-img" alt="Print this page" /></a><a data-site="email" class="ssba_email_share" href="mailto:/?subject=GNSparser,%20now%20on%20Bitbucket&#038;body=%20/2014/04/gnsparser-now-on-bitbucket/"><img src="/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/email.png" title="Email" class="ssba ssba-img" alt="Email this to someone" /></a></div></div>								
+															        
+					</div> <!-- /post-content -->
+					            
+					<div class="clear"></div>
+					
+					<div class="post-meta-bottom">
+																		
+						<p class="post-categories"><span class="category-icon"><span class="front-flap"></span></span> <a href="/category/automation/" rel="category tag">automation</a>, <a href="/category/gns3/" rel="category tag">gns3</a>, <a href="/category/gnsparser/" rel="category tag">gnsparser</a></p>
+						
+						<p class="post-tags"><a href="/tag/automation/" rel="tag">automation</a><a href="/tag/gns3/" rel="tag">gns3</a><a href="/tag/gnsparser/" rel="tag">gnsparser</a></p>						
+						<div class="clear"></div>
+												
+						<div class="post-nav">
+													
+														
+								<a class="post-nav-older" title="Previous post: Introducing GNSparser" href="/2013/11/introducing-gnsparser/">
+								
+								<h5>Previous post</h5>																
+								Introducing GNSparser								
+								</a>
+						
+														
+															
+								<a class="post-nav-newer" title="Next post: Measuring wireless performance using Ansible, Elastic Stack and MikroTik" href="/2016/03/measuring-wireless-performance-using-ansible-elastic-stack-and-mikrotik/">
+								
+								<h5>Next post</h5>							
+								Measuring wireless performance using Ansible, Elastic Stack and MikroTik								
+								</a>
+						
+																					
+							<div class="clear"></div>
+						
+						</div> <!-- /post-nav -->
+											
+					</div> <!-- /post-meta-bottom -->
+					
+					
+		
+		
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2014/04/gnsparser-now-on-bitbucket/#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+				<p class="comment-notes">Your email address will not be published.</p><p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="6" required></textarea></p><p class="comment-form-author"><input id="author" name="author" type="text" placeholder="Name" value="" size="30" /><label for="author">Author</label> <span class="required">*</span></p>
+<p class="comment-form-email"><input id="email" name="email" type="text" placeholder="Email" value="" size="30" /><label for="email">Email</label> <span class="required">*</span></p>
+<p class="comment-form-url"><input id="url" name="url" type="text" placeholder="Website" value="" size="30" /><label for="url">Website</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input type='hidden' name='comment_post_ID' value='7' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+													                        
+			   	    
+		
+			</div> <!-- /post -->
+			
+		</div> <!-- /posts -->
+	
+	</div> <!-- /content -->
+	
+	
+	<div class="sidebar right" role="complementary">
+	
+		<div class="widget widget_text"><div class="widget-content"><h3 class="widget-title">How to reach me</h3>			<div class="textwidget"><a href="http://linkedin.com/in/holmahenkel">
+<img alt="Linkedin" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_linkedin.png" width="50"/></a>
+
+&nbsp;&nbsp;
+
+<a href="http://twitter.com/holmahenkel">
+<img alt="Twitter" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_twitter.png" width="50"/></a>
+
+&nbsp;&nbsp;
+
+<a href="http://www.facebook.com/holmahenkel">
+<img alt="Facebook" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_facebook.png" width="50"/></a>
+
+<br/>
+
+<a href="https://plus.google.com/+FredrikHolmberg">
+<img alt="Google+" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_google.png" width="50"/></a>
+
+&nbsp;&nbsp;
+
+<a href="http://instagram.com/holmahenkel">
+<img alt="Instagram" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_instagram.png" width="50"/></a>
+
+&nbsp;&nbsp;
+
+<a href="mailto:mail@fredrikholmberg.com">
+<img alt="Email" src="http://blog.fredrikholmberg.com/wp-content/uploads/2016/04/social_email.png" width="50"/></a>
+</div>
+		</div><div class="clear"></div></div>		<div class="widget widget_recent_entries"><div class="widget-content">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="/2016/11/packet-analysis-challenge-2-solution/">Packet Analysis Challenge #2 – Solution</a>
+						</li>
+					<li>
+				<a href="/2016/10/packet-analysis-challenge-2/">Packet Analysis Challenge #2</a>
+						</li>
+					<li>
+				<a href="/2016/09/network-automation-day/">Network Automation Day</a>
+						</li>
+					<li>
+				<a href="/2016/08/packet-analysis-challenge-1-solution/">Packet Analysis Challenge #1 &#8211; Solution</a>
+						</li>
+					<li>
+				<a href="/2016/08/packet-analysis-challenge-1/">Packet Analysis Challenge #1</a>
+						</li>
+					<li>
+				<a href="/2016/06/consulting-services/">Consulting Services</a>
+						</li>
+					<li>
+				<a href="/2016/05/app-troubleshooting-using-wireshark/">App troubleshooting using Wireshark</a>
+						</li>
+					<li>
+				<a href="/2016/05/slapstick/">Slapstick</a>
+						</li>
+					<li>
+				<a href="/2016/04/connecting-our-juniper-lab-to-the-world/">Connecting our Juniper lab to the world</a>
+						</li>
+					<li>
+				<a href="/2016/04/on-demand-juniper-labs-using-vagrant/">On-demand Juniper labs using Vagrant</a>
+						</li>
+				</ul>
+		</div><div class="clear"></div></div>		<div class="widget widget_archive"><div class="widget-content"><h3 class="widget-title">Archives</h3>		<ul>
+			<li><a href='/2016/11/'>November 2016</a></li>
+	<li><a href='/2016/10/'>October 2016</a></li>
+	<li><a href='/2016/09/'>September 2016</a></li>
+	<li><a href='/2016/08/'>August 2016</a></li>
+	<li><a href='/2016/06/'>June 2016</a></li>
+	<li><a href='/2016/05/'>May 2016</a></li>
+	<li><a href='/2016/04/'>April 2016</a></li>
+	<li><a href='/2016/03/'>March 2016</a></li>
+	<li><a href='/2014/04/'>April 2014</a></li>
+	<li><a href='/2013/11/'>November 2013</a></li>
+	<li><a href='/2013/08/'>August 2013</a></li>
+	<li><a href='/2012/07/'>July 2012</a></li>
+	<li><a href='/2012/05/'>May 2012</a></li>
+	<li><a href='/2012/04/'>April 2012</a></li>
+	<li><a href='/2012/03/'>March 2012</a></li>
+		</ul>
+		</div><div class="clear"></div></div><div class="widget widget_tag_cloud"><div class="widget-content"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href='/tag/6to4/' class='tag-link-42 tag-link-position-1' title='1 topic' style='font-size: 8pt;'>6to4</a>
+<a href='/tag/ansible/' class='tag-link-56 tag-link-position-2' title='2 topics' style='font-size: 12.2pt;'>ansible</a>
+<a href='/tag/automation/' class='tag-link-41 tag-link-position-3' title='7 topics' style='font-size: 22pt;'>automation</a>
+<a href='/tag/ccna/' class='tag-link-31 tag-link-position-4' title='1 topic' style='font-size: 8pt;'>ccna</a>
+<a href='/tag/ccnp/' class='tag-link-36 tag-link-position-5' title='4 topics' style='font-size: 17.333333333333pt;'>ccnp</a>
+<a href='/tag/challenge/' class='tag-link-72 tag-link-position-6' title='3 topics' style='font-size: 15pt;'>challenge</a>
+<a href='/tag/digital-ocean/' class='tag-link-50 tag-link-position-7' title='1 topic' style='font-size: 8pt;'>digital ocean</a>
+<a href='/tag/dynagen/' class='tag-link-51 tag-link-position-8' title='2 topics' style='font-size: 12.2pt;'>dynagen</a>
+<a href='/tag/elastic-stack/' class='tag-link-57 tag-link-position-9' title='1 topic' style='font-size: 8pt;'>elastic stack</a>
+<a href='/tag/frame-relay/' class='tag-link-37 tag-link-position-10' title='1 topic' style='font-size: 8pt;'>frame relay</a>
+<a href='/tag/gns3/' class='tag-link-52 tag-link-position-11' title='3 topics' style='font-size: 15pt;'>gns3</a>
+<a href='/tag/gnsparser/' class='tag-link-54 tag-link-position-12' title='2 topics' style='font-size: 12.2pt;'>gnsparser</a>
+<a href='/tag/icmpv6/' class='tag-link-47 tag-link-position-13' title='1 topic' style='font-size: 8pt;'>icmpv6</a>
+<a href='/tag/ios/' class='tag-link-69 tag-link-position-14' title='1 topic' style='font-size: 8pt;'>ios</a>
+<a href='/tag/ipv4/' class='tag-link-32 tag-link-position-15' title='2 topics' style='font-size: 12.2pt;'>ipv4</a>
+<a href='/tag/ipv6/' class='tag-link-43 tag-link-position-16' title='3 topics' style='font-size: 15pt;'>ipv6</a>
+<a href='/tag/juniper/' class='tag-link-65 tag-link-position-17' title='3 topics' style='font-size: 15pt;'>juniper</a>
+<a href='/tag/lab/' class='tag-link-53 tag-link-position-18' title='4 topics' style='font-size: 17.333333333333pt;'>lab</a>
+<a href='/tag/loopback/' class='tag-link-39 tag-link-position-19' title='2 topics' style='font-size: 12.2pt;'>loopback</a>
+<a href='/tag/mask/' class='tag-link-33 tag-link-position-20' title='1 topic' style='font-size: 8pt;'>mask</a>
+<a href='/tag/mikrotik/' class='tag-link-58 tag-link-position-21' title='1 topic' style='font-size: 8pt;'>mikrotik</a>
+<a href='/tag/ndp/' class='tag-link-48 tag-link-position-22' title='1 topic' style='font-size: 8pt;'>ndp</a>
+<a href='/tag/ospf/' class='tag-link-45 tag-link-position-23' title='1 topic' style='font-size: 8pt;'>ospf</a>
+<a href='/tag/ospfv3/' class='tag-link-46 tag-link-position-24' title='1 topic' style='font-size: 8pt;'>ospfv3</a>
+<a href='/tag/packet-analysis/' class='tag-link-77 tag-link-position-25' title='3 topics' style='font-size: 15pt;'>packet analysis</a>
+<a href='/tag/scripting/' class='tag-link-55 tag-link-position-26' title='1 topic' style='font-size: 8pt;'>scripting</a>
+<a href='/tag/slaac/' class='tag-link-49 tag-link-position-27' title='1 topic' style='font-size: 8pt;'>slaac</a>
+<a href='/tag/subinterfaces/' class='tag-link-38 tag-link-position-28' title='1 topic' style='font-size: 8pt;'>subinterfaces</a>
+<a href='/tag/subnet/' class='tag-link-34 tag-link-position-29' title='1 topic' style='font-size: 8pt;'>subnet</a>
+<a href='/tag/subnetting/' class='tag-link-35 tag-link-position-30' title='1 topic' style='font-size: 8pt;'>subnetting</a>
+<a href='/tag/tcl/' class='tag-link-40 tag-link-position-31' title='2 topics' style='font-size: 12.2pt;'>tcl</a>
+<a href='/tag/tls/' class='tag-link-71 tag-link-position-32' title='1 topic' style='font-size: 8pt;'>tls</a>
+<a href='/tag/troubleshooting/' class='tag-link-70 tag-link-position-33' title='1 topic' style='font-size: 8pt;'>troubleshooting</a>
+<a href='/tag/tunneling/' class='tag-link-44 tag-link-position-34' title='1 topic' style='font-size: 8pt;'>tunneling</a>
+<a href='/tag/vagrant/' class='tag-link-66 tag-link-position-35' title='1 topic' style='font-size: 8pt;'>vagrant</a>
+<a href='/tag/wireshark/' class='tag-link-68 tag-link-position-36' title='5 topics' style='font-size: 19.2pt;'>wireshark</a>
+<a href='/tag/wiresharklympics/' class='tag-link-78 tag-link-position-37' title='3 topics' style='font-size: 15pt;'>wiresharklympics</a></div>
+</div><div class="clear"></div></div>		
+	</div><!-- /sidebar -->
+
+	
+	<div class="clear"></div>
+	
+</div> <!-- /wrapper -->
+		
+	<div class="footer section large-padding bg-dark">
+		
+		<div class="footer-inner section-inner">
+		
+						
+				<div class="column column-1 left">
+				
+					<div class="widgets">
+			
+								<div class="widget widget_recent_entries"><div class="widget-content">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+					<li>
+				<a href="/2016/11/packet-analysis-challenge-2-solution/">Packet Analysis Challenge #2 – Solution</a>
+						</li>
+					<li>
+				<a href="/2016/10/packet-analysis-challenge-2/">Packet Analysis Challenge #2</a>
+						</li>
+					<li>
+				<a href="/2016/09/network-automation-day/">Network Automation Day</a>
+						</li>
+					<li>
+				<a href="/2016/08/packet-analysis-challenge-1-solution/">Packet Analysis Challenge #1 &#8211; Solution</a>
+						</li>
+					<li>
+				<a href="/2016/08/packet-analysis-challenge-1/">Packet Analysis Challenge #1</a>
+						</li>
+					<li>
+				<a href="/2016/06/consulting-services/">Consulting Services</a>
+						</li>
+					<li>
+				<a href="/2016/05/app-troubleshooting-using-wireshark/">App troubleshooting using Wireshark</a>
+						</li>
+					<li>
+				<a href="/2016/05/slapstick/">Slapstick</a>
+						</li>
+					<li>
+				<a href="/2016/04/connecting-our-juniper-lab-to-the-world/">Connecting our Juniper lab to the world</a>
+						</li>
+					<li>
+				<a href="/2016/04/on-demand-juniper-labs-using-vagrant/">On-demand Juniper labs using Vagrant</a>
+						</li>
+					<li>
+				<a href="/2016/03/measuring-wireless-performance-using-ansible-elastic-stack-and-mikrotik/">Measuring wireless performance using Ansible, Elastic Stack and MikroTik</a>
+						</li>
+				</ul>
+		</div><div class="clear"></div></div>													
+					</div>
+					
+				</div>
+				
+			 <!-- /footer-a -->
+				
+						
+				<div class="column column-2 left">
+				
+					<div class="widgets">
+			
+						<div class="widget widget_tag_cloud"><div class="widget-content"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href='/tag/6to4/' class='tag-link-42 tag-link-position-1' title='1 topic' style='font-size: 8pt;'>6to4</a>
+<a href='/tag/ansible/' class='tag-link-56 tag-link-position-2' title='2 topics' style='font-size: 12.2pt;'>ansible</a>
+<a href='/tag/automation/' class='tag-link-41 tag-link-position-3' title='7 topics' style='font-size: 22pt;'>automation</a>
+<a href='/tag/ccna/' class='tag-link-31 tag-link-position-4' title='1 topic' style='font-size: 8pt;'>ccna</a>
+<a href='/tag/ccnp/' class='tag-link-36 tag-link-position-5' title='4 topics' style='font-size: 17.333333333333pt;'>ccnp</a>
+<a href='/tag/challenge/' class='tag-link-72 tag-link-position-6' title='3 topics' style='font-size: 15pt;'>challenge</a>
+<a href='/tag/digital-ocean/' class='tag-link-50 tag-link-position-7' title='1 topic' style='font-size: 8pt;'>digital ocean</a>
+<a href='/tag/dynagen/' class='tag-link-51 tag-link-position-8' title='2 topics' style='font-size: 12.2pt;'>dynagen</a>
+<a href='/tag/elastic-stack/' class='tag-link-57 tag-link-position-9' title='1 topic' style='font-size: 8pt;'>elastic stack</a>
+<a href='/tag/frame-relay/' class='tag-link-37 tag-link-position-10' title='1 topic' style='font-size: 8pt;'>frame relay</a>
+<a href='/tag/gns3/' class='tag-link-52 tag-link-position-11' title='3 topics' style='font-size: 15pt;'>gns3</a>
+<a href='/tag/gnsparser/' class='tag-link-54 tag-link-position-12' title='2 topics' style='font-size: 12.2pt;'>gnsparser</a>
+<a href='/tag/icmpv6/' class='tag-link-47 tag-link-position-13' title='1 topic' style='font-size: 8pt;'>icmpv6</a>
+<a href='/tag/ios/' class='tag-link-69 tag-link-position-14' title='1 topic' style='font-size: 8pt;'>ios</a>
+<a href='/tag/ipv4/' class='tag-link-32 tag-link-position-15' title='2 topics' style='font-size: 12.2pt;'>ipv4</a>
+<a href='/tag/ipv6/' class='tag-link-43 tag-link-position-16' title='3 topics' style='font-size: 15pt;'>ipv6</a>
+<a href='/tag/juniper/' class='tag-link-65 tag-link-position-17' title='3 topics' style='font-size: 15pt;'>juniper</a>
+<a href='/tag/lab/' class='tag-link-53 tag-link-position-18' title='4 topics' style='font-size: 17.333333333333pt;'>lab</a>
+<a href='/tag/loopback/' class='tag-link-39 tag-link-position-19' title='2 topics' style='font-size: 12.2pt;'>loopback</a>
+<a href='/tag/mask/' class='tag-link-33 tag-link-position-20' title='1 topic' style='font-size: 8pt;'>mask</a>
+<a href='/tag/mikrotik/' class='tag-link-58 tag-link-position-21' title='1 topic' style='font-size: 8pt;'>mikrotik</a>
+<a href='/tag/ndp/' class='tag-link-48 tag-link-position-22' title='1 topic' style='font-size: 8pt;'>ndp</a>
+<a href='/tag/ospf/' class='tag-link-45 tag-link-position-23' title='1 topic' style='font-size: 8pt;'>ospf</a>
+<a href='/tag/ospfv3/' class='tag-link-46 tag-link-position-24' title='1 topic' style='font-size: 8pt;'>ospfv3</a>
+<a href='/tag/packet-analysis/' class='tag-link-77 tag-link-position-25' title='3 topics' style='font-size: 15pt;'>packet analysis</a>
+<a href='/tag/scripting/' class='tag-link-55 tag-link-position-26' title='1 topic' style='font-size: 8pt;'>scripting</a>
+<a href='/tag/slaac/' class='tag-link-49 tag-link-position-27' title='1 topic' style='font-size: 8pt;'>slaac</a>
+<a href='/tag/subinterfaces/' class='tag-link-38 tag-link-position-28' title='1 topic' style='font-size: 8pt;'>subinterfaces</a>
+<a href='/tag/subnet/' class='tag-link-34 tag-link-position-29' title='1 topic' style='font-size: 8pt;'>subnet</a>
+<a href='/tag/subnetting/' class='tag-link-35 tag-link-position-30' title='1 topic' style='font-size: 8pt;'>subnetting</a>
+<a href='/tag/tcl/' class='tag-link-40 tag-link-position-31' title='2 topics' style='font-size: 12.2pt;'>tcl</a>
+<a href='/tag/tls/' class='tag-link-71 tag-link-position-32' title='1 topic' style='font-size: 8pt;'>tls</a>
+<a href='/tag/troubleshooting/' class='tag-link-70 tag-link-position-33' title='1 topic' style='font-size: 8pt;'>troubleshooting</a>
+<a href='/tag/tunneling/' class='tag-link-44 tag-link-position-34' title='1 topic' style='font-size: 8pt;'>tunneling</a>
+<a href='/tag/vagrant/' class='tag-link-66 tag-link-position-35' title='1 topic' style='font-size: 8pt;'>vagrant</a>
+<a href='/tag/wireshark/' class='tag-link-68 tag-link-position-36' title='5 topics' style='font-size: 19.2pt;'>wireshark</a>
+<a href='/tag/wiresharklympics/' class='tag-link-78 tag-link-position-37' title='3 topics' style='font-size: 15pt;'>wiresharklympics</a></div>
+</div><div class="clear"></div></div>											
+					</div> <!-- /widgets -->
+					
+				</div>
+				
+			 <!-- /footer-b -->
+								
+						
+				<div class="column column-3 left">
+			
+					<div class="widgets">
+			
+						<div class="widget widget_text"><div class="widget-content"><h3 class="widget-title">SYN-ACK</h3>			<div class="textwidget"><p>I'm an independent Network Consultant with 10 years of experience working with some of the largest clients in the Nordics ranging from banking, hospitality and telecom to governmental and public institutions.</p>
+<p>Challenges are what drives me. Creating things. Challenges that allow a combination of networking skills with other disciplines such as monitoring, log analysis, DevOps and IT automation concepts.</p>
+</div>
+		</div><div class="clear"></div></div><div class="widget widget_text"><div class="widget-content"><h3 class="widget-title">Certifications</h3>			<div class="textwidget"><p>Juniper JNCIP-ENT<br />
+Juniper JNCDA<br />
+Cisco CCNP R&S<br />
+Cisco CCNA Security<br />
+HP AIS 2011<br />
+Fortinet FCNSP v4.x</p>
+</div>
+		</div><div class="clear"></div></div>											
+					</div> <!-- /widgets -->
+					
+				</div>
+				
+			 <!-- /footer-c -->
+			
+			<div class="clear"></div>
+		
+		</div> <!-- /footer-inner -->
+	
+	</div> <!-- /footer -->
+	
+	<div class="credits section bg-dark no-padding">
+	
+		<div class="credits-inner section-inner">
+	
+			<p class="credits-left">
+			
+				&copy; 2017 <a href="/" title="Fredrik Holmberg">Fredrik Holmberg</a>
+			
+			</p>
+			
+			<p class="credits-right">
+				
+				<span>Theme by <a href="http://www.andersnoren.se/">Anders Noren</a></span> &mdash; <a title="To the top" class="tothetop">Up &uarr;</a>
+				
+			</p>
+			
+			<div class="clear"></div>
+		
+		</div> <!-- /credits-inner -->
+		
+	</div> <!-- /credits -->
+
+</div> <!-- /big-wrapper -->
+
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=4.7.3'></script>
+<script type='text/javascript' src='/wp-content/plugins/simple-share-buttons-adder/js/ssba.min.js?ver=4.7.3'></script>
+<script type='text/javascript' src='/wp-content/themes/hemingway/js/global.js?ver=4.7.3'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.7.3'></script>
+
+</body>
+</html>

@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ccnp &#8211; Fredrik Holmberg</title>
+	<atom:link href="/tag/ccnp/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>ccnp &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>IPv6 Autoconfiguration with SLAAC and NDP, how does it work?</title>
+		<link>/2012/05/ipv6-autoconfiguration-with-slaac-and-ndp-how-does-it-work/</link>
+		<comments>/2012/05/ipv6-autoconfiguration-with-slaac-and-ndp-how-does-it-work/#respond</comments>
+		<pubDate>Sat, 05 May 2012 19:20:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ccnp]]></category>
+		<category><![CDATA[icmpv6]]></category>
+		<category><![CDATA[ipv6]]></category>
+		<category><![CDATA[ndp]]></category>
+		<category><![CDATA[slaac]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Unlike the prehistoric IPv4 protocol which relies on DHCP servers to be able to communicate and do anything useful, the modern IPv6 protocol is much more self-sufficient and in tune with 2012. Introducing IPv6 Stateless Address Autoconfiguration or SLAAC. Described in RFC 4862 SLAAC is a mechanism that: &#8220;requires no manual configuration of hosts, minimal (if any) [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Unlike the prehistoric IPv4 protocol which relies on DHCP servers to be able to communicate and do anything useful, the modern IPv6 protocol is much more self-sufficient and in tune with 2012.</p>
+<p>Introducing IPv6 Stateless Address Autoconfiguration or SLAAC. Described in <a href="http://tools.ietf.org/html/rfc4862">RFC 4862</a> SLAAC is a mechanism that:</p>
+<blockquote><p><i>&#8220;requires no manual configuration of hosts, minimal (if any) configuration of routers, and no additional servers. The stateless mechanism allows a host to generate its own addresses using a combination of locally available information and information advertised by routers&#8221;</i></p></blockquote>
+<p>In Apple terms; it&#8217;s like magic!</p>
+<p><span id="more-11"></span></p>
+<p>SLAAC relies on Neighbor Discovery Protocol (NDP) which provides a lot of cool features like looking for duplicate addresses, configuring a default route, locating other nodes on the link and so on. NDP is really just multicast and ICMPv6 with different message types.</p>
+<p>The most common Multicast Addresses used by NDP is:</p>
+<ul>
+<li><b>All Nodes Addresses</b>
+<ul>
+<li><span style="font-size: 1em;">FF02:0:0:0:0:0:0:1 or FF02::1</span></li>
+<li><span style="font-size: 1em;">Used to reach all nodes on the link.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 1em;"><b>All Routers Addresses</b></span>
+<ul>
+<li><span style="font-size: 1em;">FF02:0:0:0:0:0:0:2 or FF02::2</span></li>
+<li><span style="font-size: 1em;">Used to reach all routers on the link.</span></li>
+</ul>
+</li>
+<li><span style="font-size: 1em;"><b>Solicited-Node Address</b></span>
+<ul>
+<li><span style="font-size: 1em;">FF02:0:0:0:0:1:FFXX:XXXX or FF02::1:FFXX:XXXX</span></li>
+<li><span style="font-size: 1em;">XX:XXXX is the last 24 bits from the configured address, link-local or unicast.</span></li>
+<li>Used to reach all nodes with the same configured address on the link.</li>
+</ul>
+</li>
+</ul>
+<p><b><br />
+</b>And then we have the different ICMPv6 message types:</p>
+<ul>
+<li><b>Neighbor Solicitation (NS) &#8211; Type 135</b>
+<ul>
+<li>Sent to FF02::1:FFXX:XXXX</li>
+<li>A node use this address to verify that the tentative or &#8220;soon to be configured address&#8221; is not already in use by another node on the link.</li>
+</ul>
+</li>
+<li><b>Neighbor Advertisement (NA) &#8211; Type 136</b>
+<ul>
+<li>Sent to all nodes listening to FF02::1</li>
+<li>Informs neighbors about the currently configured address.</li>
+</ul>
+</li>
+<li><b>Router Solicitation (RS) &#8211; Type 133</b>
+<ul>
+<li>Sent to all routers listening to FF02::2</li>
+<li>Used by a node to locate default routers and request them to send a Router Advertisement.</li>
+</ul>
+</li>
+<li><b>Router Advertisement (RA) &#8211; Type 134</b>
+<ul>
+<li>Sent to all nodes listening to FF02::1.</li>
+<li>Used by routers to advertise their presence and give information about which prefix is being used on the link.</li>
+</ul>
+</li>
+<li><b>Redirect</b>
+<ul>
+<li>Used by routers to inform hosts of a better first hop for a destination.</li>
+</ul>
+</li>
+</ul>
+<p>So to better understand how this all works together we&#8217;ll use the following topology:</p>
+<p><img class="size-full wp-image-69 aligncenter" src="/wp-content/uploads/2012/05/slaac_1-1.png" alt="slaac_1" width="186" height="280" /></p>
+<p>The router has been configured as follows:</p>
+<pre><b>ipv6 unicast-routing
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1:1::1/64</b></pre>
+<p>By running &#8220;<b>debug ipv6 nd</b>&#8221; on the router interface we can see NDP in action:</p>
+<pre>ROUTER#<b>debug ipv6 nd</b>
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:19.271: ICMPv6-ND: Sending NS for FE80::200:11FF:FE11:1111 on FastEthernet0/0
+</span>*Mar  1 01:31:20.275: ICMPv6-ND: DAD: FE80::200:11FF:FE11:1111 is unique.
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:20.275: ICMPv6-ND: Sending NA for FE80::200:11FF:FE11:1111 on FastEthernet0/0
+</span>*Mar  1 01:31:20.275: ICMPv6-ND: Linklocal FE80::200:11FF:FE11:1111 on FastEthernet0/0, Up
+*Mar  1 01:31:20.279: ICMPv6-ND: Request to send RA for FE80::200:11FF:FE11:1111
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:20.279: ICMPv6-ND: Sending RA from FE80::200:11FF:FE11:1111 to FF02::1 on FastEthernet0/0
+</span>*Mar  1 01:31:20.279: ICMPv6-ND:     MTU = 1500
+*Mar  1 01:31:20.283: ICMPv6-ND:     prefix = 2001:DB8:1:1::/64 onlink autoconfig
+*Mar  1 01:31:20.283: ICMPv6-ND:             2592000/604800 (valid/preferred)
+*Mar  1 01:31:20.283: ICMPv6-ND: Address FE80::200:11FF:FE11:1111/10 is up on FastEthernet0/0
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:20.291: ICMPv6-ND: Sending NS for 2001:DB8:1:1::1 on FastEthernet0/0
+</span>*Mar  1 01:31:21.295: ICMPv6-ND: DAD: 2001:DB8:1:1::1 is unique.
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:21.295: ICMPv6-ND: Sending NA for 2001:DB8:1:1::1 on FastEthernet0/0
+</span>*Mar  1 01:31:21.299: ICMPv6-ND: Address 2001:DB8:1:1::1/64 is up on FastEthernet0/0
+*Mar  1 01:31:36.607: ICMPv6-ND: Request to send RA for FE80::200:11FF:FE11:1111
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:36.607: ICMPv6-ND: Sending RA from FE80::200:11FF:FE11:1111 to FF02::1 on FastEthernet0/0
+</span>*Mar  1 01:31:36.607: ICMPv6-ND:     MTU = 1500
+*Mar  1 01:31:36.611: ICMPv6-ND:     prefix = 2001:DB8:1:1::/64 onlink autoconfig
+*Mar  1 01:31:36.611: ICMPv6-ND:             2592000/604800 (valid/preferred)
+*Mar  1 01:31:52.999: ICMPv6-ND: Request to send RA for FE80::200:11FF:FE11:1111
+<span style="background-color: #9fc5e8;">*Mar  1 01:31:52.999: ICMPv6-ND: Sending RA from FE80::200:11FF:FE11:1111 to FF02::1 on FastEthernet0/0
+</span>*Mar  1 01:31:52.999: ICMPv6-ND:     MTU = 1500
+*Mar  1 01:31:53.003: ICMPv6-ND:     prefix = 2001:DB8:1:1::/64 onlink autoconfig
+*Mar  1 01:31:53.003: ICMPv6-ND:             2592000/604800 (valid/preferred)
+*Mar  1 01:35:13.503: ICMPv6-ND: Request to send RA for FE80::200:11FF:FE11:1111
+<span style="background-color: #9fc5e8;">*Mar  1 01:35:13.503: ICMPv6-ND: Sending RA from FE80::200:11FF:FE11:1111 to FF02::1 on FastEthernet0/0
+</span>*Mar  1 01:35:13.503: ICMPv6-ND:     MTU = 1500
+*Mar  1 01:35:13.503: ICMPv6-ND:     prefix = 2001:DB8:1:1::/64 onlink autoconfig
+*Mar  1 01:35:13.507: ICMPv6-ND:             2592000/604800 (valid/preferred)</pre>
+<p>And the same events as seen in <a href="http://www.wireshark.org/">Wireshark</a>:</p>
+<p><img class="alignnone size-full wp-image-70" src="/wp-content/uploads/2012/05/slaac_r1-1.png" alt="slaac_r1" width="1121" height="196" srcset="/wp-content/uploads/2012/05/slaac_r1-1.png 1121w, /wp-content/uploads/2012/05/slaac_r1-1-300x52.png 300w, /wp-content/uploads/2012/05/slaac_r1-1-768x134.png 768w, /wp-content/uploads/2012/05/slaac_r1-1-1024x179.png 1024w, /wp-content/uploads/2012/05/slaac_r1-1-676x118.png 676w" sizes="(max-width: 1121px) 100vw, 1121px" /></p>
+<p>So the following Neighbor Discovery events takes place:</p>
+<ol>
+<li><b>Sending NS for FE80::200:11FF:FE11:1111 to FF02::1:FF11:111</b>
+<ol>
+<li>The router has generated a link-local address using EUI-64 and wants to know if it is available to use. Notice the unspecified source address.</li>
+</ol>
+</li>
+<li><b>Sending NA for FE80::200:11FF:FE11:1111 to FF02::1</b>
+<ol>
+<li><b><span style="font-weight: normal;">After waiting 1 second Duplicate Address Detection (DAD) concludes that the link-local address is available.</span></b></li>
+<li>The router informs all neighbors that it owns this address.</li>
+</ol>
+</li>
+<li><b>Sending RA from FE80::200:11FF:FE11:1111 to FF02::1</b>
+<ol>
+<li>The router starts sending Router Advertisement to inform all nodes about which prefix is being used etc.</li>
+</ol>
+</li>
+<li><b>Sending NS for 2001:DB8:1:1::1 to FF02::1:FF00:1</b>
+<ol>
+<li>The router has been assigned a global unicast address and wants to know if it is available. The source address is unspecified.</li>
+</ol>
+</li>
+<li><b>Sending NA for 2001:DB8:1:1::1 to FF02::1</b>
+<ol>
+<li>After waiting 1 second DAD concludes that the global unicast address is available.</li>
+<li>The router informs all neighbors that it owns this address.</li>
+</ol>
+</li>
+<li><b>Sending RA from FE80::200:11FF:FE11:1111 to FF02::1</b>
+<ol>
+<li>The second RA is sent after ~16 seconds.</li>
+</ol>
+</li>
+<li><b>Sending RA from FE80::200:11FF:FE11:1111 to FF02::1</b>
+<ol>
+<li>The third RA is sent after ~32 seconds.</li>
+</ol>
+</li>
+<li><b>Sending RA from FE80::200:11FF:FE11:1111 to FF02::1</b>
+<ol>
+<li>The fourth and following RAs are sent at 200 second intervals (default).</li>
+<li>Also notice that the router use it&#8217;s link-local address and not the global unicast address when sending RAs.</li>
+</ol>
+</li>
+</ol>
+<div style="clear: both; text-align: center;"></div>
+<div><img class="size-full wp-image-71 aligncenter" src="/wp-content/uploads/2012/05/slaac_2.png" alt="slaac_2" width="690" height="612" srcset="/wp-content/uploads/2012/05/slaac_2.png 690w, /wp-content/uploads/2012/05/slaac_2-300x266.png 300w, /wp-content/uploads/2012/05/slaac_2-676x600.png 676w" sizes="(max-width: 690px) 100vw, 690px" /></div>
+<p>The whole process took around 5 seconds to complete. IPv6 is now running on the router, RAs is being sent at 200 second intervals and we have configured a global unicast address on the LAN interface.</p>
+<p>Next step is to configure CLIENT_A. Setting up auto-configuration is done the same way as described <a href="/index.php/2012/04/28/dynamic-multipoint-ipv6-tunnels-using-6to4/">earlier</a>:</p>
+<blockquote>
+<pre><b>interface FastEthernet0/0
+ ipv6 address autoconfig default</b></pre>
+</blockquote>
+<p>The <b>default </b>keyword tells the client to insert a default route based on the RA it receives.</p>
+<p>So here is what happens on CLIENT_A:</p>
+<pre>CLIENT_A#<b>debug ipv6 nd</b>
+<span style="background-color: #9fc5e8;">*Mar  1 02:55:26.539: ICMPv6-ND: Sending NS for FE80::200:AAFF:FEAA:AAAA on FastEthernet0/0
+</span>*Mar  1 02:55:27.543: ICMPv6-ND: DAD: FE80::200:AAFF:FEAA:AAAA is unique.
+<span style="background-color: #9fc5e8;">*Mar  1 02:55:27.543: ICMPv6-ND: Sending NA for FE80::200:AAFF:FEAA:AAAA on FastEthernet0/0
+</span>*Mar  1 02:55:27.543: ICMPv6-ND: Linklocal FE80::200:AAFF:FEAA:AAAA on FastEthernet0/0, Up
+*Mar  1 02:55:27.547: ICMPv6-ND: Address FE80::200:AAFF:FEAA:AAAA/10 is up on FastEthernet0/0
+<span style="background-color: #9fc5e8;">*Mar  1 02:55:30.543: ICMPv6-ND: Sending RS on FastEthernet0/0
+*Mar  1 02:55:30.607: ICMPv6-ND: Received RA from FE80::200:11FF:FE11:1111 on FastEthernet0/0
+</span>*Mar  1 02:55:30.607: ICMPv6-ND: DELETE -&gt; INCMP: FE80::200:11FF:FE11:1111
+*Mar  1 02:55:30.607: ICMPv6-ND: Neighbour FE80::200:11FF:FE11:1111 on FastEthernet0/0 : LLA 0000.1111.1111
+*Mar  1 02:55:30.611: ICMPv6-ND: INCMP -&gt; STALE: FE80::200:11FF:FE11:1111
+*Mar  1 02:55:30.611: ICMPv6-ND: Selected new default router FE80::200:11FF:FE11:1111 on FastEthernet0/0
+*Mar  1 02:55:30.615: ICMPv6-ND: Prefix Information change for 2001:DB8:1:1::/64, 0x0 -&gt; 0xE0
+*Mar  1 02:55:30.615: ICMPv6-ND: Adding prefix 2001:DB8:1:1::/64 to FastEthernet0/0
+<span style="background-color: #9fc5e8;">*Mar  1 02:55:30.619: ICMPv6-ND: Sending NS for 2001:DB8:1:1:200:AAFF:FEAA:AAAA on FastEthernet0/0
+</span>*Mar  1 02:55:30.619: ICMPv6-ND: Autoconfiguring 2001:DB8:1:1:200:AAFF:FEAA:AAAA on FastEthernet0/0
+*Mar  1 02:55:31.619: ICMPv6-ND: DAD: 2001:DB8:1:1:200:AAFF:FEAA:AAAA is unique.
+<span style="background-color: #9fc5e8;">*Mar  1 02:55:31.619: ICMPv6-ND: Sending NA for 2001:DB8:1:1:200:AAFF:FEAA:AAAA on FastEthernet0/0
+</span>*Mar  1 02:55:31.623: ICMPv6-ND: Address 2001:DB8:1:1:200:AAFF:FEAA:AAAA/64 is up on FastEthernet0/0</pre>
+<p>And the same events as seen in Wireshark:</p>
+<p><img class="alignnone size-full wp-image-72" src="/wp-content/uploads/2012/05/slaac_c1_1-1.png" alt="slaac_c1_1" width="1301" height="117" srcset="/wp-content/uploads/2012/05/slaac_c1_1-1.png 1301w, /wp-content/uploads/2012/05/slaac_c1_1-1-300x27.png 300w, /wp-content/uploads/2012/05/slaac_c1_1-1-768x69.png 768w, /wp-content/uploads/2012/05/slaac_c1_1-1-1024x92.png 1024w, /wp-content/uploads/2012/05/slaac_c1_1-1-676x61.png 676w" sizes="(max-width: 1301px) 100vw, 1301px" /></p>
+<p>The main NDP events can be summarized like this:</p>
+<ol>
+<li><b>Sending NS for FE80::200:AAFF:FEAA:AAAA to FF02::1:FFAA:AAAA</b>
+<ol>
+<li>The client has generated a link-local address and wants to know if it&#8217;s available. The source address is unspecified.</li>
+</ol>
+</li>
+<li><b>Sending NA for FE80::200:AAFF:FEAA:AAAA to FF02::1</b>
+<ol>
+<li>Having received no replies the client informs all nodes that it owns this address.</li>
+</ol>
+</li>
+<li><b>Sending RS to FF02::2</b>
+<ol>
+<li>The client tries to locate a router.</li>
+</ol>
+</li>
+<li><b>Received RA from FE80::200:11FF:FE11:1111</b>
+<ol>
+<li>The router replies to all nodes with a Router Advertisement.</li>
+</ol>
+</li>
+<li><b>Sending NS for 2001:DB8:1:1:200:AAFF:FEAA:AAAA to FF02::1:FFAA:AAAA</b>
+<ol>
+<li>The client has auto-configured a global unicast address based on the received prefix. Wants to know if it is available to use. The source address is unspecified.</li>
+</ol>
+</li>
+<li><b>Sending NA for 2001:DB8:1:1:200:AAFF:FEAA:AAAA to FF02::1</b>
+<ol>
+<li>After waiting 1 second DAD concludes that the address in available.</li>
+</ol>
+</li>
+</ol>
+<div style="clear: both; text-align: center;"></div>
+<p><img class="size-full wp-image-73 aligncenter" src="/wp-content/uploads/2012/05/slaac_3.png" alt="slaac_3" width="693" height="639" srcset="/wp-content/uploads/2012/05/slaac_3.png 693w, /wp-content/uploads/2012/05/slaac_3-300x277.png 300w, /wp-content/uploads/2012/05/slaac_3-676x623.png 676w" sizes="(max-width: 693px) 100vw, 693px" /></p>
+<p>And just as we saw earlier, the whole process takes 5 seconds to complete. All is good, the router and client can reach each other and an IPv6 default route is installed on the client.</p>
+<p>Here&#8217;s how it all looks in the router:</p>
+<pre>ROUTER#<b>show ipv6 interface fastEthernet 0/0</b>
+FastEthernet0/0 is up, line protocol is up
+  IPv6 is enabled, <span style="background-color: #9fc5e8;">link-local address is FE80::200:11FF:FE11:1111</span>
+  No Virtual link-local address(es):
+  <span style="background-color: #9fc5e8;">Global unicast address(es):</span>
+    <span style="background-color: #9fc5e8;">2001:DB8:1:1::1, subnet is 2001:DB8:1:1::/64</span>
+  <span style="background-color: #9fc5e8;">Joined group address(es):</span>
+    <span style="background-color: #9fc5e8;">FF02::1</span>
+    <span style="background-color: #9fc5e8;">FF02::2</span>
+    <span style="background-color: #9fc5e8;">FF02::1:FF00:1</span>
+    <span style="background-color: #9fc5e8;">FF02::1:FF11:1111</span>
+  MTU is 1500 bytes
+  ICMP error messages limited to one every 100 milliseconds
+  ICMP redirects are enabled
+  ICMP unreachables are sent
+  <span style="background-color: #9fc5e8;">ND DAD is enabled</span>, number of DAD attempts: 1
+  ND reachable time is 30000 milliseconds
+  ND advertised reachable time is 0 milliseconds
+  ND advertised retransmit interval is 0 milliseconds
+  <span style="background-color: #9fc5e8;">ND router advertisements are sent every 200 seconds</span>
+  ND router advertisements live for 1800 seconds
+  ND advertised default router preference is Medium
+  Hosts use stateless autoconfig for addresses.</pre>
+<p>The output shows the link-local address generated using EUI-64, the global unicast address, the multicast addresses (all nodes, all routers, solicited-node address for both configured addresses), that DAD is enabled and RAs is being sent every 200 seconds.</p>
+<div>And finally this is how IPv6 is configured on the client:</div>
+<pre>CLIENT_A#show ipv6 interface fastethernet0/0
+FastEthernet0/0 is up, line protocol is up
+  IPv6 is enabled, <span style="background-color: #9fc5e8;">link-local address is FE80::200:AAFF:FEAA:AAAA</span>
+  No Virtual link-local address(es):
+  <span style="background-color: #9fc5e8;">Global unicast address(es):</span>
+    <span style="background-color: #9fc5e8;">2001:DB8:1:1:200:AAFF:FEAA:AAAA, subnet is 2001:DB8:1:1::/64 [EUI/CAL/PRE]</span>
+      valid lifetime 2591868 preferred lifetime 604668
+  <span style="background-color: #9fc5e8;">Joined group address(es):</span>
+    <span style="background-color: #9fc5e8;">FF02::1</span>
+    <span style="background-color: #9fc5e8;">FF02::2</span>
+    <span style="background-color: #9fc5e8;">FF02::1:FFAA:AAAA</span>
+  MTU is 1500 bytes
+  ICMP error messages limited to one every 100 milliseconds
+  ICMP redirects are enabled
+  ICMP unreachables are sent
+  <span style="background-color: #9fc5e8;">ND DAD is enabled</span>, number of DAD attempts: 1
+  ND reachable time is 30000 milliseconds
+  Hosts use stateless autoconfig for addresses.</pre>
+<p>The output show the link-local address and the global unicast address generated using EUI-64, the multicast addresses (all nodes, all routers and solicited-node address). The reason we&#8217;re seeing only one solicited-node address is that the last 24 bits on both the link-local and global unicast address are identical, &#8220;AA:AAAA&#8221;. And at the end we see DAD is enabled.</p>
+<p>But what about DNS-servers and name resolution? That&#8217;s where DHCPv6 (<a href="http://tools.ietf.org/html/rfc3315">RFC 3315</a>) comes in or the proposed change to Router Advertisements to include DNS servers (<a href="http://tools.ietf.org/html/rfc6106">RFC 6106</a>). But that&#8217;s another story.</p>
+<p>For more detailed information on IPv6 addressing, SLAAC and NDP have a look at the following RFCs:</p>
+<div><a href="http://tools.ietf.org/html/rfc4861">RFC 4861 Neighbor Discovery for IP version 6 (IPv6)</a></div>
+<div><a href="http://tools.ietf.org/html/rfc4862">RFC 4862 IPv6 Stateless Address Autoconfiguration</a></div>
+<div><a href="http://tools.ietf.org/html/rfc4291">RFC 4291 IP Version 6 Addressing Architecture</a><br />
+<a href="http://tools.ietf.org/html/rfc4443">RFC 4443 Internet Control Message Protocol (ICMPv6) for the Internet Protocol Version 6 (IPv6) Specification</a></div>
+<p>It&#8217;s time to activate IPv6 on your routers!</p>
+<p>If you&#8217;re looking for a tailor-made workshop or network analysis, check out my <a href="/consulting/">Consulting Services</a> for more information.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2012/05/ipv6-autoconfiguration-with-slaac-and-ndp-how-does-it-work/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Configuring Single-Area OSPFv3</title>
+		<link>/2012/05/configuring-single-area-ospfv3/</link>
+		<comments>/2012/05/configuring-single-area-ospfv3/#respond</comments>
+		<pubDate>Tue, 01 May 2012 12:30:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ccnp]]></category>
+		<category><![CDATA[ipv6]]></category>
+		<category><![CDATA[ospf]]></category>
+		<category><![CDATA[ospfv3]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Configuring OSPFv3 is not very different from configuring OSPF for IPv4. It&#8217;s actually simpler and much cooler since it&#8217;s running on IPv6. Either prepare a topology using GNSparser or use this one: The first thing to do is to enable IPv6 globally and configure the interfaces on each router. This includes loopback interfaces which will [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Configuring OSPFv3 is not very different from configuring OSPF for IPv4. It&#8217;s actually simpler and much cooler since it&#8217;s running on IPv6.</p>
+<p>Either prepare a topology using <a href="http://bitbucket.org/holmahenkel/gnsparser">GNSparser</a> or use this one:</p>
+<p><img class="alignnone size-full wp-image-62" src="http://104.196.36.32/wp-content/uploads/2012/05/single_area_ospfv3.png" alt="single_area_ospfv3" width="541" height="319" srcset="/wp-content/uploads/2012/05/single_area_ospfv3.png 541w, /wp-content/uploads/2012/05/single_area_ospfv3-300x177.png 300w" sizes="(max-width: 541px) 100vw, 541px" /></p>
+<p><span id="more-12"></span></p>
+<p>The first thing to do is to enable IPv6 globally and configure the interfaces on each router. This includes loopback interfaces which will be used as Router IDs and IPv6 addressing for end-to-end connectivity between the routers.</p>
+<p>Let&#8217;s start with R1:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:1::1/64</b></pre>
+</blockquote>
+<p>And then we configure R2:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:1::2/64
+!
+interface FastEthernet0/1
+ ipv6 address 2001:DB8:1000:2::2/64
+</b></pre>
+</blockquote>
+<p>And the last one, R3:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:2::3/64</b></pre>
+</blockquote>
+<p>Pretty straightforward stuff.</p>
+<p>To verify IPv6 connectivity between R1 and R2 we&#8217;ll take ICMPv6 for a spin:</p>
+<blockquote>
+<pre>R1#<b>ping 2001:DB8:1000:1::2</b>                                                
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:1000:1::2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/25/40 ms</pre>
+</blockquote>
+<p>We can also verify that we&#8217;re seeing IPv6 neighbors from R1:</p>
+<blockquote>
+<pre>R1#<b>show ipv6 neighbors 2001:DB8:1000:1::2                                   
+</b>IPv6 Address                              Age Link-layer Addr State Interface
+2001:DB8:1000:1::2                          1 c202.35ae.0000  STALE Fa0/0</pre>
+</blockquote>
+<p>R2 is alive!</p>
+<p>So the next configuration step is to enable OSPFv3 on all interfaces on R1, R2 and R3 and put them in the backbone area 0. Enter interface configuration mode and type:</p>
+<blockquote>
+<pre><b>ipv6 ospf 100 area 0</b></pre>
+</blockquote>
+<div>
+<p>Notice the difference from OSPF on IPv4. Here we enable OSPF per-interface instead of using network commands.</p>
+<p>And when we run this command IOS automatically enable the OSPFv3 process with a process ID of 100 under global configuration:</p>
+<blockquote>
+<pre><b>ipv6 router ospf 100</b></pre>
+</blockquote>
+<p>Each router picks a Router ID using it&#8217;s local up/up loopback interface, OSPFv3 adjacencies will start forming and these messages shows up:</p>
+<blockquote>
+<pre>R1#
+*Mar  1 01:30:30.187: %OSPFv3-5-ADJCHG: Process 100,
+Nbr 2.2.2.2 on FastEthernet0/0 from LOADING to FULL, Loading Done</pre>
+</blockquote>
+<p>On R2 we should see two OSPFv3 adjacencies:</p>
+<blockquote>
+<pre>R2#<b>show ipv6 ospf neighbor</b>
+
+Neighbor ID     Pri   State           Dead Time   Interface ID    Interface
+3.3.3.3           1   FULL/DR         00:00:32    4               FastEthernet0/1
+1.1.1.1           1   FULL/DR         00:00:38    4               FastEthernet0/0</pre>
+</blockquote>
+<div>
+<p>To verify end-to-end IPv6 connectivity between R1 and R3, check that we have received OSPFv3 routes for R3&#8217;s prefix and do a traceroute:</p>
+<blockquote>
+<pre>R1#<b>show ipv6 route ospf</b>
+IPv6 Routing Table - 4 entries
+Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP
+       U - Per-user Static route, M - MIPv6
+       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary
+       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2
+       D - EIGRP, EX - EIGRP external
+O   2001:DB8:1000:2::/64 [110/20]
+     via FE80::C002:35FF:FEAE:0, FastEthernet0/0
+R1#<b>traceroute 2001:DB8:1000:2::3</b>
+
+Type escape sequence to abort.
+Tracing the route to 2001:DB8:1000:2::3
+
+  1 2001:DB8:1000:1::2 24 msec 20 msec 24 msec
+  2 2001:DB8:1000:2::3 40 msec 44 msec 44 msec</pre>
+</blockquote>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>Also notice how OSPFv3 use link-local addresses to form neighbor adjacencies and not global unicast addresses. Another detail to notice is how interfaces on adjacent routers are referred to using &#8220;Interface ID&#8221; or &#8220;Link ID&#8221; instead of IPv6 addresses:</p>
+<div>
+<blockquote>
+<pre>R1#<b>show ipv6 ospf interface brief</b> 
+Interface    PID   Area            <span style="background-color: #fff2cc;">Intf ID</span>    Cost  State Nbrs F/C
+Fa0/0        100   0               <span style="background-color: #fff2cc;">4</span>          10    DR    1/1
+
+R1#<b>show ipv6 ospf neighbor</b> 
+Neighbor ID     Pri   State           Dead Time   <span style="background-color: #fff2cc;">Interface ID</span>    Interface
+2.2.2.2           1   FULL/BDR        00:00:35    <span style="background-color: #fff2cc;">4</span>               FastEthernet0/0
+
+R1#<b>show ipv6 ospf neighbor detail</b> 
+ Neighbor 2.2.2.2
+    In the area 0 via interface FastEthernet0/0 
+    Neighbor: <span style="background-color: #fff2cc;">interface-id 4</span>, link-local address <span style="background-color: #fff2cc;">FE80::C002:35FF:FEAE:0</span>
+    Neighbor priority is 1, State is FULL, 6 state changes
+    DR is 1.1.1.1 BDR is 2.2.2.2
+    Options is 0x6739CA41
+    Dead timer due in 00:00:39
+    Neighbor is up for 00:12:44
+    Index 1/1/1, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec</pre>
+</blockquote>
+</div>
+<p>&nbsp;</p>
+<p>That&#8217;s it. IPv6 rules.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2012/05/configuring-single-area-ospfv3/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Dynamic Multipoint IPv6 tunnels using 6to4</title>
+		<link>/2012/04/dynamic-multipoint-ipv6-tunnels-using-6to4/</link>
+		<comments>/2012/04/dynamic-multipoint-ipv6-tunnels-using-6to4/#respond</comments>
+		<pubDate>Sat, 28 Apr 2012 14:41:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[6to4]]></category>
+		<category><![CDATA[ccnp]]></category>
+		<category><![CDATA[ipv6]]></category>
+		<category><![CDATA[tunneling]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[6to4 is a transition mechanism that allows modern IPv6 sites to communicate over a legacy IPv4 network, like The Internet. Just like other auto-tunneling techniques the IPv6 end-to-end connectivity is made possible by encapsulating the IPv6 datagrams inside IPv4 datagrams. Auto-tunneling is a last resort method compared to dual-stack or native IPv6 support, but it can be [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p style="clear: both; text-align: left;">6to4 is a transition mechanism that allows modern IPv6 sites to communicate over a legacy IPv4 network, like The Internet. Just like other auto-tunneling techniques the IPv6 end-to-end connectivity is made possible by encapsulating the IPv6 datagrams inside IPv4 datagrams.</p>
+<p style="clear: both; text-align: left;">Auto-tunneling is a last resort method compared to dual-stack or native IPv6 support, but it can be used as a temporary solution for providing IPv6 connectivity. Just don&#8217;t expect kick-ass performance <a href="http://www.potaroo.net/ispcol/2010-12/6to4fail.html">http://www.potaroo.net/ispcol/2010-12/6to4fail.html</a>.</p>
+<p style="clear: both; text-align: left;"><span id="more-13"></span></p>
+<p style="clear: both; text-align: left;">For a short introduction on how 6to4 works check out <a href="http://en.wikipedia.org/wiki/6to4#How_6to4_works">http://en.wikipedia.org/wiki/6to4#How_6to4_works</a>.</p>
+<p style="clear: both; text-align: left;">So here is the topology we&#8217;ll be using:</p>
+<p style="clear: both; text-align: left;"><img class="wp-image-57 size-full aligncenter" src="http://104.196.36.32/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png" alt="dynamic_multipoint_ipv6_tunnels_6to4" width="688" height="411" srcset="/wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4.png 688w, /wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-300x179.png 300w, /wp-content/uploads/2012/04/dynamic_multipoint_ipv6_tunnels_6to4-676x404.png 676w" sizes="(max-width: 688px) 100vw, 688px" /></p>
+<p style="clear: both; text-align: left;">We are running OSPF on all backbone routers providing IPv4 connectivity between sites A and B. Both sites are IPv6 only networks. Each client is using IPv6 Stateless Address Autoconfiguration (SLAAC) to obtain an IPv6 global unicast address and a default route from the local gateway.</p>
+<p style="clear: both; text-align: left;">First let&#8217;s enable IPv6 and configure the internal interface on R1:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+interface FastEthernet0/1
+ no ip address
+ ipv6 address 2001:DB8:0:1000::1/64
+ ipv6 enable</b></pre>
+</blockquote>
+<p>And then we do the same on R3:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+interface FastEthernet0/1
+ no ip address
+ ipv6 address 2001:DB8:0:2000::1/64
+ ipv6 enable</b></pre>
+</blockquote>
+<p>Then we configure each IPv6 client to use SLAAC and insert a default route to be able to reach a remote network:</p>
+<blockquote>
+<pre><b>interface FastEthernet0/0
+ no ip address
+ ipv6 address autoconfig default
+ ipv6 enable</b></pre>
+</blockquote>
+<p>So how are we doing so far? We have applied a link-local address and a global unicast address based on R1&#8217;s Router Advertisement:</p>
+<blockquote>
+<pre><b>CLIENT1#show ipv6 interface brief FastEthernet 0/0
+FastEthernet0/0            [up/up]
+    FE80::C006:1CFF:FE83:0
+    2001:DB8:0:1000:C006:1CFF:FE83:0</b></pre>
+</blockquote>
+<p>We are seeing IPv6 neighbors (R1!) on our local link:</p>
+<blockquote>
+<pre><b>CLIENT1#show ipv6 neighbors                     
+IPv6 Address                              Age Link-layer Addr State Interface
+FE80::C000:1CFF:FE83:1                      3 c200.1c83.0001  STALE Fa0/0</b></pre>
+</blockquote>
+<p>We have inserted a default route of ::/0 with a next-hop of R1:</p>
+<blockquote>
+<pre><b>CLIENT1#show ipv6 route                           
+IPv6 Routing Table - 4 entries
+--LINES OMITTED--
+S   ::/0 [1/0]
+     via FE80::C000:1CFF:FE83:1, FastEthernet0/0
+C   2001:DB8:0:1000::/64 [0/0]
+     via ::, FastEthernet0/0
+L   2001:DB8:0:1000:C006:1CFF:FE83:0/128 [0/0]
+     via ::, FastEthernet0/0
+L   FF00::/8 [0/0]
+     via ::, Null0</b></pre>
+</blockquote>
+<p>And we have IPv6 connectivity with R1 from CLIENT1:</p>
+<blockquote>
+<pre><b>CLIENT1#ping 2001:DB8:0:1000::1         
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:0:1000::1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/20/20 ms</b></pre>
+</blockquote>
+<p>Very fancy indeed. So now let&#8217;s configure the 6to4 tunnels. Beginning with R1:</p>
+<blockquote>
+<pre><b>interface Tunnel0
+ no ip address
+ ipv6 address 2002:101:101::/128
+ ipv6 enable
+ tunnel source Loopback0
+ tunnel mode ipv6ip 6to4</b></pre>
+</blockquote>
+<p>What is that 101:101 part? That&#8217;s the hexadecimal equivalent of the IPv4 address 1.1.1.1. This is where the magic happens that allows 6to4 to figure out which source IPv4 address to use when tunneling the IPv6 traffic over the internet.</p>
+<p>Since we are using global unicast addresses  instead of the reserved 2002::/16 prefix we need to make two small changes to the IPv6 routing table:</p>
+<blockquote>
+<pre><b>ipv6 route 2001:DB8:0:2000::/64 2002:303:303::
+ipv6 route 2002::/16 Tunnel0</b></pre>
+</blockquote>
+<p>By doing this we tell the router to route all traffic with an IPv6 destination of Site B&#8217;s prefix to the next-hop address of the 6to4 router R3. The recursive lookup that follows routes the packet to 2002::/16 and out the 6to4 tunnel interface Tunnel0.</p>
+<p>The final step is to do the same steps on R3:</p>
+<blockquote>
+<pre><b>interface Tunnel0
+ no ip address
+ ipv6 address 2002:303:303::/128
+ ipv6 enable
+ tunnel source Loopback0
+ tunnel mode ipv6ip 6to4
+!
+ipv6 route 2001:DB8:0:1000::/64 2002:101:101::
+ipv6 route 2002::/16 Tunnel0</b></pre>
+</blockquote>
+<p>So now we have successfully configured a 6to4 tunnel. Let&#8217;s do a traceroute from CLIENT1 to CLIENT2:</p>
+<blockquote>
+<pre><b>CLIENT1#traceroute 2001:DB8:0:2000:C007:1CFF:FE83:0
+
+Type escape sequence to abort.
+Tracing the route to 2001:DB8:0:2000:C007:1CFF:FE83:0
+
+  1 2001:DB8:0:1000::1 24 msec 20 msec 20 msec
+  2 2002:303:303:: 64 msec 64 msec 64 msec
+  3 2001:DB8:0:2000:C007:1CFF:FE83:0 88 msec 84 msec 84 msec</b></pre>
+</blockquote>
+<p>As we can see, the first hop is R1&#8217;s internal interface, the second hop is the 6to4 tunnel interface on R3 and the third and last hop is CLIENT2&#8217;s local SLAAC configured interface.</p>
+<p>IPv6 rules.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2012/04/dynamic-multipoint-ipv6-tunnels-using-6to4/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Frame Relay switching and point-to-point subinterfaces</title>
+		<link>/2012/03/frame-relay-switching-and-point-to-point-subinterfaces/</link>
+		<comments>/2012/03/frame-relay-switching-and-point-to-point-subinterfaces/#respond</comments>
+		<pubDate>Sun, 25 Mar 2012 15:41:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ccnp]]></category>
+		<category><![CDATA[frame relay]]></category>
+		<category><![CDATA[subinterfaces]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Having browsed through half the Internet without finding any decent documentation on how to do this, I gave up on Google and put together something myself. Hopefully it can be useful for other networking students. I&#8217;m doing a lab for Cisco CCNP ROUTE where you&#8217;re supposed to set up OSPF over a Frame Relay (NBMA) [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Having browsed through half the Internet without finding any decent documentation on how to do this, I gave up on Google and put together something myself. Hopefully it can be useful for other networking students.</p>
+<p>I&#8217;m doing a lab for Cisco CCNP ROUTE where you&#8217;re supposed to set up OSPF over a Frame Relay (NBMA) hub-and-spoke topology with a headquarter and two remote sites. All subinterfaces must be configured as point-to-point. This is how you configure the Frame Relay part.</p>
+<p><span id="more-16"></span></p>
+<p><b>Topology:</b></p>
+<p><img class="alignnone size-full wp-image-44" src="/wp-content/uploads/2012/03/ajhefbj23lrkjn.png" alt="fr_cloud" width="560" height="304" srcset="/wp-content/uploads/2012/03/ajhefbj23lrkjn.png 560w, /wp-content/uploads/2012/03/ajhefbj23lrkjn-300x163.png 300w" sizes="(max-width: 560px) 100vw, 560px" /></p>
+<ul>
+<li style="text-align: left;">DLCI 102 and 201 connecting R1_HQ and R2_EAST.</li>
+<li style="text-align: left;"><span style="text-align: center;">DLCI 103 and 301 connecting R1_HQ and R4_WEST.</span></li>
+<li style="text-align: left;"><span style="text-align: center;">R3_FR provides clocking signals (DCE) to the connected Frame Relay routers (DTE).</span></li>
+</ul>
+<p><b>Configuration of the Frame Relay switch, R3_FR:</b></p>
+<blockquote><p><code><span style="color: #000000;">frame-relay switching</span><br />
+<span style="color: #000000;"> interface Serial0/0</span><br />
+<span style="color: #000000;"> bandwidth 64</span><br />
+<span style="color: #000000;"> no ip address</span><br />
+<span style="color: #000000;"> encapsulation frame-relay IETF</span><br />
+<span style="color: #000000;"> no ip route-cache</span><br />
+<span style="color: #000000;"> clock rate 64000</span><br />
+<span style="color: #000000;"> frame-relay intf-type dce</span><br />
+<span style="color: #000000;"> frame-relay route 102 interface Serial0/1 201</span><br />
+<span style="color: #000000;"> frame-relay route 103 interface Serial0/2 301</span><br />
+<span style="color: #000000;"> interface Serial0/1</span><br />
+<span style="color: #000000;"> bandwidth 64</span><br />
+<span style="color: #000000;"> no ip address</span><br />
+<span style="color: #000000;"> encapsulation frame-relay IETF</span><br />
+<span style="color: #000000;"> no ip route-cache</span><br />
+<span style="color: #000000;"> clock rate 64000</span><br />
+<span style="color: #000000;"> frame-relay intf-type dce</span><br />
+<span style="color: #000000;"> frame-relay route 201 interface Serial0/0 102</span><br />
+<span style="color: #000000;"> interface Serial0/2</span><br />
+<span style="color: #000000;"> bandwidth 64</span><br />
+<span style="color: #000000;"> no ip address</span><br />
+<span style="color: #000000;"> encapsulation frame-relay IETF</span><br />
+<span style="color: #000000;"> no ip route-cache</span><br />
+<span style="color: #000000;"> clock rate 64000</span><br />
+<span style="color: #000000;"> frame-relay intf-type dce</span><br />
+<span style="color: #000000;"> frame-relay route 301 interface Serial0/0 103</span><br />
+</code></p></blockquote>
+<p><b>Configuring the R1_HQ router:</b></p>
+<blockquote><p><span style="color: #000000;"><code>interface Serial0/0<br />
+bandwidth 64<br />
+no ip address<br />
+encapsulation frame-relay IETF<br />
+interface Serial0/0.102 point-to-point<br />
+ip address 10.1.1.1 255.255.255.252<br />
+frame-relay interface-dlci 102<br />
+interface Serial0/0.103 point-to-point<br />
+ip address 10.1.1.5 255.255.255.252<br />
+frame-relay interface-dlci 103</code></span></p></blockquote>
+<p><b>Configuring the R2_EAST router:</b></p>
+<blockquote><p><span style="color: #000000;"><code>interface Serial0/0<br />
+bandwidth 64<br />
+no ip address<br />
+encapsulation frame-relay IETF<br />
+interface Serial0/0.201 point-to-point<br />
+ip address 10.1.1.2 255.255.255.252<br />
+frame-relay interface-dlci 201</code></span></p></blockquote>
+<p><b>Configuring the R4_WEST router:</b></p>
+<blockquote><p><code><span style="color: #000000;">interface Serial0/0</span><br />
+<span style="color: #000000;"> bandwidth 64</span><br />
+<span style="color: #000000;"> no ip address</span><br />
+<span style="color: #000000;"> encapsulation frame-relay IETF</span><br />
+<span style="color: #000000;"> interface Serial0/0.301 point-to-point</span><br />
+<span style="color: #000000;"> ip address 10.1.1.6 255.255.255.252</span><br />
+<span style="color: #000000;"> frame-relay interface-dlci 301</span><br />
+</code></p></blockquote>
+<p>HQ router can now ping both the EAST and WEST router.</p>
+<p>Here&#8217;s how the Frame Relay switch see the topology:</p>
+<blockquote>
+<pre><span style="color: #000000;">R3_FR#show frame-relay route
+Input Intf      Input Dlci      Output Intf     Output Dlci     Status
+Serial0/0       102             Serial0/1       201             active
+Serial0/0       103             Serial0/2       301             active
+Serial0/1       201             Serial0/0       102             active
+Serial0/2       301             Serial0/0       103             active
+</span></pre>
+</blockquote>
+<p>For more information check out &#8220;Comprehensive Guide to Configuring and Troubleshooting Frame Relay&#8221;:<br />
+<a href="http://www.cisco.com/en/US/tech/tk713/tk237/technologies_tech_note09186a008014f8a7.shtml">http://www.cisco.com/en/US/tech/tk713/tk237/technologies_tech_note09186a008014f8a7.shtml</a></p>
+<p>Similar services are also provided professionally through my <a href="/consulting/">Consulting Services</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2012/03/frame-relay-switching-and-point-to-point-subinterfaces/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

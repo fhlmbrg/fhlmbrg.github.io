@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Fredrik Holmberg &#8211; Fredrik Holmberg</title>
+	<atom:link href="/author/holmahenkel/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>Fredrik Holmberg &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Packet Analysis Challenge #2 – Solution</title>
+		<link>/2016/11/packet-analysis-challenge-2-solution/</link>
+		<comments>/2016/11/packet-analysis-challenge-2-solution/#respond</comments>
+		<pubDate>Wed, 09 Nov 2016 20:00:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[challenge]]></category>
+		<category><![CDATA[packet analysis]]></category>
+		<category><![CDATA[wireshark]]></category>
+		<category><![CDATA[wiresharklympics]]></category>
+
+		<guid isPermaLink="false">/?p=533</guid>
+		<description><![CDATA[While we wait for Magnus Karlsen to make his first move (E4?), here&#8217;s a solution walk-through of the second Packet Capture Analysis challenge. Spoilers ahead 🙂 Here we go #1 &#8211; How many hops can we assume there are between the client and the server? If we assume a default minimum IP datagram TTL of 64 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="aligncenter wp-image-469 " src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="455" height="310" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, /wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, /wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, /wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 455px) 100vw, 455px" /></p>
+<p>While we wait for Magnus Karlsen to make <a href="https://worldchess.com/nyc2016/">his first move</a> (E4?), here&#8217;s a solution walk-through of the <a href="/2016/10/packet-analysis-challenge-2/">second</a> Packet Capture Analysis challenge.</p>
+<p>Spoilers ahead <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><span id="more-533"></span></p>
+<h3>Here we go</h3>
+<h4>#1 &#8211; How many hops can we assume there are between the client and the server?</h4>
+<p>If we assume a default minimum IP datagram TTL of 64 (WHAT? See <a href="https://tools.ietf.org/html/rfc1700#page-64">https://tools.ietf.org/html/rfc1700#page-64</a>), the server 204.152.184.134 is <strong>14 hops</strong> away because the IP datagram TTL is 50 in all TCP segments received by the client.</p>
+<p><em>hops = def.ttl &#8211; rcv.ttl</em></p>
+<p>How to find the IP TTL value:</p>
+<p><img class="alignnone wp-image-542 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q1.png" alt="ws_chal2_q1" width="633" height="436" srcset="/wp-content/uploads/2016/11/ws_chal2_q1.png 633w, /wp-content/uploads/2016/11/ws_chal2_q1-300x207.png 300w" sizes="(max-width: 633px) 100vw, 633px" /></p>
+<h4>#2 &#8211; Using fingerprinting techniques, what OS is the server likely running? (1 point per technique)</h4>
+<p>One way is to look at the HTTP 200 OK response from the server. Usually the application give away some hints on OS and software used:</p>
+<p><img class="alignnone size-full wp-image-543" src="/wp-content/uploads/2016/11/ws_chal2_q2_1.png" alt="ws_chal2_q2_1" width="612" height="455" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_1.png 612w, /wp-content/uploads/2016/11/ws_chal2_q2_1-300x223.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></p>
+<p>It claims to be a <strong>FreeBSD</strong> host.</p>
+<p>Another indicator of OS type/version can be found by looking at the advertised IP TTL and TCP Window Size values:</p>
+<p><img class="alignnone size-full wp-image-544" src="/wp-content/uploads/2016/11/ws_chal2_q2_2.png" alt="ws_chal2_q2_2" width="663" height="512" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_2.png 663w, /wp-content/uploads/2016/11/ws_chal2_q2_2-300x232.png 300w" sizes="(max-width: 663px) 100vw, 663px" /></p>
+<p>A combination of IP TTL 64 and Window Size 65535 is often found in *nix/FreeBSD systems. More information <a href="http://www.netresec.com/?page=Blog&amp;month=2011-11&amp;post=Passive-OS-Fingerprinting">here</a> and <a href="http://subinsb.com/default-device-ttl-values">here</a>.</p>
+<p>But wait, the Windows client is using the exact same values!? Yes, implementation &#8220;standards&#8221; are nice <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h4>#3 &#8211; What is the average RTT delay between the client and the server? (1 point)</h4>
+<p>Start off by changing <strong>View &gt; Time Display Format</strong> to <strong>Time Since Previous Displayed Packet.</strong></p>
+<p>Then we can look at the SYN/ACK response during a TCP handshake to determine the RTT, <strong>around 20 ms</strong> in this case.</p>
+<p><img class="alignnone size-full wp-image-545" src="/wp-content/uploads/2016/11/ws_chal2_q3.png" alt="ws_chal2_q3" width="610" height="207" srcset="/wp-content/uploads/2016/11/ws_chal2_q3.png 610w, /wp-content/uploads/2016/11/ws_chal2_q3-300x102.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></p>
+<p>Why the SYN/ACK handshake step? Because that segment is generated by the remote end TCP/IP stack, without any added application delay.</p>
+<h4>#4 &#8211; Following frame #14886, what TCP sequence number (relative) is the client expecting to receive next? (1 point + 1 bonus)</h4>
+<p>Looking at frame #14886 we see a TCP sequence number of 4641056. That segment had a payload of 1460 Bytes. The next sequence number in the stream is 4641056 + 1460 = <strong>4642516</strong>.</p>
+<p>As we see in frame #14889 the client does not receive the expected segment and TCP SACK kicks in.</p>
+<p><img class="alignnone size-full wp-image-546" src="/wp-content/uploads/2016/11/ws_chal2_q4.png" alt="ws_chal2_q4" width="737" height="339" srcset="/wp-content/uploads/2016/11/ws_chal2_q4.png 737w, /wp-content/uploads/2016/11/ws_chal2_q4-300x138.png 300w, /wp-content/uploads/2016/11/ws_chal2_q4-676x311.png 676w" sizes="(max-width: 737px) 100vw, 737px" /></p>
+<h4>Bonus – In what frame does it receive the expected TCP segment?</h4>
+<p>Since we know that the sequence number is 4642516, we can apply a specific Display Filter using <strong>tcp.seq</strong>:</p>
+<p><img class="alignnone size-full wp-image-547" src="/wp-content/uploads/2016/11/ws_chal2_q4_b.png" alt="ws_chal2_q4_b" width="873" height="97" srcset="/wp-content/uploads/2016/11/ws_chal2_q4_b.png 873w, /wp-content/uploads/2016/11/ws_chal2_q4_b-300x33.png 300w, /wp-content/uploads/2016/11/ws_chal2_q4_b-768x85.png 768w, /wp-content/uploads/2016/11/ws_chal2_q4_b-676x75.png 676w" sizes="(max-width: 873px) 100vw, 873px" /></p>
+<p><strong>Frame #14981!</strong></p>
+<h4>5# &#8211; At the beginning of the file transfer there is a delay lasting around 3 seconds. Why? (2 points)</h4>
+<p>A graphical representation of the transfer halting<br />
+<strong>Statistics &gt; TCP Stream Graphs &gt; Time Sequence (Stevens):</strong></p>
+<div id="attachment_548" style="width: 789px" class="wp-caption alignnone"><img class="wp-image-548 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q5_1.png" alt="ws_chal2_q5_1" width="779" height="566" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_1.png 779w, /wp-content/uploads/2016/11/ws_chal2_q5_1-300x218.png 300w, /wp-content/uploads/2016/11/ws_chal2_q5_1-768x558.png 768w, /wp-content/uploads/2016/11/ws_chal2_q5_1-676x491.png 676w" sizes="(max-width: 779px) 100vw, 779px" /><p class="wp-caption-text">Awkward silence.</p></div>
+<p><span style="font-weight: 400;">The client TCP receive buffer is considered full in frame #8662. The client is reporting a window size of 536 Bytes which does not allow for a full TCP segment of 1460 Bytes. For some reason the client application (browser) is not pulling data fast enough from its buffer.</span></p>
+<p><img class="alignnone size-full wp-image-549" src="/wp-content/uploads/2016/11/ws_chal2_q5_2.png" alt="ws_chal2_q5_2" width="703" height="338" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_2.png 703w, /wp-content/uploads/2016/11/ws_chal2_q5_2-300x144.png 300w, /wp-content/uploads/2016/11/ws_chal2_q5_2-676x325.png 676w" sizes="(max-width: 703px) 100vw, 703px" /></p>
+<p><span style="font-weight: 400;">The transfer halts for around 3 seconds until the client has finished processing the data and reports a window of 64 KB (256KB as seen in Wireshark is due to Window Scaling). The server continues transferring at frame #8665.</span></p>
+<h3>That&#8217;s it!</h3>
+<p>Hope you had some fun solving these. More to come <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Have a nice day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f596.png" alt="🖖" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/11/packet-analysis-challenge-2-solution/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Packet Analysis Challenge #2</title>
+		<link>/2016/10/packet-analysis-challenge-2/</link>
+		<comments>/2016/10/packet-analysis-challenge-2/#respond</comments>
+		<pubDate>Thu, 06 Oct 2016 09:43:58 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[packet analysis]]></category>
+		<category><![CDATA[wireshark]]></category>
+		<category><![CDATA[challenge]]></category>
+		<category><![CDATA[wiresharklympics]]></category>
+
+		<guid isPermaLink="false">/?p=518</guid>
+		<description><![CDATA[Round two of #Wiresharklympics is here! Having survived round one, you know the drill. The tiny specs of data that allow services like Facebook and the Internet to work will be put under heavy scrutiny. Wireshark has reached a stable release of 2.2.1 and is eagerly awaiting new challenges. We will yet again use a sample packet [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div style="width: 415px" class="wp-caption aligncenter"><img class="" src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Prionace_glauca_1.jpg" alt="The Sharkminator returns." width="405" height="270" /><p class="wp-caption-text">The Sharkminator returns.</p></div>
+<p>Round two of <strong>#Wiresharklympics</strong> is here! Having survived <a href="/2016/08/packet-analysis-challenge-1/">round one</a>, you know the drill. The tiny specs of data that allow services like Facebook and the Internet to work will be put under heavy scrutiny.</p>
+<p><a href="https://www.wireshark.org/">Wireshark</a> has reached a stable release of <a href="https://www.wireshark.org/docs/relnotes/wireshark-2.2.1.html">2.2.1</a> and is eagerly awaiting new challenges.</p>
+<p><span id="more-518"></span></p>
+<p>We will yet again use a sample packet capture from Netresecs <a href="http://www.netresec.com/?page=PcapFiles">list</a>.</p>
+<p>The packet capture sample can be downloaded here:<br />
+<a href="https://dl.dropboxusercontent.com/u/1185688/blog/wireshark2.pcapng">https://dl.dropboxusercontent.com/u/1185688/blog/wireshark2.pcapng</a></p>
+<p>It&#8217;s safe to download. <a href="https://www.virustotal.com/nb/url/db7477fc363776d14277b0678d16cf88955a951d209812f7c57bfa7d82a48f44/analysis/1475743936/">VirusTotal concur</a>.</p>
+<h3>Enough yada yada</h3>
+<p>Five questions. Should be at least 8 points up for grabs <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f590.png" alt="🖐" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Start off by applying this display filter &#8220;tcp.stream == 16&#8221;.</p>
+<ol>
+<li>How many hops can we assume there are between the client and the server? (1 point)</li>
+<li>Using fingerprinting techniques, what OS is the server likely running? (1 point per technique)</li>
+<li>What is the average RTT delay between the client and the server? (1 point)</li>
+<li>Following frame #14886, what TCP sequence number (relative) is the client expecting to receive next? (1 point + 1 bonus)<br />
+Bonus &#8211; In what frame does it receive the expected TCP segment?</li>
+<li>At the beginning of the file transfer there is a delay lasting around 3 seconds. Why? (2 points)</li>
+</ol>
+<h3>Easy peasy?</h3>
+<p>Please send me your questions and answers via a communication transport of your liking. A comment here, the <a href="http://twitter.com/holmahenkel">social medias</a> or <a href="mailto:mail@fredrikholmberg.com">email</a>. Doesn&#8217;t matter!</p>
+<p>The winner will of course receive loads of <a href="http://www.urbandictionary.com/define.php?term=street%20cred">street cred</a>. Way better than Facebook likes.</p>
+<p>Have a great day <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f43c.png" alt="🐼" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/10/packet-analysis-challenge-2/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Network Automation Day</title>
+		<link>/2016/09/network-automation-day/</link>
+		<comments>/2016/09/network-automation-day/#respond</comments>
+		<pubDate>Wed, 14 Sep 2016 12:23:52 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ansible]]></category>
+		<category><![CDATA[automation]]></category>
+		<category><![CDATA[juniper]]></category>
+		<category><![CDATA[workshop]]></category>
+
+		<guid isPermaLink="false">/?p=475</guid>
+		<description><![CDATA[On September 1st the Norwegian Juniper Elite partner nLogic AS hosted an event called &#8220;Ansible i praksis&#8220;, entirely focused on network automation using Ansible. Lots of interesting presentations and discussions from the Norwegian automation scene. A whole day of Juniper, automation and Ansible! Does it get any better? I had the pleasure of leading a technical workshop at the [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h1 style="text-align: center;"><img class="alignnone wp-image-511 " src="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png" alt="ansible_logo_black" width="580" height="78" srcset="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png 1024w, /wp-content/uploads/2016/09/ansible_logo_black-300x41.png 300w, /wp-content/uploads/2016/09/ansible_logo_black-768x104.png 768w, /wp-content/uploads/2016/09/ansible_logo_black-676x91.png 676w, /wp-content/uploads/2016/09/ansible_logo_black.png 1125w" sizes="(max-width: 580px) 100vw, 580px" /></h1>
+<p>On September 1st the Norwegian Juniper Elite partner <a href="http://www.nlogic.no/">nLogic AS</a> hosted an event called &#8220;<a href="http://nlogic.no/kursogseminarer/367-nlogic-workshop-ansible-i-praksis">Ansible i praksis</a>&#8220;, entirely focused on network automation using Ansible. Lots of interesting presentations and discussions from the Norwegian automation scene. A whole day of Juniper, automation and Ansible! Does it get any better?</p>
+<p>I had the pleasure of leading a technical workshop at the end of the event where the attendees were challenged with common operations tasks worthy of automating.</p>
+<p>A fun experience and all-in-all a great day!</p>
+<p><span id="more-475"></span></p>
+<h3>Presentations</h3>
+<p><a href="http://www.juniper.net/">Juniper Networks</a> had the first presentation talking about their current automation portfolio and how they are embracing Ansible. Leading by example Juniper publishes fully working playbooks on Github &#8211; <a href="http://github.com/JNPRAutomate">github.com/JNPRAutomate</a>.</p>
+<p>Next up was the <a href="http://www.met.no/">Norwegian Meteorological Institute (MET)</a> talking about their Ansible implementation and showcasing everything in a live demo how they modify their Leaf-and-Spine DC fabric including firewall rulesets, on the fly, of course.</p>
+<p>Then <a href="http://www.uninett.no/">Uninett</a> showed how they are planning to roll out their new core network using Ansible and how they are saving loads of time by automating the initial preparation of routers, before shipping them out to their educational and research institution partners.</p>
+<h3>Workshop</h3>
+<p>The last part of the event was the two-hour workshop. The attendees got access to a nine-node Juniper QFX topology which they were challenged to interact with using only Ansible:</p>
+<p><img class="wp-image-492 size-full aligncenter" src="/wp-content/uploads/2016/09/junosansibleworkshop.png" alt="junosansibleworkshop" width="519" height="215" srcset="/wp-content/uploads/2016/09/junosansibleworkshop.png 519w, /wp-content/uploads/2016/09/junosansibleworkshop-300x124.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></p>
+<p>With the limited amount of time our main focus was:</p>
+<ul>
+<li>Configure the network infrastructure using abstraction and templates.</li>
+<li>Perform an action on a device, then send that information to an external web service.</li>
+<li>Export information from your infrastructure for inventory or compliance purposes.</li>
+</ul>
+<p>Often it&#8217;s the small and simple tasks that yields the greatest automation value.</p>
+<p>If you want to try some similar scenarios, Juniper have published great examples on Github &#8211; <a href="http://github.com/JNPRAutomate/ansible-junos-examples">github.com/JNPRAutomate/ansible-junos-examples</a> . You can spin up a two-node topology using <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">Vagrant</a> in minutes and start testing.</p>
+<h3>So, what will YOU automate this week?</h3>
+<p>Verifying NTP settings in your infrastructure? The planned cloud deployment? The upcoming security compliance check? That single configuration change, that needs to be typed in on 100 nodes?</p>
+<p>Start small and scale up later. The important key is that you start automating something.</p>
+<p>Unsure if your infrastructure is automation friendly? Need help finding some proper automation candidates? Fear not &#8211; check out my <a href="/consulting/">consulting services</a>.</p>
+<p>Have a great day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f31f.png" alt="🌟" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/09/network-automation-day/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Packet Analysis Challenge #1 &#8211; Solution</title>
+		<link>/2016/08/packet-analysis-challenge-1-solution/</link>
+		<comments>/2016/08/packet-analysis-challenge-1-solution/#respond</comments>
+		<pubDate>Sun, 14 Aug 2016 00:11:01 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[challenge]]></category>
+		<category><![CDATA[wireshark]]></category>
+
+		<guid isPermaLink="false">/?p=417</guid>
+		<description><![CDATA[It&#8217;s time for a walk-through of how to solve the first Packet Analysis Challenge. Happy to see that there are plenty of fine Wireshark warriors out there! Hope you had some fun 👍 The fastest one to answer all the questions including the bonus round was a local champion named Martin Karlsen! Lots of packet level street cred is hereby sent your way. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="wp-image-469 aligncenter" src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="439" height="300" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, /wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, /wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, /wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 439px) 100vw, 439px" /></p>
+<p>It&#8217;s time for a walk-through of how to solve the <a href="/2016/08/packet-analysis-challenge-1/">first Packet Analysis Challenge</a>.</p>
+<p>Happy to see that there are plenty of fine Wireshark warriors out there! Hope you had some fun <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f44d.png" alt="👍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><span id="more-417"></span></p>
+<p>The fastest one to answer all the questions including the bonus round was a local champion named <strong>Martin Karlsen</strong>! Lots of packet level street cred is hereby sent your way. He also has a website up at <a href="http://exceededintransit.net/">exceededintransit.net</a> that you can check out. Don&#8217;t expect to find cooking recipes there. Next-gen Jedi that one.</p>
+<h3>Yes, OK, just give me the answers</h3>
+<h4>#1 &#8211; How many non-broadcast IPv4 nodes is Wireshark seeing?</h4>
+<p>Go to <strong>Statistics &gt; Endpoints</strong> to list all the endpoints that Wireshark is seeing across all TCP/IP layers. Select <strong>IPv4</strong>:</p>
+<p><img class="alignnone size-full wp-image-420" src="/wp-content/uploads/2016/08/ws_chal1_q1.png" alt="ws_chal1_q1" width="635" height="363" srcset="/wp-content/uploads/2016/08/ws_chal1_q1.png 635w, /wp-content/uploads/2016/08/ws_chal1_q1-300x171.png 300w" sizes="(max-width: 635px) 100vw, 635px" /></p>
+<p>With 255.255.255.255 being a Limited Broadcast address (<a href="https://tools.ietf.org/html/rfc5735#section-4">rfc5735#section-4</a>), this leaves us with a<strong> total of 11 IPv4 nodes.</strong></p>
+<p>&nbsp;</p>
+<h4>#2 &#8211; The client downloads an EXE file, twice. From which countries is it downloading the file from?</h4>
+<p>Apply a display filter to only focus on HTTP requests containing the word &#8220;exe&#8221;:</p>
+<p><img class="alignnone size-full wp-image-422" src="/wp-content/uploads/2016/08/ws_chal1_q2.png" alt="ws_chal1_q2" width="640" height="229" srcset="/wp-content/uploads/2016/08/ws_chal1_q2.png 640w, /wp-content/uploads/2016/08/ws_chal1_q2-300x107.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>Frame number 842 and 8292 initiates the downloads and list two different destination IPv4 addresses. Run a whois query against them to find out where they originate:</p>
+<blockquote>
+<pre>$ whois 61.8.0.17 | grep Country
+<strong>Country: AU</strong>
+$ whois 204.152.184.134 | grep Country
+<strong>Country: US
+</strong></pre>
+</blockquote>
+<p>There you have it, <strong>Australia</strong> and the <strong>United States</strong>.</p>
+<p>&nbsp;</p>
+<h4>#3 &#8211; How many Bytes is the client expecting to download for each EXE file?</h4>
+<p>We can find this information by looking at the HTTP 200 OK response from the server (frames 844 and 8294):</p>
+<p><img class="alignnone size-full wp-image-423" src="/wp-content/uploads/2016/08/ws_chal1_q3.png" alt="ws_chal1_q3" width="575" height="589" srcset="/wp-content/uploads/2016/08/ws_chal1_q3.png 575w, /wp-content/uploads/2016/08/ws_chal1_q3-293x300.png 293w" sizes="(max-width: 575px) 100vw, 575px" /></p>
+<p>The HTTP header <strong>Content-Length</strong> indicates the size of the entity-body in Bytes (<a href="https://tools.ietf.org/html/rfc2616#section-14.13">rfc2616#section-14.13</a>).</p>
+<p>The client therefore expect to download 78597807 Bytes (78.5 MB).</p>
+<p>&nbsp;</p>
+<h4>#4 &#8211; Looking at the fastest of the two transfers, at what speed is the file downloaded on average in kbps, kilobit per second?</h4>
+<p>Go to <strong>Statistics &gt; Conversations </strong>and select TCP (since the two transfers used HTTP, which is transported over TCP).</p>
+<p><img class="alignnone size-full wp-image-431" src="/wp-content/uploads/2016/08/ws_chal1_q4_1.png" alt="ws_chal1_q4_1" width="637" height="244" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_1.png 637w, /wp-content/uploads/2016/08/ws_chal1_q4_1-300x115.png 300w" sizes="(max-width: 637px) 100vw, 637px" /></p>
+<p>Click on the column <strong>Bytes</strong> to sort the table. The top two conversations list the file transfers.</p>
+<p>Next, find the column <strong>Bits/s B -&gt; A</strong> (meaning the download direction from the client perspective).</p>
+<p><img class="alignnone size-full wp-image-430" src="/wp-content/uploads/2016/08/ws_chal1_q4_2.png" alt="ws_chal1_q4_2" width="584" height="460" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_2.png 584w, /wp-content/uploads/2016/08/ws_chal1_q4_2-300x236.png 300w" sizes="(max-width: 584px) 100vw, 584px" /></p>
+<p>The server providing the fastest file transfer is the US host 204.152.184.134. It delivers the EXE file at an average speed of <strong>2344 Kbps or 2.34 Mbps</strong>.</p>
+<p>&nbsp;</p>
+<h4>#5 &#8211; One node is not accepting the use of full TCP segments. Which one?</h4>
+<p>A 100% fully utilized TCP segment carry 1460 Bytes. You can load the HTML payload of <a href="http://ulv.no/">http://ulv.no/</a> almost three times in such a segment. Plenty of data.</p>
+<p>If there&#8217;s a need for a limit, it is set during the initial TCP handshake in a separate TCP header option:</p>
+<blockquote><p><a href="https://tools.ietf.org/html/rfc793#page-19">https://tools.ietf.org/html/rfc793#page-19</a></p>
+<p><strong>Maximum Segment Size Option:</strong><br />
+If this option is present, then it communicates the maximum receive segment size at the TCP which sends this segment. This field must only be sent in the initial connection request (i.e., in segments with the SYN control bit set). If this option is not used, any segment size is allowed.</p></blockquote>
+<p>Meaning, if <span style="color: #008000;"><strong>Node A</strong></span> set its MSS to 1100 and <span style="color: #800080;"><strong>Node B</strong></span> set its MSS to 1460 in their handshake, any segment sent to <span style="color: #008000;"><strong>Node A</strong></span> must be limited to 1100 Bytes. <span style="color: #800080;"><strong>Node B</strong></span> however is happy to receive up to 1460 Bytes of payload.</p>
+<p>So which one is it?</p>
+<p>First, apply a display filter to single out all TCP handshakes. All handshakes must have the SYN flag set.</p>
+<p><img class="alignnone size-full wp-image-432" src="/wp-content/uploads/2016/08/ws_chal1_q5_1.png" alt="ws_chal1_q5_1" width="401" height="396" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_1.png 401w, /wp-content/uploads/2016/08/ws_chal1_q5_1-300x296.png 300w" sizes="(max-width: 401px) 100vw, 401px" /></p>
+<p>Next select a frame, then in the Packet Details pane, expand the subtree of <strong>Transmission Control Protocol</strong>. Scroll down to <strong>Options</strong> and look for <strong>Maximum segment size</strong>.</p>
+<p>Expand it and right-click on <strong>MSS Value</strong> and select <strong>Apply as Column:</strong></p>
+<p><img class="alignnone size-full wp-image-439" src="/wp-content/uploads/2016/08/ws_chal1_q5_02.png" alt="ws_chal1_q5_02" width="489" height="506" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_02.png 489w, /wp-content/uploads/2016/08/ws_chal1_q5_02-290x300.png 290w" sizes="(max-width: 489px) 100vw, 489px" /></p>
+<p>This allow us easily see all the TCP MSS values set during TCP handshakes.</p>
+<p>By sorting using this new shiny <strong>MSS Value</strong> column, we find one outlier:</p>
+<p><img class="alignnone size-full wp-image-437" src="/wp-content/uploads/2016/08/ws_chal1_q5_3.png" alt="ws_chal1_q5_3" width="606" height="224" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_3.png 606w, /wp-content/uploads/2016/08/ws_chal1_q5_3-300x111.png 300w" sizes="(max-width: 606px) 100vw, 606px" /></p>
+<p>The host <strong>216.251.114.10</strong> in frames 6 and 30 limit any TCP segments sent its way to 1380 Bytes.</p>
+<p><strong>Optional solution:<br />
+</strong>Apply a display filter to list all MSS values below 1460 Bytes using &#8220;<strong>tcp.options.mss_val &lt; 1460</strong>&#8220;.</p>
+<p>&nbsp;</p>
+<h4>BONUS &#8211; How many Bytes is the client potentially missing out on per round-trip?</h4>
+<p>If a full TCP segment is 1460 Bytes, then we&#8217;re missing out on <strong>80 Bytes</strong> of data in each TCP segment sent towards 216.251.114.10.</p>
+<p><strong>But wait a minute, you said client! Hahaa! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f46f.png" alt="👯" class="wp-smiley" style="height: 1em; max-height: 1em;" /></strong></p>
+<p>Yes I did. And in retrospect it was a weird example to use since 216.251.114.10 is a web<span style="text-decoration: underline;"> <strong>server</strong></span> and not a client. Or is it..? This could turn into a nice <a href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a> debate.</p>
+<p>But, because of this ambiguity &#8211; my bad. Or as the <a href="http://www.urbandictionary.com/define.php?term=My%20bad">Urban Dictionary</a> would put it:</p>
+<blockquote><p>&#8220;I did something bad, and I recognize that I did something bad, but there is nothing that can be done for it now, and there is technically no reason to apologize for that error, so let&#8217;s just assume that I won&#8217;t do it again, get over it, and move on with our lives.&#8221;</p></blockquote>
+<p>Have a great day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f433.png" alt="🐳" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/08/packet-analysis-challenge-1-solution/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Packet Analysis Challenge #1</title>
+		<link>/2016/08/packet-analysis-challenge-1/</link>
+		<comments>/2016/08/packet-analysis-challenge-1/#comments</comments>
+		<pubDate>Tue, 02 Aug 2016 09:02:53 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[packet analysis]]></category>
+		<category><![CDATA[wireshark]]></category>
+		<category><![CDATA[challenge]]></category>
+		<category><![CDATA[wiresharklympics]]></category>
+
+		<guid isPermaLink="false">/?p=384</guid>
+		<description><![CDATA[Vacation&#8217;s over. Your networks have been underutilized for a good long month now. Time to get back to the trenches. Why not start things off with a proper packet analysis challenge? At least fire up Wireshark to see if there&#8217;s an auto-update waiting for you? Thank you Netresec for providing a huge list of packet captures to play with! [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div style="width: 468px" class="wp-caption aligncenter"><img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Prionace_glauca_1.jpg" width="458" height="305" /><p class="wp-caption-text">The Sharkminator</p></div>
+<p>Vacation&#8217;s over. Your networks have been underutilized for a good long month now. Time to get back to the trenches. Why not start things off with a proper packet analysis challenge? At least fire up <a href="https://wireshark.org/">Wireshark</a> to see if there&#8217;s an auto-update waiting for you?</p>
+<p><span id="more-384"></span></p>
+<p>Thank you Netresec for providing <a href="http://www.netresec.com/?page=PcapFiles">a huge list</a> of packet captures to play with!</p>
+<p>We will borrow a 13 MB packet capture from the excellent book &#8220;<a href="https://www.amazon.com/Practical-Packet-Analysis-Wireshark-Real-World/dp/1593272669">Practical Packet Analysis</a>&#8220;.</p>
+<blockquote>
+<pre>$ <strong>shasum wireshark1.pcapng</strong>
+b8060f2b946f33b79833710db458368cd382d06c wireshark1.pcapng</pre>
+</blockquote>
+<p>Please go ahead and <a href="https://dl.dropboxusercontent.com/u/1185688/wireshark1.pcapng">download</a> the pcap file. Yes, it&#8217;s <a href="https://www.virustotal.com/en/file/1ec10a7f08ffe6e597f5ecde13c120003f75b8a96d6eb1680006f9b786406521/analysis/1470058599/">safe</a> to download.</p>
+<p>Ready?</p>
+<h3>&lt;gong sound&gt;</h3>
+<p>Five questions + one bonus. One point per question:</p>
+<ol>
+<li>How many non-broadcast IPv4 nodes is Wireshark seeing?</li>
+<li>The client downloads an EXE file, twice. From which countries is it downloading the file from?</li>
+<li>How many Bytes is the client expecting to download for each EXE file?</li>
+<li>Looking at the fastest of the two transfers, at what speed is the file downloaded on average in kbps, kilobit per second?</li>
+<li>One node is not accepting the use of full TCP segments. Which one?
+<ol>
+<li>BONUS &#8211; How many Bytes is the client potentially missing out on per round-trip?</li>
+</ol>
+</li>
+</ol>
+<h3>Easy peasy?</h3>
+<p>Please send me your answers via a communication platform of your liking. The <a href="http://twitter.com/holmahenkel">social medias</a> or <a href="mailto:mail@fredrikholmberg.com">email</a>. Doesn&#8217;t matter!</p>
+<p>The winner will get loads of street cred as defined by <a href="http://www.urbandictionary.com/define.php?term=street%20cred">Urban Dictionary</a>:</p>
+<blockquote><p>He&#8217;s been thru it all. His street cred is undeniable.</p></blockquote>
+<p>That&#8217;s all you need. Get to it! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f44a.png" alt="👊" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/08/packet-analysis-challenge-1/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+		</item>
+		<item>
+		<title>Consulting Services</title>
+		<link>/2016/06/consulting-services/</link>
+		<comments>/2016/06/consulting-services/#respond</comments>
+		<pubDate>Wed, 08 Jun 2016 10:38:23 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=351</guid>
+		<description><![CDATA[As requested you can now find information about my Consulting Services. Get in touch if you&#8217;re interested in discussing business opportunities. Have a nice day!]]></description>
+				<content:encoded><![CDATA[<p><a href="/consulting/"><img class="wp-image-353 aligncenter" src="/wp-content/uploads/2016/06/imac-605421_640.jpg" alt="imac-605421_640" width="381" height="253" srcset="/wp-content/uploads/2016/06/imac-605421_640.jpg 640w, /wp-content/uploads/2016/06/imac-605421_640-300x199.jpg 300w" sizes="(max-width: 381px) 100vw, 381px" /></a></p>
+<p style="text-align: left;">As requested you can now find information about my <a href="/consulting/">Consulting Services</a>.</p>
+<p style="text-align: left;"><a href="mailto:mail@fredrikholmberg.com?Subject=Consulting%20Services">Get in touch</a> if you&#8217;re interested in discussing business opportunities.</p>
+<p style="text-align: left;">Have a nice day!</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/06/consulting-services/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>App troubleshooting using Wireshark</title>
+		<link>/2016/05/app-troubleshooting-using-wireshark/</link>
+		<comments>/2016/05/app-troubleshooting-using-wireshark/#respond</comments>
+		<pubDate>Wed, 25 May 2016 13:43:13 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[ios]]></category>
+		<category><![CDATA[tls]]></category>
+		<category><![CDATA[troubleshooting]]></category>
+		<category><![CDATA[wireshark]]></category>
+
+		<guid isPermaLink="false">/?p=261</guid>
+		<description><![CDATA[Remember those glory days when phones still had buttons? Before the selfie stick era. I used my phone to send SMS messages and call people. Browse the internet using WAP. Send a hi-def 320x240px picture now and then using MMS. The only pieces of software I had to deal with were the pre-installed stock applications (renamed [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Remember those glory days when phones still had buttons? Before the selfie stick era. I used my phone to send SMS messages and call people. Browse the internet using <a href="https://en.wikipedia.org/wiki/Wireless_Application_Protocol">WAP</a>. Send a hi-def 320x240px picture now and then using MMS. The only pieces of software I had to deal with were the pre-installed stock applications (renamed to &#8220;apps&#8221; by Apple in 2008). All other internet activities had to be done on a computer.</p>
+<p>Today, the phone is a touch screen that allow you to interact with apps. Everything is done through apps. We use them to buy tickets, share pictures with grandparents, access our bank account, post a picture of today&#8217;s dinner. So what happens when your favorite app stops working all of a sudden? How do you troubleshoot it?</p>
+<p><span id="more-261"></span></p>
+<p>Once I had an issue with a banking app on my iPhone. After upgrading to iOS 9, logging in using two-factor authentication stopped working. It had persisted for several months and when I asked the company I got the default reply that &#8220;it&#8217;s a known issue and the developers are working a fix&#8221;. Ok great.</p>
+<p>This is what greeted me when I tried logging in:</p>
+<p><img class="aligncenter wp-image-266" src="/wp-content/uploads/2016/05/err2-169x300.png" alt="err2" width="282" height="500" srcset="/wp-content/uploads/2016/05/err2-169x300.png 169w, /wp-content/uploads/2016/05/err2-577x1024.png 577w, /wp-content/uploads/2016/05/err2.png 640w" sizes="(max-width: 282px) 100vw, 282px" /></p>
+<p>You could sit and look at that white square for as long as you wanted. Nothing would happen. No error message or <a href="https://en.wikipedia.org/wiki/Spinning_pinwheel">spinning beach ball</a>.</p>
+<h3>Cursed app</h3>
+<p>So then I decided to troubleshoot it myself. The same way I troubleshoot applications <a href="/consulting/">professionally</a>. Not the developer way of debugging through Xcode. The network engineer way by looking at packets. Shouldn&#8217;t be too hard, right? <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f4aa.png" alt="💪" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Two hurdles:</p>
+<ol>
+<li>The app was on my iPhone which meant wireless communication.</li>
+<li>The communication was likely using an encrypted channel making eavesdropping impossible*.</li>
+</ol>
+<p><em>* No, nothing is impossible. You can use <a href="https://mitmproxy.org/">mitmproxy</a> or similar tools.</em></p>
+<p>Using a <a href="http://routerboard.com/RB750GL">Mikrotik RB750GL</a> I mirrored all traffic sent and received from my iPhone to my laptop. Got Wireshark up and running hoping to find something that indicated an error.</p>
+<p>Filtering the output down to the exact moment when I tapped &#8220;Login&#8221; and the two-factor module was supposed to load:</p>
+<p><img class="alignnone size-full wp-image-271" src="/wp-content/uploads/2016/05/err3.png" alt="err3" width="1098" height="251" srcset="/wp-content/uploads/2016/05/err3.png 1098w, /wp-content/uploads/2016/05/err3-300x69.png 300w, /wp-content/uploads/2016/05/err3-768x176.png 768w, /wp-content/uploads/2016/05/err3-1024x234.png 1024w, /wp-content/uploads/2016/05/err3-676x155.png 676w" sizes="(max-width: 1098px) 100vw, 1098px" /></p>
+<p>Lots of weird text. Don&#8217;t give up just yet.</p>
+<p>There&#8217;s a clue here! On line <strong>#6</strong>, Wireshark is trying to help us by showing an error message &#8220;Handshake Failure&#8221;. A fatal alert. That can&#8217;t be good.</p>
+<p>Following the TLS handshake failure the server tears down the TCP connection. Nothing happens in the app UI. So much for error handling.</p>
+<p>More on Transport Layer Security (TLS) Protocol Version 1.2 Handshakes <a href="https://tools.ietf.org/html/rfc5246#section-7.3">https://tools.ietf.org/html/rfc5246#section-7.3</a>.</p>
+<h3>Failing handshakes</h3>
+<p>What does this mean? It means that the client is sending something that the server does not agree with.</p>
+<p>Then I compared the authentication and handshake mechanism with another banking app. One that worked. It turned out that the two were sending two different cipher suites in their <a href="https://tools.ietf.org/html/rfc5246#section-7.4.1.2">Client Hello</a>:</p>
+<p><strong>Failing app (12 ciphers)</strong></p>
+<pre><code>TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</code></pre>
+<p><strong>Working app (same 12 ciphers + 6 additional)</strong></p>
+<pre><code>TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+TLS_RSA_WITH_AES_256_GCM_SHA384
+TLS_RSA_WITH_AES_128_GCM_SHA256
+TLS_RSA_WITH_AES_256_CBC_SHA256
+TLS_RSA_WITH_AES_256_CBC_SHA
+TLS_RSA_WITH_AES_128_CBC_SHA256
+TLS_RSA_WITH_AES_128_CBC_SHA</code></pre>
+<p>The cipher chosen for the working app was &#8220;TLS_RSA_WITH_AES_256_CBC_SHA&#8221;.</p>
+<p>After some research I learned that Apple introduced a new security feature in iOS 9 called <a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html">App Transport Security (ATS)</a>. Even though it killed my app it&#8217;s a great feature forcing the use of Transport Layer Security (TLS) version 1.2, better ciphers, forward secrecy (FS) among other things.</p>
+<p>So the theory now was:</p>
+<blockquote><p>&#8220;after upgrading to iOS 9 the client is sending ciphers unsupported by the server&#8221;</p></blockquote>
+<p>Every theory should be tested so I decided to use the excellent <a href="https://www.ssllabs.com/ssltest/">Qualys SSL Labs SSL Report tool</a>.</p>
+<p>Lo and behold, both server endpoints got a grade of <strong>C</strong> because of two things:</p>
+<ol>
+<li>&#8220;No support for TLS 1.2, which is the only secure protocol version.&#8221;</li>
+<li>&#8220;Handshake Simulation: Apple ATS 9 / iOS 9 &#8211; Protocol or cipher suite mismatch &#8211; Fail&#8221;</li>
+</ol>
+<p>I got the same results using <strong>nscurl</strong> showing that TLS 1.0 was the only supported version:</p>
+<blockquote>
+<pre><strong>$ /usr/bin/nscurl --ats-diagnostics --verbose https://login.bank.com/"
+</strong>
+TLSv1.0 with PFS disabled
+ATS Dictionary:
+{
+    NSExceptionDomains =     {
+        "login.bank.com" =         {
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = false;
+        };
+    };
+}
+Result : PASS
+</pre>
+</blockquote>
+<p>&nbsp;</p>
+<h3>Show me the fix</h3>
+<p>The problem had two possible solutions:</p>
+<ul>
+<li>Enable support of TLS 1.2 and Apple ATS 9 handshakes on the server side &#8211; GOOD</li>
+<li>Offer ciphers outside of the Apple ATS 9 scope on the client side &#8211; BAD</li>
+</ul>
+<p>Based on my findings the app was updated to version 4.1.0 &#8220;authorisation issue on iOS 9 for Norwegian region&#8221;.</p>
+<p>Checked again today to see what had changed:</p>
+<ul>
+<li>The client is now sending 22 ciphers instead of the ATS 9 default of 12.</li>
+<li>The server side now get a rating of A and B by Qualys. TLS 1.2 is now supported. Apple ATS 9 is still unsupported.</li>
+</ul>
+<p>The world is not perfect, but we&#8217;re getting there. Bit by bit <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f4c8.png" alt="📈" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>If you are looking for a troubleshooting expert, have a look at my <a href="/consulting/">Consulting Services</a>.</p>
+<p>Have a nice day!</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/05/app-troubleshooting-using-wireshark/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Slapstick</title>
+		<link>/2016/05/slapstick/</link>
+		<comments>/2016/05/slapstick/#respond</comments>
+		<pubDate>Sun, 01 May 2016 11:00:51 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[ipv4]]></category>
+
+		<guid isPermaLink="false">/?p=226</guid>
+		<description><![CDATA[That&#8217;ll slow things down! #NetworkHumor pic.twitter.com/WpbTyynTaD — Juniper Networks (@JuniperNetworks) April 10, 2016]]></description>
+				<content:encoded><![CDATA[<blockquote class="twitter-tweet" data-lang="en">
+<p dir="ltr" lang="en">That&#8217;ll slow things down! <a href="https://twitter.com/hashtag/NetworkHumor?src=hash">#NetworkHumor</a> <a href="https://t.co/WpbTyynTaD">pic.twitter.com/WpbTyynTaD</a></p>
+<p>— Juniper Networks (@JuniperNetworks) <a href="https://twitter.com/JuniperNetworks/status/719178192519438338">April 10, 2016</a></p></blockquote>
+<p><script src="//platform.twitter.com/widgets.js" async="" charset="utf-8"></script></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/05/slapstick/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Connecting our Juniper lab to the world</title>
+		<link>/2016/04/connecting-our-juniper-lab-to-the-world/</link>
+		<comments>/2016/04/connecting-our-juniper-lab-to-the-world/#respond</comments>
+		<pubDate>Mon, 18 Apr 2016 08:01:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=196</guid>
+		<description><![CDATA[Let&#8217;s say you have a Juniper EX switch that you want to connect to your new virtual lab. Maybe you&#8217;re training for the JNCIP-ENT. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world? Start by listing all the available local interfaces [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div id="attachment_86" style="width: 411px" class="wp-caption aligncenter"><img class="wp-image-86" src="/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, /wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" /><p class="wp-caption-text">A young Michael Caine enjoying Juniper labs.</p></div>
+<p>Let&#8217;s say you have a Juniper EX switch that you want to connect to your new <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">virtual lab</a>. Maybe you&#8217;re training for the <a href="http://www.juniper.net/us/en/training/certification/certification-tracks/ent-routing-switching-track/#jncipent">JNCIP-ENT</a>. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world?</p>
+<p><span id="more-196"></span></p>
+<p>Start by listing all the available local interfaces (requires a VirtualBox setup):</p>
+<blockquote>
+<pre>$ <strong>VBoxManage list bridgedifs | grep ^Name</strong>
+Name: en1: Wi-Fi (AirPort)
+Name: en0: Ethernet
+Name: en2: Thunderbolt 1
+Name: p2p0
+Name: bridge0</pre>
+</blockquote>
+<p>Select an interface from that list, then modify your <strong>Vagrantfile</strong> to connect <strong>vsrx1</strong> to the outside world:</p>
+<blockquote>
+<pre><span style="color: #999999;">  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.31.1",
+                     virtualbox__intnet: "1-3"</span>
+<strong>    vsrx1.vm.network "public_network",
+                     bridge: "en1: Wi-Fi (AirPort)"</strong>
+  <span style="color: #999999;">end
+</span></pre>
+</blockquote>
+<p>We have now bridged a physical interface, in this case my Macbook Wi-Fi interface, to <strong>vsrx1&#8217;s</strong> interface ge-0/0/3.0:</p>
+<blockquote>
+<pre>$ <strong>vagrant ssh vsrx1</strong>
+--- JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC
+root@vsrx1% <strong>cli</strong>
+root@vsrx1&gt; <strong>show configuration interfaces ge-0/0/3</strong>
+unit 0 {
+    family inet {
+        dhcp;
+    }
+}
+root@vsrx1&gt; <strong>show interfaces terse ge-0/0/3.0</strong>
+Interface               Admin Link Proto    Local                 Remote
+ge-0/0/3.0              up    up   inet     10.24.5.207/24
+root@vsrx01&gt; <strong>ping 8.8.8.8 count 3</strong>
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=44 time=35.096 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=44 time=23.366 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=44 time=36.630 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 23.366/31.697/36.630/5.924 ms
+root@vsrx01&gt;
+</pre>
+</blockquote>
+<p>Your lab can now reach <a href="http://www.dictionary.com/browse/internet">The Internet</a> through <strong>vsrx1</strong> ⚡️<img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f30d.png" alt="🌍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="/consulting/">Get in touch</a> if you are looking for automation and Juniper consulting services.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/connecting-our-juniper-lab-to-the-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>On-demand Juniper labs using Vagrant</title>
+		<link>/2016/04/on-demand-juniper-labs-using-vagrant/</link>
+		<comments>/2016/04/on-demand-juniper-labs-using-vagrant/#comments</comments>
+		<pubDate>Mon, 11 Apr 2016 22:58:51 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[vagrant]]></category>
+
+		<guid isPermaLink="false">/?p=173</guid>
+		<description><![CDATA[If you want user adoption, make your product easily accessible. Allow people to download it and start playing around. Provide study resources and hand out discounts to get people to start taking your certifications. Attract the engineers. Show how you can automate your infrastructure using Ansible. Get them hooked! One of the first steps to start learning any platform is to set up [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>If you want user adoption, make your product easily <a href="http://www.juniper.net/us/en/dm/free-vsrx-trial/">accessible</a>. Allow people to download it and start playing around. Provide <a href="http://www.juniper.net/us/en/training/jnbooks/day-one/">study resources</a> and hand out <a href="http://www.juniper.net/us/en/training/fasttrack/">discounts</a> to get people to start taking your certifications. Attract the engineers. Show how you can <a href="https://github.com/Juniper/ansible-junos-stdlib/">automate</a> your infrastructure using Ansible. Get them hooked!</p>
+<p>One of the first steps to start learning any platform is to set up a lab. Engineers want labs and <a href="http://www.juniper.net/">Juniper</a> want you to run as many virtual routers as you possibly can on your laptop. To make this as simple and streamlined as possible they provide you with their own pre-built <a href="https://vagrantcloud.com/juniper">Vagrant boxes</a>. These boxes are tiny virtual machines that can run on top of different hypervisors.</p>
+<p>In the following example I will show you how to manage the deployment and configuration of these boxes using Vagrant to set up a small Juniper lab.</p>
+<p><span id="more-173"></span></p>
+<h2>GO</h2>
+<p>Start by downloading <a href="https://www.vagrantup.com/downloads.html">Vagrant</a> and <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. You might also need to install <a href="https://git-scm.com/downloads">Git</a>.</p>
+<p>Clone Juniper&#8217;s Vagrant Github repository:</p>
+<blockquote><p>$ <strong>git clone https://github.com/JNPRAutomate/vagrant-junos.git</strong><br />
+Cloning into &#8216;vagrant-junos&#8217;&#8230;<br />
+remote: Counting objects: 208, done.<br />
+remote: Total 208 (delta 0), reused 0 (delta 0), pack-reused 208<br />
+Receiving objects: 100% (208/208), 28.18 KiB | 0 bytes/s, done.<br />
+Resolving deltas: 100% (84/84), done.<br />
+Checking connectivity&#8230; done.</p></blockquote>
+<p>You now have a directory created called &#8220;<strong>vagrant-junos</strong>&#8220;.</p>
+<p>Install the Vagrant plugins needed:</p>
+<blockquote><p>$ <strong>cd vagrant-junos</strong><br />
+$ <strong>vagrant plugin install vagrant-junos</strong><br />
+Installing the &#8216;vagrant-junos&#8217; plugin. This can take a few minutes&#8230;<br />
+Installed the plugin &#8216;vagrant-junos (0.2.1)&#8217;!<br />
+$ <strong>vagrant plugin install vagrant-host-shell</strong><br />
+Installing the &#8216;vagrant-host-shell&#8217; plugin. This can take a few minutes&#8230;<br />
+Installed the plugin &#8216;vagrant-host-shell (0.0.4)&#8217;!</p></blockquote>
+<p>OK, let&#8217;s say we want to build a four node topology similar to this:</p>
+<p><img class="size-full wp-image-217 aligncenter" src="/wp-content/uploads/2016/04/juniper_vagrant_topo.png" alt="juniper_vagrant_topo" width="403" height="288" srcset="/wp-content/uploads/2016/04/juniper_vagrant_topo.png 403w, /wp-content/uploads/2016/04/juniper_vagrant_topo-300x214.png 300w" sizes="(max-width: 403px) 100vw, 403px" /></p>
+<p>First we need to describe this topology to Vagrant using a <strong>Vagrantfile</strong>. This is the file that Vagrant will use to give instructions to VirtualBox on how to connect interfaces, how much memory to allocate to each node etc.</p>
+<p>Our <strong>Vagrantfile</strong> should look like this:</p>
+<blockquote>
+<pre style="margin: 0; line-height: 125%;">#
+# Juniper lab v0.1
+#
+# ge-0/0/0.0: management interface
+# ge-0/0/1.0 - ge-0/0/7.0: user interfaces
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "juniper/ffp-12.1X47-D15.4-packetmode"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 2
+    vb.gui = false
+  end
+
+  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.13.1",
+                     virtualbox__intnet: "1-3"
+  end
+
+  config.vm.define "vsrx2" do |vsrx2|
+    vsrx2.vm.host_name = "vsrx2"
+    vsrx2.vm.network "private_network",
+                     ip: "10.99.23.2",
+                     virtualbox__intnet: "2-3"
+    vsrx2.vm.network "private_network",
+                     ip: "10.99.12.2",
+                     virtualbox__intnet: "1-2"
+  end
+
+  config.vm.define "vsrx3" do |vsrx3|
+    vsrx3.vm.host_name = "vsrx3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.13.3",
+                     virtualbox__intnet: "1-3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.23.3",
+                     virtualbox__intnet: "2-3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.34.3",
+                     virtualbox__intnet: "3-4"
+  end
+
+  config.vm.define "vsrx4" do |vsrx4|
+    vsrx4.vm.host_name = "vsrx4"
+    vsrx4.vm.network "private_network",
+                      ip: "10.99.34.4",
+                      virtualbox__intnet: "3-4"
+  end
+end
+</pre>
+</blockquote>
+<p>We allocate 1GB of memory to each node (512MB also works), two vCPUs and hide the console/GUI (headless). Then we specify all the interfaces and private networks that the nodes will communicate over. Pretty straight forward.</p>
+<h2>Will it float?</h2>
+<p>Only one way to find out! Start the lab:</p>
+<blockquote><p>$ <strong>vagrant up</strong><br />
+Bringing machine &#8216;vsrx1&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx2&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx3&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx4&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Importing base box &#8216;juniper/ffp-12.1X47-D15.4-packetmode&#8217;&#8230;<br />
+==&gt; vsrx1: Matching MAC address for NAT networking&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Checking if box &#8216;juniper/ffp-12.1X47-D15.4-packetmode&#8217; is up to date&#8230;<br />
+==&gt; vsrx1: Setting the name of the VM: vagrant-junos_vsrx1_1460289979254_16001<br />
+==&gt; vsrx1: Fixed port collision for 22 =&gt; 2222. Now on port 2203.<br />
+==&gt; vsrx1: Clearing any previously set network interfaces&#8230;<br />
+==&gt; vsrx1: Preparing network interfaces based on configuration&#8230;<br />
+vsrx1: Adapter 1: nat<br />
+vsrx1: Adapter 2: intnet<br />
+vsrx1: Adapter 3: intnet<br />
+==&gt; vsrx1: Forwarding ports&#8230;<br />
+vsrx1: 22 (guest) =&gt; 2203 (host) (adapter 1)<br />
+==&gt; vsrx1: Running &#8216;pre-boot&#8217; VM customizations&#8230;<br />
+==&gt; vsrx1: Booting VM&#8230;<br />
+==&gt; vsrx1: Waiting for machine to boot. This may take a few minutes&#8230;<br />
+vsrx1: SSH address: 127.0.0.1:2203<br />
+vsrx1: SSH username: root<br />
+vsrx1: SSH auth method: private key<br />
+&#8230;<br />
+==&gt; vsrx1: Machine booted and ready!<br />
+==&gt; vsrx1: Checking for guest additions in VM&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Setting hostname&#8230;<br />
+==&gt; vsrx1: Configuring and enabling network interfaces&#8230;</p></blockquote>
+<p>These operations will repeat until all of the nodes are up and running.</p>
+<p>When completed you can check the status of the nodes:</p>
+<blockquote><p>$ <strong>vagrant status</strong><br />
+Current machine states:</p>
+<p>vsrx1                                  running (virtualbox)<br />
+vsrx2                                  running (virtualbox)<br />
+vsrx3                                  running (virtualbox)<br />
+vsrx4                                  running (virtualbox)</p></blockquote>
+<p>Nice! Now what?</p>
+<p>Try accessing one of the nodes:</p>
+<blockquote><p>$ <strong>vagrant ssh vsrx4</strong><br />
+&#8212; JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC<br />
+root@vsrx4% <strong>cli</strong><br />
+root@vsrx4&gt; <strong>show version</strong><br />
+Hostname: vsrx4<br />
+Model: firefly-perimeter<br />
+JUNOS Software Release [12.1X47-D15.4]<br />
+root@vsrx4&gt; <strong>ping 10.99.34.3 count 3</strong><br />
+PING 10.99.34.3 (10.99.34.3): 56 data bytes<br />
+64 bytes from 10.99.34.3: icmp_seq=0 ttl=64 time=9.094 ms<br />
+64 bytes from 10.99.34.3: icmp_seq=1 ttl=64 time=0.992 ms<br />
+64 bytes from 10.99.34.3: icmp_seq=2 ttl=64 time=1.185 ms</p>
+<p>&#8212; 10.99.34.3 ping statistics &#8212;<br />
+3 packets transmitted, 3 packets received, 0% packet loss<br />
+round-trip min/avg/max/stddev = 0.992/3.757/9.094/3.775 ms</p></blockquote>
+<p>It works! We have reachability between <strong>vsrx3</strong> and<strong> vsrx4</strong>!</p>
+<h2>Final notes</h2>
+<p>So you play around for a while, commit your configs and consider yourself done for the day. Then I&#8217;d recommend that you suspend the whole topology instead of shutting it down:</p>
+<blockquote>
+<pre>$ <strong>vagrant suspend</strong>
+==&gt; vsrx1: Saving VM state and suspending execution...
+==&gt; vsrx2: Saving VM state and suspending execution...
+==&gt; vsrx3: Saving VM state and suspending execution...
+==&gt; vsrx4: Saving VM state and suspending execution...
+$ <strong>vagrant status</strong>
+Current machine states:
+
+vsrx1                     saved (virtualbox)
+vsrx2                     saved (virtualbox)
+vsrx3                     saved (virtualbox)
+vsrx4                     saved (virtualbox)
+</pre>
+</blockquote>
+<p>This way you save the running state of the whole lab topology. The benefit of doing this is that you can continue where you left off without having to wait for the boot sequence x $node.</p>
+<p>Cool! What to do from here is all up to you. Have fun <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Professional Juniper consulting is available through my <a href="/consulting/">Consulting Services</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/on-demand-juniper-labs-using-vagrant/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>

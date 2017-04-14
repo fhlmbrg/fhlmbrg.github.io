@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>challenge &#8211; Fredrik Holmberg</title>
+	<atom:link href="/category/challenge/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>challenge &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Packet Analysis Challenge #2 – Solution</title>
+		<link>/2016/11/packet-analysis-challenge-2-solution/</link>
+		<comments>/2016/11/packet-analysis-challenge-2-solution/#respond</comments>
+		<pubDate>Wed, 09 Nov 2016 20:00:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[challenge]]></category>
+		<category><![CDATA[packet analysis]]></category>
+		<category><![CDATA[wireshark]]></category>
+		<category><![CDATA[wiresharklympics]]></category>
+
+		<guid isPermaLink="false">/?p=533</guid>
+		<description><![CDATA[While we wait for Magnus Karlsen to make his first move (E4?), here&#8217;s a solution walk-through of the second Packet Capture Analysis challenge. Spoilers ahead 🙂 Here we go #1 &#8211; How many hops can we assume there are between the client and the server? If we assume a default minimum IP datagram TTL of 64 [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="aligncenter wp-image-469 " src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="455" height="310" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, /wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, /wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, /wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 455px) 100vw, 455px" /></p>
+<p>While we wait for Magnus Karlsen to make <a href="https://worldchess.com/nyc2016/">his first move</a> (E4?), here&#8217;s a solution walk-through of the <a href="/2016/10/packet-analysis-challenge-2/">second</a> Packet Capture Analysis challenge.</p>
+<p>Spoilers ahead <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><span id="more-533"></span></p>
+<h3>Here we go</h3>
+<h4>#1 &#8211; How many hops can we assume there are between the client and the server?</h4>
+<p>If we assume a default minimum IP datagram TTL of 64 (WHAT? See <a href="https://tools.ietf.org/html/rfc1700#page-64">https://tools.ietf.org/html/rfc1700#page-64</a>), the server 204.152.184.134 is <strong>14 hops</strong> away because the IP datagram TTL is 50 in all TCP segments received by the client.</p>
+<p><em>hops = def.ttl &#8211; rcv.ttl</em></p>
+<p>How to find the IP TTL value:</p>
+<p><img class="alignnone wp-image-542 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q1.png" alt="ws_chal2_q1" width="633" height="436" srcset="/wp-content/uploads/2016/11/ws_chal2_q1.png 633w, /wp-content/uploads/2016/11/ws_chal2_q1-300x207.png 300w" sizes="(max-width: 633px) 100vw, 633px" /></p>
+<h4>#2 &#8211; Using fingerprinting techniques, what OS is the server likely running? (1 point per technique)</h4>
+<p>One way is to look at the HTTP 200 OK response from the server. Usually the application give away some hints on OS and software used:</p>
+<p><img class="alignnone size-full wp-image-543" src="/wp-content/uploads/2016/11/ws_chal2_q2_1.png" alt="ws_chal2_q2_1" width="612" height="455" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_1.png 612w, /wp-content/uploads/2016/11/ws_chal2_q2_1-300x223.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></p>
+<p>It claims to be a <strong>FreeBSD</strong> host.</p>
+<p>Another indicator of OS type/version can be found by looking at the advertised IP TTL and TCP Window Size values:</p>
+<p><img class="alignnone size-full wp-image-544" src="/wp-content/uploads/2016/11/ws_chal2_q2_2.png" alt="ws_chal2_q2_2" width="663" height="512" srcset="/wp-content/uploads/2016/11/ws_chal2_q2_2.png 663w, /wp-content/uploads/2016/11/ws_chal2_q2_2-300x232.png 300w" sizes="(max-width: 663px) 100vw, 663px" /></p>
+<p>A combination of IP TTL 64 and Window Size 65535 is often found in *nix/FreeBSD systems. More information <a href="http://www.netresec.com/?page=Blog&amp;month=2011-11&amp;post=Passive-OS-Fingerprinting">here</a> and <a href="http://subinsb.com/default-device-ttl-values">here</a>.</p>
+<p>But wait, the Windows client is using the exact same values!? Yes, implementation &#8220;standards&#8221; are nice <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<h4>#3 &#8211; What is the average RTT delay between the client and the server? (1 point)</h4>
+<p>Start off by changing <strong>View &gt; Time Display Format</strong> to <strong>Time Since Previous Displayed Packet.</strong></p>
+<p>Then we can look at the SYN/ACK response during a TCP handshake to determine the RTT, <strong>around 20 ms</strong> in this case.</p>
+<p><img class="alignnone size-full wp-image-545" src="/wp-content/uploads/2016/11/ws_chal2_q3.png" alt="ws_chal2_q3" width="610" height="207" srcset="/wp-content/uploads/2016/11/ws_chal2_q3.png 610w, /wp-content/uploads/2016/11/ws_chal2_q3-300x102.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></p>
+<p>Why the SYN/ACK handshake step? Because that segment is generated by the remote end TCP/IP stack, without any added application delay.</p>
+<h4>#4 &#8211; Following frame #14886, what TCP sequence number (relative) is the client expecting to receive next? (1 point + 1 bonus)</h4>
+<p>Looking at frame #14886 we see a TCP sequence number of 4641056. That segment had a payload of 1460 Bytes. The next sequence number in the stream is 4641056 + 1460 = <strong>4642516</strong>.</p>
+<p>As we see in frame #14889 the client does not receive the expected segment and TCP SACK kicks in.</p>
+<p><img class="alignnone size-full wp-image-546" src="/wp-content/uploads/2016/11/ws_chal2_q4.png" alt="ws_chal2_q4" width="737" height="339" srcset="/wp-content/uploads/2016/11/ws_chal2_q4.png 737w, /wp-content/uploads/2016/11/ws_chal2_q4-300x138.png 300w, /wp-content/uploads/2016/11/ws_chal2_q4-676x311.png 676w" sizes="(max-width: 737px) 100vw, 737px" /></p>
+<h4>Bonus – In what frame does it receive the expected TCP segment?</h4>
+<p>Since we know that the sequence number is 4642516, we can apply a specific Display Filter using <strong>tcp.seq</strong>:</p>
+<p><img class="alignnone size-full wp-image-547" src="/wp-content/uploads/2016/11/ws_chal2_q4_b.png" alt="ws_chal2_q4_b" width="873" height="97" srcset="/wp-content/uploads/2016/11/ws_chal2_q4_b.png 873w, /wp-content/uploads/2016/11/ws_chal2_q4_b-300x33.png 300w, /wp-content/uploads/2016/11/ws_chal2_q4_b-768x85.png 768w, /wp-content/uploads/2016/11/ws_chal2_q4_b-676x75.png 676w" sizes="(max-width: 873px) 100vw, 873px" /></p>
+<p><strong>Frame #14981!</strong></p>
+<h4>5# &#8211; At the beginning of the file transfer there is a delay lasting around 3 seconds. Why? (2 points)</h4>
+<p>A graphical representation of the transfer halting<br />
+<strong>Statistics &gt; TCP Stream Graphs &gt; Time Sequence (Stevens):</strong></p>
+<div id="attachment_548" style="width: 789px" class="wp-caption alignnone"><img class="wp-image-548 size-full" src="/wp-content/uploads/2016/11/ws_chal2_q5_1.png" alt="ws_chal2_q5_1" width="779" height="566" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_1.png 779w, /wp-content/uploads/2016/11/ws_chal2_q5_1-300x218.png 300w, /wp-content/uploads/2016/11/ws_chal2_q5_1-768x558.png 768w, /wp-content/uploads/2016/11/ws_chal2_q5_1-676x491.png 676w" sizes="(max-width: 779px) 100vw, 779px" /><p class="wp-caption-text">Awkward silence.</p></div>
+<p><span style="font-weight: 400;">The client TCP receive buffer is considered full in frame #8662. The client is reporting a window size of 536 Bytes which does not allow for a full TCP segment of 1460 Bytes. For some reason the client application (browser) is not pulling data fast enough from its buffer.</span></p>
+<p><img class="alignnone size-full wp-image-549" src="/wp-content/uploads/2016/11/ws_chal2_q5_2.png" alt="ws_chal2_q5_2" width="703" height="338" srcset="/wp-content/uploads/2016/11/ws_chal2_q5_2.png 703w, /wp-content/uploads/2016/11/ws_chal2_q5_2-300x144.png 300w, /wp-content/uploads/2016/11/ws_chal2_q5_2-676x325.png 676w" sizes="(max-width: 703px) 100vw, 703px" /></p>
+<p><span style="font-weight: 400;">The transfer halts for around 3 seconds until the client has finished processing the data and reports a window of 64 KB (256KB as seen in Wireshark is due to Window Scaling). The server continues transferring at frame #8665.</span></p>
+<h3>That&#8217;s it!</h3>
+<p>Hope you had some fun solving these. More to come <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Have a nice day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f596.png" alt="🖖" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/11/packet-analysis-challenge-2-solution/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Packet Analysis Challenge #1 &#8211; Solution</title>
+		<link>/2016/08/packet-analysis-challenge-1-solution/</link>
+		<comments>/2016/08/packet-analysis-challenge-1-solution/#respond</comments>
+		<pubDate>Sun, 14 Aug 2016 00:11:01 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[challenge]]></category>
+		<category><![CDATA[wireshark]]></category>
+
+		<guid isPermaLink="false">/?p=417</guid>
+		<description><![CDATA[It&#8217;s time for a walk-through of how to solve the first Packet Analysis Challenge. Happy to see that there are plenty of fine Wireshark warriors out there! Hope you had some fun 👍 The fastest one to answer all the questions including the bonus round was a local champion named Martin Karlsen! Lots of packet level street cred is hereby sent your way. [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p><img class="wp-image-469 aligncenter" src="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg" alt="birds-209280_1920" width="439" height="300" srcset="/wp-content/uploads/2016/08/birds-209280_1920-1024x699.jpg 1024w, /wp-content/uploads/2016/08/birds-209280_1920-300x205.jpg 300w, /wp-content/uploads/2016/08/birds-209280_1920-768x524.jpg 768w, /wp-content/uploads/2016/08/birds-209280_1920-676x462.jpg 676w" sizes="(max-width: 439px) 100vw, 439px" /></p>
+<p>It&#8217;s time for a walk-through of how to solve the <a href="/2016/08/packet-analysis-challenge-1/">first Packet Analysis Challenge</a>.</p>
+<p>Happy to see that there are plenty of fine Wireshark warriors out there! Hope you had some fun <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f44d.png" alt="👍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><span id="more-417"></span></p>
+<p>The fastest one to answer all the questions including the bonus round was a local champion named <strong>Martin Karlsen</strong>! Lots of packet level street cred is hereby sent your way. He also has a website up at <a href="http://exceededintransit.net/">exceededintransit.net</a> that you can check out. Don&#8217;t expect to find cooking recipes there. Next-gen Jedi that one.</p>
+<h3>Yes, OK, just give me the answers</h3>
+<h4>#1 &#8211; How many non-broadcast IPv4 nodes is Wireshark seeing?</h4>
+<p>Go to <strong>Statistics &gt; Endpoints</strong> to list all the endpoints that Wireshark is seeing across all TCP/IP layers. Select <strong>IPv4</strong>:</p>
+<p><img class="alignnone size-full wp-image-420" src="/wp-content/uploads/2016/08/ws_chal1_q1.png" alt="ws_chal1_q1" width="635" height="363" srcset="/wp-content/uploads/2016/08/ws_chal1_q1.png 635w, /wp-content/uploads/2016/08/ws_chal1_q1-300x171.png 300w" sizes="(max-width: 635px) 100vw, 635px" /></p>
+<p>With 255.255.255.255 being a Limited Broadcast address (<a href="https://tools.ietf.org/html/rfc5735#section-4">rfc5735#section-4</a>), this leaves us with a<strong> total of 11 IPv4 nodes.</strong></p>
+<p>&nbsp;</p>
+<h4>#2 &#8211; The client downloads an EXE file, twice. From which countries is it downloading the file from?</h4>
+<p>Apply a display filter to only focus on HTTP requests containing the word &#8220;exe&#8221;:</p>
+<p><img class="alignnone size-full wp-image-422" src="/wp-content/uploads/2016/08/ws_chal1_q2.png" alt="ws_chal1_q2" width="640" height="229" srcset="/wp-content/uploads/2016/08/ws_chal1_q2.png 640w, /wp-content/uploads/2016/08/ws_chal1_q2-300x107.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></p>
+<p>Frame number 842 and 8292 initiates the downloads and list two different destination IPv4 addresses. Run a whois query against them to find out where they originate:</p>
+<blockquote>
+<pre>$ whois 61.8.0.17 | grep Country
+<strong>Country: AU</strong>
+$ whois 204.152.184.134 | grep Country
+<strong>Country: US
+</strong></pre>
+</blockquote>
+<p>There you have it, <strong>Australia</strong> and the <strong>United States</strong>.</p>
+<p>&nbsp;</p>
+<h4>#3 &#8211; How many Bytes is the client expecting to download for each EXE file?</h4>
+<p>We can find this information by looking at the HTTP 200 OK response from the server (frames 844 and 8294):</p>
+<p><img class="alignnone size-full wp-image-423" src="/wp-content/uploads/2016/08/ws_chal1_q3.png" alt="ws_chal1_q3" width="575" height="589" srcset="/wp-content/uploads/2016/08/ws_chal1_q3.png 575w, /wp-content/uploads/2016/08/ws_chal1_q3-293x300.png 293w" sizes="(max-width: 575px) 100vw, 575px" /></p>
+<p>The HTTP header <strong>Content-Length</strong> indicates the size of the entity-body in Bytes (<a href="https://tools.ietf.org/html/rfc2616#section-14.13">rfc2616#section-14.13</a>).</p>
+<p>The client therefore expect to download 78597807 Bytes (78.5 MB).</p>
+<p>&nbsp;</p>
+<h4>#4 &#8211; Looking at the fastest of the two transfers, at what speed is the file downloaded on average in kbps, kilobit per second?</h4>
+<p>Go to <strong>Statistics &gt; Conversations </strong>and select TCP (since the two transfers used HTTP, which is transported over TCP).</p>
+<p><img class="alignnone size-full wp-image-431" src="/wp-content/uploads/2016/08/ws_chal1_q4_1.png" alt="ws_chal1_q4_1" width="637" height="244" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_1.png 637w, /wp-content/uploads/2016/08/ws_chal1_q4_1-300x115.png 300w" sizes="(max-width: 637px) 100vw, 637px" /></p>
+<p>Click on the column <strong>Bytes</strong> to sort the table. The top two conversations list the file transfers.</p>
+<p>Next, find the column <strong>Bits/s B -&gt; A</strong> (meaning the download direction from the client perspective).</p>
+<p><img class="alignnone size-full wp-image-430" src="/wp-content/uploads/2016/08/ws_chal1_q4_2.png" alt="ws_chal1_q4_2" width="584" height="460" srcset="/wp-content/uploads/2016/08/ws_chal1_q4_2.png 584w, /wp-content/uploads/2016/08/ws_chal1_q4_2-300x236.png 300w" sizes="(max-width: 584px) 100vw, 584px" /></p>
+<p>The server providing the fastest file transfer is the US host 204.152.184.134. It delivers the EXE file at an average speed of <strong>2344 Kbps or 2.34 Mbps</strong>.</p>
+<p>&nbsp;</p>
+<h4>#5 &#8211; One node is not accepting the use of full TCP segments. Which one?</h4>
+<p>A 100% fully utilized TCP segment carry 1460 Bytes. You can load the HTML payload of <a href="http://ulv.no/">http://ulv.no/</a> almost three times in such a segment. Plenty of data.</p>
+<p>If there&#8217;s a need for a limit, it is set during the initial TCP handshake in a separate TCP header option:</p>
+<blockquote><p><a href="https://tools.ietf.org/html/rfc793#page-19">https://tools.ietf.org/html/rfc793#page-19</a></p>
+<p><strong>Maximum Segment Size Option:</strong><br />
+If this option is present, then it communicates the maximum receive segment size at the TCP which sends this segment. This field must only be sent in the initial connection request (i.e., in segments with the SYN control bit set). If this option is not used, any segment size is allowed.</p></blockquote>
+<p>Meaning, if <span style="color: #008000;"><strong>Node A</strong></span> set its MSS to 1100 and <span style="color: #800080;"><strong>Node B</strong></span> set its MSS to 1460 in their handshake, any segment sent to <span style="color: #008000;"><strong>Node A</strong></span> must be limited to 1100 Bytes. <span style="color: #800080;"><strong>Node B</strong></span> however is happy to receive up to 1460 Bytes of payload.</p>
+<p>So which one is it?</p>
+<p>First, apply a display filter to single out all TCP handshakes. All handshakes must have the SYN flag set.</p>
+<p><img class="alignnone size-full wp-image-432" src="/wp-content/uploads/2016/08/ws_chal1_q5_1.png" alt="ws_chal1_q5_1" width="401" height="396" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_1.png 401w, /wp-content/uploads/2016/08/ws_chal1_q5_1-300x296.png 300w" sizes="(max-width: 401px) 100vw, 401px" /></p>
+<p>Next select a frame, then in the Packet Details pane, expand the subtree of <strong>Transmission Control Protocol</strong>. Scroll down to <strong>Options</strong> and look for <strong>Maximum segment size</strong>.</p>
+<p>Expand it and right-click on <strong>MSS Value</strong> and select <strong>Apply as Column:</strong></p>
+<p><img class="alignnone size-full wp-image-439" src="/wp-content/uploads/2016/08/ws_chal1_q5_02.png" alt="ws_chal1_q5_02" width="489" height="506" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_02.png 489w, /wp-content/uploads/2016/08/ws_chal1_q5_02-290x300.png 290w" sizes="(max-width: 489px) 100vw, 489px" /></p>
+<p>This allow us easily see all the TCP MSS values set during TCP handshakes.</p>
+<p>By sorting using this new shiny <strong>MSS Value</strong> column, we find one outlier:</p>
+<p><img class="alignnone size-full wp-image-437" src="/wp-content/uploads/2016/08/ws_chal1_q5_3.png" alt="ws_chal1_q5_3" width="606" height="224" srcset="/wp-content/uploads/2016/08/ws_chal1_q5_3.png 606w, /wp-content/uploads/2016/08/ws_chal1_q5_3-300x111.png 300w" sizes="(max-width: 606px) 100vw, 606px" /></p>
+<p>The host <strong>216.251.114.10</strong> in frames 6 and 30 limit any TCP segments sent its way to 1380 Bytes.</p>
+<p><strong>Optional solution:<br />
+</strong>Apply a display filter to list all MSS values below 1460 Bytes using &#8220;<strong>tcp.options.mss_val &lt; 1460</strong>&#8220;.</p>
+<p>&nbsp;</p>
+<h4>BONUS &#8211; How many Bytes is the client potentially missing out on per round-trip?</h4>
+<p>If a full TCP segment is 1460 Bytes, then we&#8217;re missing out on <strong>80 Bytes</strong> of data in each TCP segment sent towards 216.251.114.10.</p>
+<p><strong>But wait a minute, you said client! Hahaa! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f46f.png" alt="👯" class="wp-smiley" style="height: 1em; max-height: 1em;" /></strong></p>
+<p>Yes I did. And in retrospect it was a weird example to use since 216.251.114.10 is a web<span style="text-decoration: underline;"> <strong>server</strong></span> and not a client. Or is it..? This could turn into a nice <a href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">client-server model</a> debate.</p>
+<p>But, because of this ambiguity &#8211; my bad. Or as the <a href="http://www.urbandictionary.com/define.php?term=My%20bad">Urban Dictionary</a> would put it:</p>
+<blockquote><p>&#8220;I did something bad, and I recognize that I did something bad, but there is nothing that can be done for it now, and there is technically no reason to apologize for that error, so let&#8217;s just assume that I won&#8217;t do it again, get over it, and move on with our lives.&#8221;</p></blockquote>
+<p>Have a great day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f433.png" alt="🐳" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/08/packet-analysis-challenge-1-solution/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

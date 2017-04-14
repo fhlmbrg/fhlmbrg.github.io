@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>ospfv3 &#8211; Fredrik Holmberg</title>
+	<atom:link href="/tag/ospfv3/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>ospfv3 &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Configuring Single-Area OSPFv3</title>
+		<link>/2012/05/configuring-single-area-ospfv3/</link>
+		<comments>/2012/05/configuring-single-area-ospfv3/#respond</comments>
+		<pubDate>Tue, 01 May 2012 12:30:00 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ccnp]]></category>
+		<category><![CDATA[ipv6]]></category>
+		<category><![CDATA[ospf]]></category>
+		<category><![CDATA[ospfv3]]></category>
+
+		<guid isPermaLink="false"></guid>
+		<description><![CDATA[Configuring OSPFv3 is not very different from configuring OSPF for IPv4. It&#8217;s actually simpler and much cooler since it&#8217;s running on IPv6. Either prepare a topology using GNSparser or use this one: The first thing to do is to enable IPv6 globally and configure the interfaces on each router. This includes loopback interfaces which will [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Configuring OSPFv3 is not very different from configuring OSPF for IPv4. It&#8217;s actually simpler and much cooler since it&#8217;s running on IPv6.</p>
+<p>Either prepare a topology using <a href="http://bitbucket.org/holmahenkel/gnsparser">GNSparser</a> or use this one:</p>
+<p><img class="alignnone size-full wp-image-62" src="http://104.196.36.32/wp-content/uploads/2012/05/single_area_ospfv3.png" alt="single_area_ospfv3" width="541" height="319" srcset="/wp-content/uploads/2012/05/single_area_ospfv3.png 541w, /wp-content/uploads/2012/05/single_area_ospfv3-300x177.png 300w" sizes="(max-width: 541px) 100vw, 541px" /></p>
+<p><span id="more-12"></span></p>
+<p>The first thing to do is to enable IPv6 globally and configure the interfaces on each router. This includes loopback interfaces which will be used as Router IDs and IPv6 addressing for end-to-end connectivity between the routers.</p>
+<p>Let&#8217;s start with R1:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:1::1/64</b></pre>
+</blockquote>
+<p>And then we configure R2:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:1::2/64
+!
+interface FastEthernet0/1
+ ipv6 address 2001:DB8:1000:2::2/64
+</b></pre>
+</blockquote>
+<p>And the last one, R3:</p>
+<blockquote>
+<pre><b>ipv6 unicast-routing
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.0
+!
+interface FastEthernet0/0
+ ipv6 address 2001:DB8:1000:2::3/64</b></pre>
+</blockquote>
+<p>Pretty straightforward stuff.</p>
+<p>To verify IPv6 connectivity between R1 and R2 we&#8217;ll take ICMPv6 for a spin:</p>
+<blockquote>
+<pre>R1#<b>ping 2001:DB8:1000:1::2</b>                                                
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:DB8:1000:1::2, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 20/25/40 ms</pre>
+</blockquote>
+<p>We can also verify that we&#8217;re seeing IPv6 neighbors from R1:</p>
+<blockquote>
+<pre>R1#<b>show ipv6 neighbors 2001:DB8:1000:1::2                                   
+</b>IPv6 Address                              Age Link-layer Addr State Interface
+2001:DB8:1000:1::2                          1 c202.35ae.0000  STALE Fa0/0</pre>
+</blockquote>
+<p>R2 is alive!</p>
+<p>So the next configuration step is to enable OSPFv3 on all interfaces on R1, R2 and R3 and put them in the backbone area 0. Enter interface configuration mode and type:</p>
+<blockquote>
+<pre><b>ipv6 ospf 100 area 0</b></pre>
+</blockquote>
+<div>
+<p>Notice the difference from OSPF on IPv4. Here we enable OSPF per-interface instead of using network commands.</p>
+<p>And when we run this command IOS automatically enable the OSPFv3 process with a process ID of 100 under global configuration:</p>
+<blockquote>
+<pre><b>ipv6 router ospf 100</b></pre>
+</blockquote>
+<p>Each router picks a Router ID using it&#8217;s local up/up loopback interface, OSPFv3 adjacencies will start forming and these messages shows up:</p>
+<blockquote>
+<pre>R1#
+*Mar  1 01:30:30.187: %OSPFv3-5-ADJCHG: Process 100,
+Nbr 2.2.2.2 on FastEthernet0/0 from LOADING to FULL, Loading Done</pre>
+</blockquote>
+<p>On R2 we should see two OSPFv3 adjacencies:</p>
+<blockquote>
+<pre>R2#<b>show ipv6 ospf neighbor</b>
+
+Neighbor ID     Pri   State           Dead Time   Interface ID    Interface
+3.3.3.3           1   FULL/DR         00:00:32    4               FastEthernet0/1
+1.1.1.1           1   FULL/DR         00:00:38    4               FastEthernet0/0</pre>
+</blockquote>
+<div>
+<p>To verify end-to-end IPv6 connectivity between R1 and R3, check that we have received OSPFv3 routes for R3&#8217;s prefix and do a traceroute:</p>
+<blockquote>
+<pre>R1#<b>show ipv6 route ospf</b>
+IPv6 Routing Table - 4 entries
+Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP
+       U - Per-user Static route, M - MIPv6
+       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary
+       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2
+       D - EIGRP, EX - EIGRP external
+O   2001:DB8:1000:2::/64 [110/20]
+     via FE80::C002:35FF:FEAE:0, FastEthernet0/0
+R1#<b>traceroute 2001:DB8:1000:2::3</b>
+
+Type escape sequence to abort.
+Tracing the route to 2001:DB8:1000:2::3
+
+  1 2001:DB8:1000:1::2 24 msec 20 msec 24 msec
+  2 2001:DB8:1000:2::3 40 msec 44 msec 44 msec</pre>
+</blockquote>
+</div>
+</div>
+<p>&nbsp;</p>
+<p>Also notice how OSPFv3 use link-local addresses to form neighbor adjacencies and not global unicast addresses. Another detail to notice is how interfaces on adjacent routers are referred to using &#8220;Interface ID&#8221; or &#8220;Link ID&#8221; instead of IPv6 addresses:</p>
+<div>
+<blockquote>
+<pre>R1#<b>show ipv6 ospf interface brief</b> 
+Interface    PID   Area            <span style="background-color: #fff2cc;">Intf ID</span>    Cost  State Nbrs F/C
+Fa0/0        100   0               <span style="background-color: #fff2cc;">4</span>          10    DR    1/1
+
+R1#<b>show ipv6 ospf neighbor</b> 
+Neighbor ID     Pri   State           Dead Time   <span style="background-color: #fff2cc;">Interface ID</span>    Interface
+2.2.2.2           1   FULL/BDR        00:00:35    <span style="background-color: #fff2cc;">4</span>               FastEthernet0/0
+
+R1#<b>show ipv6 ospf neighbor detail</b> 
+ Neighbor 2.2.2.2
+    In the area 0 via interface FastEthernet0/0 
+    Neighbor: <span style="background-color: #fff2cc;">interface-id 4</span>, link-local address <span style="background-color: #fff2cc;">FE80::C002:35FF:FEAE:0</span>
+    Neighbor priority is 1, State is FULL, 6 state changes
+    DR is 1.1.1.1 BDR is 2.2.2.2
+    Options is 0x6739CA41
+    Dead timer due in 00:00:39
+    Neighbor is up for 00:12:44
+    Index 1/1/1, retransmission queue length 0, number of retransmission 0
+    First 0x0(0)/0x0(0)/0x0(0) Next 0x0(0)/0x0(0)/0x0(0)
+    Last retransmission scan length is 0, maximum is 0
+    Last retransmission scan time is 0 msec, maximum is 0 msec</pre>
+</blockquote>
+</div>
+<p>&nbsp;</p>
+<p>That&#8217;s it. IPv6 rules.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2012/05/configuring-single-area-ospfv3/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

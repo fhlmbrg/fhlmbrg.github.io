@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>lab &#8211; Fredrik Holmberg</title>
+	<atom:link href="/category/lab/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>lab &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Connecting our Juniper lab to the world</title>
+		<link>/2016/04/connecting-our-juniper-lab-to-the-world/</link>
+		<comments>/2016/04/connecting-our-juniper-lab-to-the-world/#respond</comments>
+		<pubDate>Mon, 18 Apr 2016 08:01:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=196</guid>
+		<description><![CDATA[Let&#8217;s say you have a Juniper EX switch that you want to connect to your new virtual lab. Maybe you&#8217;re training for the JNCIP-ENT. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world? Start by listing all the available local interfaces [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div id="attachment_86" style="width: 411px" class="wp-caption aligncenter"><img class="wp-image-86" src="/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, /wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" /><p class="wp-caption-text">A young Michael Caine enjoying Juniper labs.</p></div>
+<p>Let&#8217;s say you have a Juniper EX switch that you want to connect to your new <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">virtual lab</a>. Maybe you&#8217;re training for the <a href="http://www.juniper.net/us/en/training/certification/certification-tracks/ent-routing-switching-track/#jncipent">JNCIP-ENT</a>. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world?</p>
+<p><span id="more-196"></span></p>
+<p>Start by listing all the available local interfaces (requires a VirtualBox setup):</p>
+<blockquote>
+<pre>$ <strong>VBoxManage list bridgedifs | grep ^Name</strong>
+Name: en1: Wi-Fi (AirPort)
+Name: en0: Ethernet
+Name: en2: Thunderbolt 1
+Name: p2p0
+Name: bridge0</pre>
+</blockquote>
+<p>Select an interface from that list, then modify your <strong>Vagrantfile</strong> to connect <strong>vsrx1</strong> to the outside world:</p>
+<blockquote>
+<pre><span style="color: #999999;">  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.31.1",
+                     virtualbox__intnet: "1-3"</span>
+<strong>    vsrx1.vm.network "public_network",
+                     bridge: "en1: Wi-Fi (AirPort)"</strong>
+  <span style="color: #999999;">end
+</span></pre>
+</blockquote>
+<p>We have now bridged a physical interface, in this case my Macbook Wi-Fi interface, to <strong>vsrx1&#8217;s</strong> interface ge-0/0/3.0:</p>
+<blockquote>
+<pre>$ <strong>vagrant ssh vsrx1</strong>
+--- JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC
+root@vsrx1% <strong>cli</strong>
+root@vsrx1&gt; <strong>show configuration interfaces ge-0/0/3</strong>
+unit 0 {
+    family inet {
+        dhcp;
+    }
+}
+root@vsrx1&gt; <strong>show interfaces terse ge-0/0/3.0</strong>
+Interface               Admin Link Proto    Local                 Remote
+ge-0/0/3.0              up    up   inet     10.24.5.207/24
+root@vsrx01&gt; <strong>ping 8.8.8.8 count 3</strong>
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=44 time=35.096 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=44 time=23.366 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=44 time=36.630 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 23.366/31.697/36.630/5.924 ms
+root@vsrx01&gt;
+</pre>
+</blockquote>
+<p>Your lab can now reach <a href="http://www.dictionary.com/browse/internet">The Internet</a> through <strong>vsrx1</strong> ⚡️<img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f30d.png" alt="🌍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="/consulting/">Get in touch</a> if you are looking for automation and Juniper consulting services.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/connecting-our-juniper-lab-to-the-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Packet Analysis Challenge #1</title>
+	<atom:link href="/2016/08/packet-analysis-challenge-1/feed/" rel="self" type="application/rss+xml" />
+	<link>/2016/08/packet-analysis-challenge-1/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Wed, 17 Aug 2016 14:54:53 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+	<item>
+		<title>By: Fredrik Holmberg</title>
+		<link>/2016/08/packet-analysis-challenge-1/#comment-33</link>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+		<pubDate>Wed, 17 Aug 2016 14:54:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=384#comment-33</guid>
+		<description><![CDATA[Thanks Martin! Street cred has been handed out &lt;a href=&quot;/2016/08/packet-analysis-challenge-1-solution/&quot;&gt;&lt;/a&gt; :-)
+
+ - Fredrik]]></description>
+		<content:encoded><![CDATA[<p>Thanks Martin! Street cred has been handed out <a href="/2016/08/packet-analysis-challenge-1-solution/"></a> 🙂</p>
+<p> &#8211; Fredrik</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Martin Karlsen</title>
+		<link>/2016/08/packet-analysis-challenge-1/#comment-22</link>
+		<dc:creator><![CDATA[Martin Karlsen]]></dc:creator>
+		<pubDate>Thu, 04 Aug 2016 10:07:53 +0000</pubDate>
+		<guid isPermaLink="false">/?p=384#comment-22</guid>
+		<description><![CDATA[My &quot;street cred application&quot; has been filled out and submitted. 
+
+Great challange! Keep&#039;em coming ;-)
+
+Regards,
+Martin]]></description>
+		<content:encoded><![CDATA[<p>My &#8220;street cred application&#8221; has been filled out and submitted. </p>
+<p>Great challange! Keep&#8217;em coming 😉</p>
+<p>Regards,<br />
+Martin</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>

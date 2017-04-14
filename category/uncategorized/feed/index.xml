@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Uncategorized &#8211; Fredrik Holmberg</title>
+	<atom:link href="/category/uncategorized/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>Uncategorized &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Consulting Services</title>
+		<link>/2016/06/consulting-services/</link>
+		<comments>/2016/06/consulting-services/#respond</comments>
+		<pubDate>Wed, 08 Jun 2016 10:38:23 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=351</guid>
+		<description><![CDATA[As requested you can now find information about my Consulting Services. Get in touch if you&#8217;re interested in discussing business opportunities. Have a nice day!]]></description>
+				<content:encoded><![CDATA[<p><a href="/consulting/"><img class="wp-image-353 aligncenter" src="/wp-content/uploads/2016/06/imac-605421_640.jpg" alt="imac-605421_640" width="381" height="253" srcset="/wp-content/uploads/2016/06/imac-605421_640.jpg 640w, /wp-content/uploads/2016/06/imac-605421_640-300x199.jpg 300w" sizes="(max-width: 381px) 100vw, 381px" /></a></p>
+<p style="text-align: left;">As requested you can now find information about my <a href="/consulting/">Consulting Services</a>.</p>
+<p style="text-align: left;"><a href="mailto:mail@fredrikholmberg.com?Subject=Consulting%20Services">Get in touch</a> if you&#8217;re interested in discussing business opportunities.</p>
+<p style="text-align: left;">Have a nice day!</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/06/consulting-services/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>App troubleshooting using Wireshark</title>
+		<link>/2016/05/app-troubleshooting-using-wireshark/</link>
+		<comments>/2016/05/app-troubleshooting-using-wireshark/#respond</comments>
+		<pubDate>Wed, 25 May 2016 13:43:13 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[ios]]></category>
+		<category><![CDATA[tls]]></category>
+		<category><![CDATA[troubleshooting]]></category>
+		<category><![CDATA[wireshark]]></category>
+
+		<guid isPermaLink="false">/?p=261</guid>
+		<description><![CDATA[Remember those glory days when phones still had buttons? Before the selfie stick era. I used my phone to send SMS messages and call people. Browse the internet using WAP. Send a hi-def 320x240px picture now and then using MMS. The only pieces of software I had to deal with were the pre-installed stock applications (renamed [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>Remember those glory days when phones still had buttons? Before the selfie stick era. I used my phone to send SMS messages and call people. Browse the internet using <a href="https://en.wikipedia.org/wiki/Wireless_Application_Protocol">WAP</a>. Send a hi-def 320x240px picture now and then using MMS. The only pieces of software I had to deal with were the pre-installed stock applications (renamed to &#8220;apps&#8221; by Apple in 2008). All other internet activities had to be done on a computer.</p>
+<p>Today, the phone is a touch screen that allow you to interact with apps. Everything is done through apps. We use them to buy tickets, share pictures with grandparents, access our bank account, post a picture of today&#8217;s dinner. So what happens when your favorite app stops working all of a sudden? How do you troubleshoot it?</p>
+<p><span id="more-261"></span></p>
+<p>Once I had an issue with a banking app on my iPhone. After upgrading to iOS 9, logging in using two-factor authentication stopped working. It had persisted for several months and when I asked the company I got the default reply that &#8220;it&#8217;s a known issue and the developers are working a fix&#8221;. Ok great.</p>
+<p>This is what greeted me when I tried logging in:</p>
+<p><img class="aligncenter wp-image-266" src="/wp-content/uploads/2016/05/err2-169x300.png" alt="err2" width="282" height="500" srcset="/wp-content/uploads/2016/05/err2-169x300.png 169w, /wp-content/uploads/2016/05/err2-577x1024.png 577w, /wp-content/uploads/2016/05/err2.png 640w" sizes="(max-width: 282px) 100vw, 282px" /></p>
+<p>You could sit and look at that white square for as long as you wanted. Nothing would happen. No error message or <a href="https://en.wikipedia.org/wiki/Spinning_pinwheel">spinning beach ball</a>.</p>
+<h3>Cursed app</h3>
+<p>So then I decided to troubleshoot it myself. The same way I troubleshoot applications <a href="/consulting/">professionally</a>. Not the developer way of debugging through Xcode. The network engineer way by looking at packets. Shouldn&#8217;t be too hard, right? <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f4aa.png" alt="💪" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Two hurdles:</p>
+<ol>
+<li>The app was on my iPhone which meant wireless communication.</li>
+<li>The communication was likely using an encrypted channel making eavesdropping impossible*.</li>
+</ol>
+<p><em>* No, nothing is impossible. You can use <a href="https://mitmproxy.org/">mitmproxy</a> or similar tools.</em></p>
+<p>Using a <a href="http://routerboard.com/RB750GL">Mikrotik RB750GL</a> I mirrored all traffic sent and received from my iPhone to my laptop. Got Wireshark up and running hoping to find something that indicated an error.</p>
+<p>Filtering the output down to the exact moment when I tapped &#8220;Login&#8221; and the two-factor module was supposed to load:</p>
+<p><img class="alignnone size-full wp-image-271" src="/wp-content/uploads/2016/05/err3.png" alt="err3" width="1098" height="251" srcset="/wp-content/uploads/2016/05/err3.png 1098w, /wp-content/uploads/2016/05/err3-300x69.png 300w, /wp-content/uploads/2016/05/err3-768x176.png 768w, /wp-content/uploads/2016/05/err3-1024x234.png 1024w, /wp-content/uploads/2016/05/err3-676x155.png 676w" sizes="(max-width: 1098px) 100vw, 1098px" /></p>
+<p>Lots of weird text. Don&#8217;t give up just yet.</p>
+<p>There&#8217;s a clue here! On line <strong>#6</strong>, Wireshark is trying to help us by showing an error message &#8220;Handshake Failure&#8221;. A fatal alert. That can&#8217;t be good.</p>
+<p>Following the TLS handshake failure the server tears down the TCP connection. Nothing happens in the app UI. So much for error handling.</p>
+<p>More on Transport Layer Security (TLS) Protocol Version 1.2 Handshakes <a href="https://tools.ietf.org/html/rfc5246#section-7.3">https://tools.ietf.org/html/rfc5246#section-7.3</a>.</p>
+<h3>Failing handshakes</h3>
+<p>What does this mean? It means that the client is sending something that the server does not agree with.</p>
+<p>Then I compared the authentication and handshake mechanism with another banking app. One that worked. It turned out that the two were sending two different cipher suites in their <a href="https://tools.ietf.org/html/rfc5246#section-7.4.1.2">Client Hello</a>:</p>
+<p><strong>Failing app (12 ciphers)</strong></p>
+<pre><code>TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</code></pre>
+<p><strong>Working app (same 12 ciphers + 6 additional)</strong></p>
+<pre><code>TLS_EMPTY_RENEGOTIATION_INFO_SCSV
+TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+TLS_RSA_WITH_AES_256_GCM_SHA384
+TLS_RSA_WITH_AES_128_GCM_SHA256
+TLS_RSA_WITH_AES_256_CBC_SHA256
+TLS_RSA_WITH_AES_256_CBC_SHA
+TLS_RSA_WITH_AES_128_CBC_SHA256
+TLS_RSA_WITH_AES_128_CBC_SHA</code></pre>
+<p>The cipher chosen for the working app was &#8220;TLS_RSA_WITH_AES_256_CBC_SHA&#8221;.</p>
+<p>After some research I learned that Apple introduced a new security feature in iOS 9 called <a href="https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html">App Transport Security (ATS)</a>. Even though it killed my app it&#8217;s a great feature forcing the use of Transport Layer Security (TLS) version 1.2, better ciphers, forward secrecy (FS) among other things.</p>
+<p>So the theory now was:</p>
+<blockquote><p>&#8220;after upgrading to iOS 9 the client is sending ciphers unsupported by the server&#8221;</p></blockquote>
+<p>Every theory should be tested so I decided to use the excellent <a href="https://www.ssllabs.com/ssltest/">Qualys SSL Labs SSL Report tool</a>.</p>
+<p>Lo and behold, both server endpoints got a grade of <strong>C</strong> because of two things:</p>
+<ol>
+<li>&#8220;No support for TLS 1.2, which is the only secure protocol version.&#8221;</li>
+<li>&#8220;Handshake Simulation: Apple ATS 9 / iOS 9 &#8211; Protocol or cipher suite mismatch &#8211; Fail&#8221;</li>
+</ol>
+<p>I got the same results using <strong>nscurl</strong> showing that TLS 1.0 was the only supported version:</p>
+<blockquote>
+<pre><strong>$ /usr/bin/nscurl --ats-diagnostics --verbose https://login.bank.com/"
+</strong>
+TLSv1.0 with PFS disabled
+ATS Dictionary:
+{
+    NSExceptionDomains =     {
+        "login.bank.com" =         {
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = false;
+        };
+    };
+}
+Result : PASS
+</pre>
+</blockquote>
+<p>&nbsp;</p>
+<h3>Show me the fix</h3>
+<p>The problem had two possible solutions:</p>
+<ul>
+<li>Enable support of TLS 1.2 and Apple ATS 9 handshakes on the server side &#8211; GOOD</li>
+<li>Offer ciphers outside of the Apple ATS 9 scope on the client side &#8211; BAD</li>
+</ul>
+<p>Based on my findings the app was updated to version 4.1.0 &#8220;authorisation issue on iOS 9 for Norwegian region&#8221;.</p>
+<p>Checked again today to see what had changed:</p>
+<ul>
+<li>The client is now sending 22 ciphers instead of the ATS 9 default of 12.</li>
+<li>The server side now get a rating of A and B by Qualys. TLS 1.2 is now supported. Apple ATS 9 is still unsupported.</li>
+</ul>
+<p>The world is not perfect, but we&#8217;re getting there. Bit by bit <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f4c8.png" alt="📈" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>If you are looking for a troubleshooting expert, have a look at my <a href="/consulting/">Consulting Services</a>.</p>
+<p>Have a nice day!</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/05/app-troubleshooting-using-wireshark/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Slapstick</title>
+		<link>/2016/05/slapstick/</link>
+		<comments>/2016/05/slapstick/#respond</comments>
+		<pubDate>Sun, 01 May 2016 11:00:51 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[Uncategorized]]></category>
+		<category><![CDATA[ipv4]]></category>
+
+		<guid isPermaLink="false">/?p=226</guid>
+		<description><![CDATA[That&#8217;ll slow things down! #NetworkHumor pic.twitter.com/WpbTyynTaD — Juniper Networks (@JuniperNetworks) April 10, 2016]]></description>
+				<content:encoded><![CDATA[<blockquote class="twitter-tweet" data-lang="en">
+<p dir="ltr" lang="en">That&#8217;ll slow things down! <a href="https://twitter.com/hashtag/NetworkHumor?src=hash">#NetworkHumor</a> <a href="https://t.co/WpbTyynTaD">pic.twitter.com/WpbTyynTaD</a></p>
+<p>— Juniper Networks (@JuniperNetworks) <a href="https://twitter.com/JuniperNetworks/status/719178192519438338">April 10, 2016</a></p></blockquote>
+<p><script src="//platform.twitter.com/widgets.js" async="" charset="utf-8"></script></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/05/slapstick/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Connecting our Juniper lab to the world</title>
+		<link>/2016/04/connecting-our-juniper-lab-to-the-world/</link>
+		<comments>/2016/04/connecting-our-juniper-lab-to-the-world/#respond</comments>
+		<pubDate>Mon, 18 Apr 2016 08:01:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=196</guid>
+		<description><![CDATA[Let&#8217;s say you have a Juniper EX switch that you want to connect to your new virtual lab. Maybe you&#8217;re training for the JNCIP-ENT. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world? Start by listing all the available local interfaces [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div id="attachment_86" style="width: 411px" class="wp-caption aligncenter"><img class="wp-image-86" src="/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, /wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" /><p class="wp-caption-text">A young Michael Caine enjoying Juniper labs.</p></div>
+<p>Let&#8217;s say you have a Juniper EX switch that you want to connect to your new <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">virtual lab</a>. Maybe you&#8217;re training for the <a href="http://www.juniper.net/us/en/training/certification/certification-tracks/ent-routing-switching-track/#jncipent">JNCIP-ENT</a>. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world?</p>
+<p><span id="more-196"></span></p>
+<p>Start by listing all the available local interfaces (requires a VirtualBox setup):</p>
+<blockquote>
+<pre>$ <strong>VBoxManage list bridgedifs | grep ^Name</strong>
+Name: en1: Wi-Fi (AirPort)
+Name: en0: Ethernet
+Name: en2: Thunderbolt 1
+Name: p2p0
+Name: bridge0</pre>
+</blockquote>
+<p>Select an interface from that list, then modify your <strong>Vagrantfile</strong> to connect <strong>vsrx1</strong> to the outside world:</p>
+<blockquote>
+<pre><span style="color: #999999;">  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.31.1",
+                     virtualbox__intnet: "1-3"</span>
+<strong>    vsrx1.vm.network "public_network",
+                     bridge: "en1: Wi-Fi (AirPort)"</strong>
+  <span style="color: #999999;">end
+</span></pre>
+</blockquote>
+<p>We have now bridged a physical interface, in this case my Macbook Wi-Fi interface, to <strong>vsrx1&#8217;s</strong> interface ge-0/0/3.0:</p>
+<blockquote>
+<pre>$ <strong>vagrant ssh vsrx1</strong>
+--- JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC
+root@vsrx1% <strong>cli</strong>
+root@vsrx1&gt; <strong>show configuration interfaces ge-0/0/3</strong>
+unit 0 {
+    family inet {
+        dhcp;
+    }
+}
+root@vsrx1&gt; <strong>show interfaces terse ge-0/0/3.0</strong>
+Interface               Admin Link Proto    Local                 Remote
+ge-0/0/3.0              up    up   inet     10.24.5.207/24
+root@vsrx01&gt; <strong>ping 8.8.8.8 count 3</strong>
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=44 time=35.096 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=44 time=23.366 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=44 time=36.630 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 23.366/31.697/36.630/5.924 ms
+root@vsrx01&gt;
+</pre>
+</blockquote>
+<p>Your lab can now reach <a href="http://www.dictionary.com/browse/internet">The Internet</a> through <strong>vsrx1</strong> ⚡️<img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f30d.png" alt="🌍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="/consulting/">Get in touch</a> if you are looking for automation and Juniper consulting services.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/connecting-our-juniper-lab-to-the-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+	</channel>
+</rss>

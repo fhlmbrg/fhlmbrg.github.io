@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>juniper &#8211; Fredrik Holmberg</title>
+	<atom:link href="/tag/juniper/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Network Consultant</description>
+	<lastBuildDate>Thu, 10 Nov 2016 19:39:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.7.3</generator>
+
+<image>
+	<url>/wp-content/uploads/2016/04/cropped-2601-32x32.png</url>
+	<title>juniper &#8211; Fredrik Holmberg</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Network Automation Day</title>
+		<link>/2016/09/network-automation-day/</link>
+		<comments>/2016/09/network-automation-day/#respond</comments>
+		<pubDate>Wed, 14 Sep 2016 12:23:52 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[ansible]]></category>
+		<category><![CDATA[automation]]></category>
+		<category><![CDATA[juniper]]></category>
+		<category><![CDATA[workshop]]></category>
+
+		<guid isPermaLink="false">/?p=475</guid>
+		<description><![CDATA[On September 1st the Norwegian Juniper Elite partner nLogic AS hosted an event called &#8220;Ansible i praksis&#8220;, entirely focused on network automation using Ansible. Lots of interesting presentations and discussions from the Norwegian automation scene. A whole day of Juniper, automation and Ansible! Does it get any better? I had the pleasure of leading a technical workshop at the [&#8230;]]]></description>
+				<content:encoded><![CDATA[<h1 style="text-align: center;"><img class="alignnone wp-image-511 " src="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png" alt="ansible_logo_black" width="580" height="78" srcset="/wp-content/uploads/2016/09/ansible_logo_black-1024x138.png 1024w, /wp-content/uploads/2016/09/ansible_logo_black-300x41.png 300w, /wp-content/uploads/2016/09/ansible_logo_black-768x104.png 768w, /wp-content/uploads/2016/09/ansible_logo_black-676x91.png 676w, /wp-content/uploads/2016/09/ansible_logo_black.png 1125w" sizes="(max-width: 580px) 100vw, 580px" /></h1>
+<p>On September 1st the Norwegian Juniper Elite partner <a href="http://www.nlogic.no/">nLogic AS</a> hosted an event called &#8220;<a href="http://nlogic.no/kursogseminarer/367-nlogic-workshop-ansible-i-praksis">Ansible i praksis</a>&#8220;, entirely focused on network automation using Ansible. Lots of interesting presentations and discussions from the Norwegian automation scene. A whole day of Juniper, automation and Ansible! Does it get any better?</p>
+<p>I had the pleasure of leading a technical workshop at the end of the event where the attendees were challenged with common operations tasks worthy of automating.</p>
+<p>A fun experience and all-in-all a great day!</p>
+<p><span id="more-475"></span></p>
+<h3>Presentations</h3>
+<p><a href="http://www.juniper.net/">Juniper Networks</a> had the first presentation talking about their current automation portfolio and how they are embracing Ansible. Leading by example Juniper publishes fully working playbooks on Github &#8211; <a href="http://github.com/JNPRAutomate">github.com/JNPRAutomate</a>.</p>
+<p>Next up was the <a href="http://www.met.no/">Norwegian Meteorological Institute (MET)</a> talking about their Ansible implementation and showcasing everything in a live demo how they modify their Leaf-and-Spine DC fabric including firewall rulesets, on the fly, of course.</p>
+<p>Then <a href="http://www.uninett.no/">Uninett</a> showed how they are planning to roll out their new core network using Ansible and how they are saving loads of time by automating the initial preparation of routers, before shipping them out to their educational and research institution partners.</p>
+<h3>Workshop</h3>
+<p>The last part of the event was the two-hour workshop. The attendees got access to a nine-node Juniper QFX topology which they were challenged to interact with using only Ansible:</p>
+<p><img class="wp-image-492 size-full aligncenter" src="/wp-content/uploads/2016/09/junosansibleworkshop.png" alt="junosansibleworkshop" width="519" height="215" srcset="/wp-content/uploads/2016/09/junosansibleworkshop.png 519w, /wp-content/uploads/2016/09/junosansibleworkshop-300x124.png 300w" sizes="(max-width: 519px) 100vw, 519px" /></p>
+<p>With the limited amount of time our main focus was:</p>
+<ul>
+<li>Configure the network infrastructure using abstraction and templates.</li>
+<li>Perform an action on a device, then send that information to an external web service.</li>
+<li>Export information from your infrastructure for inventory or compliance purposes.</li>
+</ul>
+<p>Often it&#8217;s the small and simple tasks that yields the greatest automation value.</p>
+<p>If you want to try some similar scenarios, Juniper have published great examples on Github &#8211; <a href="http://github.com/JNPRAutomate/ansible-junos-examples">github.com/JNPRAutomate/ansible-junos-examples</a> . You can spin up a two-node topology using <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">Vagrant</a> in minutes and start testing.</p>
+<h3>So, what will YOU automate this week?</h3>
+<p>Verifying NTP settings in your infrastructure? The planned cloud deployment? The upcoming security compliance check? That single configuration change, that needs to be typed in on 100 nodes?</p>
+<p>Start small and scale up later. The important key is that you start automating something.</p>
+<p>Unsure if your infrastructure is automation friendly? Need help finding some proper automation candidates? Fear not &#8211; check out my <a href="/consulting/">consulting services</a>.</p>
+<p>Have a great day! <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f31f.png" alt="🌟" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/09/network-automation-day/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>Connecting our Juniper lab to the world</title>
+		<link>/2016/04/connecting-our-juniper-lab-to-the-world/</link>
+		<comments>/2016/04/connecting-our-juniper-lab-to-the-world/#respond</comments>
+		<pubDate>Mon, 18 Apr 2016 08:01:26 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[Uncategorized]]></category>
+
+		<guid isPermaLink="false">/?p=196</guid>
+		<description><![CDATA[Let&#8217;s say you have a Juniper EX switch that you want to connect to your new virtual lab. Maybe you&#8217;re training for the JNCIP-ENT. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world? Start by listing all the available local interfaces [&#8230;]]]></description>
+				<content:encoded><![CDATA[<div id="attachment_86" style="width: 411px" class="wp-caption aligncenter"><img class="wp-image-86" src="/wp-content/uploads/2013/08/arpanet-5-1.jpg" alt="A young Michael Caine doing Juniper labs." width="401" height="275" srcset="/wp-content/uploads/2013/08/arpanet-5-1.jpg 400w, /wp-content/uploads/2013/08/arpanet-5-1-300x206.jpg 300w" sizes="(max-width: 401px) 100vw, 401px" /><p class="wp-caption-text">A young Michael Caine enjoying Juniper labs.</p></div>
+<p>Let&#8217;s say you have a Juniper EX switch that you want to connect to your new <a href="/2016/04/on-demand-juniper-labs-using-vagrant/">virtual lab</a>. Maybe you&#8217;re training for the <a href="http://www.juniper.net/us/en/training/certification/certification-tracks/ent-routing-switching-track/#jncipent">JNCIP-ENT</a>. Maybe you need to verify reachability to a production network over an IPsec VPN tunnel. How do you connect your virtual Juniper lab to the world?</p>
+<p><span id="more-196"></span></p>
+<p>Start by listing all the available local interfaces (requires a VirtualBox setup):</p>
+<blockquote>
+<pre>$ <strong>VBoxManage list bridgedifs | grep ^Name</strong>
+Name: en1: Wi-Fi (AirPort)
+Name: en0: Ethernet
+Name: en2: Thunderbolt 1
+Name: p2p0
+Name: bridge0</pre>
+</blockquote>
+<p>Select an interface from that list, then modify your <strong>Vagrantfile</strong> to connect <strong>vsrx1</strong> to the outside world:</p>
+<blockquote>
+<pre><span style="color: #999999;">  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.31.1",
+                     virtualbox__intnet: "1-3"</span>
+<strong>    vsrx1.vm.network "public_network",
+                     bridge: "en1: Wi-Fi (AirPort)"</strong>
+  <span style="color: #999999;">end
+</span></pre>
+</blockquote>
+<p>We have now bridged a physical interface, in this case my Macbook Wi-Fi interface, to <strong>vsrx1&#8217;s</strong> interface ge-0/0/3.0:</p>
+<blockquote>
+<pre>$ <strong>vagrant ssh vsrx1</strong>
+--- JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC
+root@vsrx1% <strong>cli</strong>
+root@vsrx1&gt; <strong>show configuration interfaces ge-0/0/3</strong>
+unit 0 {
+    family inet {
+        dhcp;
+    }
+}
+root@vsrx1&gt; <strong>show interfaces terse ge-0/0/3.0</strong>
+Interface               Admin Link Proto    Local                 Remote
+ge-0/0/3.0              up    up   inet     10.24.5.207/24
+root@vsrx01&gt; <strong>ping 8.8.8.8 count 3</strong>
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: icmp_seq=0 ttl=44 time=35.096 ms
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=44 time=23.366 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=44 time=36.630 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 23.366/31.697/36.630/5.924 ms
+root@vsrx01&gt;
+</pre>
+</blockquote>
+<p>Your lab can now reach <a href="http://www.dictionary.com/browse/internet">The Internet</a> through <strong>vsrx1</strong> ⚡️<img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f30d.png" alt="🌍" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p><a href="/consulting/">Get in touch</a> if you are looking for automation and Juniper consulting services.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/connecting-our-juniper-lab-to-the-world/feed/</wfw:commentRss>
+		<slash:comments>0</slash:comments>
+		</item>
+		<item>
+		<title>On-demand Juniper labs using Vagrant</title>
+		<link>/2016/04/on-demand-juniper-labs-using-vagrant/</link>
+		<comments>/2016/04/on-demand-juniper-labs-using-vagrant/#comments</comments>
+		<pubDate>Mon, 11 Apr 2016 22:58:51 +0000</pubDate>
+		<dc:creator><![CDATA[Fredrik Holmberg]]></dc:creator>
+				<category><![CDATA[juniper]]></category>
+		<category><![CDATA[lab]]></category>
+		<category><![CDATA[vagrant]]></category>
+
+		<guid isPermaLink="false">/?p=173</guid>
+		<description><![CDATA[If you want user adoption, make your product easily accessible. Allow people to download it and start playing around. Provide study resources and hand out discounts to get people to start taking your certifications. Attract the engineers. Show how you can automate your infrastructure using Ansible. Get them hooked! One of the first steps to start learning any platform is to set up [&#8230;]]]></description>
+				<content:encoded><![CDATA[<p>If you want user adoption, make your product easily <a href="http://www.juniper.net/us/en/dm/free-vsrx-trial/">accessible</a>. Allow people to download it and start playing around. Provide <a href="http://www.juniper.net/us/en/training/jnbooks/day-one/">study resources</a> and hand out <a href="http://www.juniper.net/us/en/training/fasttrack/">discounts</a> to get people to start taking your certifications. Attract the engineers. Show how you can <a href="https://github.com/Juniper/ansible-junos-stdlib/">automate</a> your infrastructure using Ansible. Get them hooked!</p>
+<p>One of the first steps to start learning any platform is to set up a lab. Engineers want labs and <a href="http://www.juniper.net/">Juniper</a> want you to run as many virtual routers as you possibly can on your laptop. To make this as simple and streamlined as possible they provide you with their own pre-built <a href="https://vagrantcloud.com/juniper">Vagrant boxes</a>. These boxes are tiny virtual machines that can run on top of different hypervisors.</p>
+<p>In the following example I will show you how to manage the deployment and configuration of these boxes using Vagrant to set up a small Juniper lab.</p>
+<p><span id="more-173"></span></p>
+<h2>GO</h2>
+<p>Start by downloading <a href="https://www.vagrantup.com/downloads.html">Vagrant</a> and <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox</a>. You might also need to install <a href="https://git-scm.com/downloads">Git</a>.</p>
+<p>Clone Juniper&#8217;s Vagrant Github repository:</p>
+<blockquote><p>$ <strong>git clone https://github.com/JNPRAutomate/vagrant-junos.git</strong><br />
+Cloning into &#8216;vagrant-junos&#8217;&#8230;<br />
+remote: Counting objects: 208, done.<br />
+remote: Total 208 (delta 0), reused 0 (delta 0), pack-reused 208<br />
+Receiving objects: 100% (208/208), 28.18 KiB | 0 bytes/s, done.<br />
+Resolving deltas: 100% (84/84), done.<br />
+Checking connectivity&#8230; done.</p></blockquote>
+<p>You now have a directory created called &#8220;<strong>vagrant-junos</strong>&#8220;.</p>
+<p>Install the Vagrant plugins needed:</p>
+<blockquote><p>$ <strong>cd vagrant-junos</strong><br />
+$ <strong>vagrant plugin install vagrant-junos</strong><br />
+Installing the &#8216;vagrant-junos&#8217; plugin. This can take a few minutes&#8230;<br />
+Installed the plugin &#8216;vagrant-junos (0.2.1)&#8217;!<br />
+$ <strong>vagrant plugin install vagrant-host-shell</strong><br />
+Installing the &#8216;vagrant-host-shell&#8217; plugin. This can take a few minutes&#8230;<br />
+Installed the plugin &#8216;vagrant-host-shell (0.0.4)&#8217;!</p></blockquote>
+<p>OK, let&#8217;s say we want to build a four node topology similar to this:</p>
+<p><img class="size-full wp-image-217 aligncenter" src="/wp-content/uploads/2016/04/juniper_vagrant_topo.png" alt="juniper_vagrant_topo" width="403" height="288" srcset="/wp-content/uploads/2016/04/juniper_vagrant_topo.png 403w, /wp-content/uploads/2016/04/juniper_vagrant_topo-300x214.png 300w" sizes="(max-width: 403px) 100vw, 403px" /></p>
+<p>First we need to describe this topology to Vagrant using a <strong>Vagrantfile</strong>. This is the file that Vagrant will use to give instructions to VirtualBox on how to connect interfaces, how much memory to allocate to each node etc.</p>
+<p>Our <strong>Vagrantfile</strong> should look like this:</p>
+<blockquote>
+<pre style="margin: 0; line-height: 125%;">#
+# Juniper lab v0.1
+#
+# ge-0/0/0.0: management interface
+# ge-0/0/1.0 - ge-0/0/7.0: user interfaces
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "juniper/ffp-12.1X47-D15.4-packetmode"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 2
+    vb.gui = false
+  end
+
+  config.vm.define "vsrx1" do |vsrx1|
+    vsrx1.vm.host_name = "vsrx1"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.12.1",
+                     virtualbox__intnet: "1-2"
+    vsrx1.vm.network "private_network",
+                     ip: "10.99.13.1",
+                     virtualbox__intnet: "1-3"
+  end
+
+  config.vm.define "vsrx2" do |vsrx2|
+    vsrx2.vm.host_name = "vsrx2"
+    vsrx2.vm.network "private_network",
+                     ip: "10.99.23.2",
+                     virtualbox__intnet: "2-3"
+    vsrx2.vm.network "private_network",
+                     ip: "10.99.12.2",
+                     virtualbox__intnet: "1-2"
+  end
+
+  config.vm.define "vsrx3" do |vsrx3|
+    vsrx3.vm.host_name = "vsrx3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.13.3",
+                     virtualbox__intnet: "1-3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.23.3",
+                     virtualbox__intnet: "2-3"
+    vsrx3.vm.network "private_network",
+                     ip: "10.99.34.3",
+                     virtualbox__intnet: "3-4"
+  end
+
+  config.vm.define "vsrx4" do |vsrx4|
+    vsrx4.vm.host_name = "vsrx4"
+    vsrx4.vm.network "private_network",
+                      ip: "10.99.34.4",
+                      virtualbox__intnet: "3-4"
+  end
+end
+</pre>
+</blockquote>
+<p>We allocate 1GB of memory to each node (512MB also works), two vCPUs and hide the console/GUI (headless). Then we specify all the interfaces and private networks that the nodes will communicate over. Pretty straight forward.</p>
+<h2>Will it float?</h2>
+<p>Only one way to find out! Start the lab:</p>
+<blockquote><p>$ <strong>vagrant up</strong><br />
+Bringing machine &#8216;vsrx1&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx2&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx3&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+Bringing machine &#8216;vsrx4&#8217; up with &#8216;virtualbox&#8217; provider&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Importing base box &#8216;juniper/ffp-12.1X47-D15.4-packetmode&#8217;&#8230;<br />
+==&gt; vsrx1: Matching MAC address for NAT networking&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Checking if box &#8216;juniper/ffp-12.1X47-D15.4-packetmode&#8217; is up to date&#8230;<br />
+==&gt; vsrx1: Setting the name of the VM: vagrant-junos_vsrx1_1460289979254_16001<br />
+==&gt; vsrx1: Fixed port collision for 22 =&gt; 2222. Now on port 2203.<br />
+==&gt; vsrx1: Clearing any previously set network interfaces&#8230;<br />
+==&gt; vsrx1: Preparing network interfaces based on configuration&#8230;<br />
+vsrx1: Adapter 1: nat<br />
+vsrx1: Adapter 2: intnet<br />
+vsrx1: Adapter 3: intnet<br />
+==&gt; vsrx1: Forwarding ports&#8230;<br />
+vsrx1: 22 (guest) =&gt; 2203 (host) (adapter 1)<br />
+==&gt; vsrx1: Running &#8216;pre-boot&#8217; VM customizations&#8230;<br />
+==&gt; vsrx1: Booting VM&#8230;<br />
+==&gt; vsrx1: Waiting for machine to boot. This may take a few minutes&#8230;<br />
+vsrx1: SSH address: 127.0.0.1:2203<br />
+vsrx1: SSH username: root<br />
+vsrx1: SSH auth method: private key<br />
+&#8230;<br />
+==&gt; vsrx1: Machine booted and ready!<br />
+==&gt; vsrx1: Checking for guest additions in VM&#8230;<br />
+&#8230;<br />
+==&gt; vsrx1: Setting hostname&#8230;<br />
+==&gt; vsrx1: Configuring and enabling network interfaces&#8230;</p></blockquote>
+<p>These operations will repeat until all of the nodes are up and running.</p>
+<p>When completed you can check the status of the nodes:</p>
+<blockquote><p>$ <strong>vagrant status</strong><br />
+Current machine states:</p>
+<p>vsrx1                                  running (virtualbox)<br />
+vsrx2                                  running (virtualbox)<br />
+vsrx3                                  running (virtualbox)<br />
+vsrx4                                  running (virtualbox)</p></blockquote>
+<p>Nice! Now what?</p>
+<p>Try accessing one of the nodes:</p>
+<blockquote><p>$ <strong>vagrant ssh vsrx4</strong><br />
+&#8212; JUNOS 12.1X47-D15.4 built 2014-11-12 02:13:59 UTC<br />
+root@vsrx4% <strong>cli</strong><br />
+root@vsrx4&gt; <strong>show version</strong><br />
+Hostname: vsrx4<br />
+Model: firefly-perimeter<br />
+JUNOS Software Release [12.1X47-D15.4]<br />
+root@vsrx4&gt; <strong>ping 10.99.34.3 count 3</strong><br />
+PING 10.99.34.3 (10.99.34.3): 56 data bytes<br />
+64 bytes from 10.99.34.3: icmp_seq=0 ttl=64 time=9.094 ms<br />
+64 bytes from 10.99.34.3: icmp_seq=1 ttl=64 time=0.992 ms<br />
+64 bytes from 10.99.34.3: icmp_seq=2 ttl=64 time=1.185 ms</p>
+<p>&#8212; 10.99.34.3 ping statistics &#8212;<br />
+3 packets transmitted, 3 packets received, 0% packet loss<br />
+round-trip min/avg/max/stddev = 0.992/3.757/9.094/3.775 ms</p></blockquote>
+<p>It works! We have reachability between <strong>vsrx3</strong> and<strong> vsrx4</strong>!</p>
+<h2>Final notes</h2>
+<p>So you play around for a while, commit your configs and consider yourself done for the day. Then I&#8217;d recommend that you suspend the whole topology instead of shutting it down:</p>
+<blockquote>
+<pre>$ <strong>vagrant suspend</strong>
+==&gt; vsrx1: Saving VM state and suspending execution...
+==&gt; vsrx2: Saving VM state and suspending execution...
+==&gt; vsrx3: Saving VM state and suspending execution...
+==&gt; vsrx4: Saving VM state and suspending execution...
+$ <strong>vagrant status</strong>
+Current machine states:
+
+vsrx1                     saved (virtualbox)
+vsrx2                     saved (virtualbox)
+vsrx3                     saved (virtualbox)
+vsrx4                     saved (virtualbox)
+</pre>
+</blockquote>
+<p>This way you save the running state of the whole lab topology. The benefit of doing this is that you can continue where you left off without having to wait for the boot sequence x $node.</p>
+<p>Cool! What to do from here is all up to you. Have fun <img src="https://s.w.org/images/core/emoji/2.2.1/72x72/1f642.png" alt="🙂" class="wp-smiley" style="height: 1em; max-height: 1em;" /></p>
+<p>Professional Juniper consulting is available through my <a href="/consulting/">Consulting Services</a>.</p>
+]]></content:encoded>
+			<wfw:commentRss>/2016/04/on-demand-juniper-labs-using-vagrant/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+	</channel>
+</rss>
